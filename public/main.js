@@ -1,38 +1,44 @@
 document.addEventListener('DOMContentLoaded', (e) => {
-    console.log('loaded');
-    console.log(window.location)
-    fireData(window.location);
+    console.log('This Application uses WizardLead!');
+    fireData({location: window.location})
+    .then(() => {
+        document.addEventListener('click', (e) => {
+            console.log('click!')
+            fireData({
+                location: window.location.pathname
+            })
+        })
+    })
+    .catch(() => console.log('There was an error initializing WizardLead'));
 })
 
-document.addEventListener('click', (e) => {
-    console.log('click fired!');
-    fireData({
-        location: window.location.pathname
-    })
-})
 
-document.addEventListener('keypress', (e) => {
-    console.log(e)
-    fireData({
-        keyPress: e.keyCode
-    })
-})
+// document.addEventListener('keypress', (e) => {
+//     fireData({
+//         keyPress: e.keyCode
+//     })
+// })
 
 function fireData(payload){
-    console.log('this fired', payload);
     var data = {
+        session: document.cookie || "",
         payload
     }
-    console.log('DATA', JSON.stringify(data));
-    window.fetch('http://localhost:3000/data',  {
+    console.log('outgoing cookie', document.cookie);
+    return window.fetch('http://localhost:3000/data',  {
         method: 'POST',
-        body: JSON.stringify(data), // data can be `string` or {object}!
+        body: JSON.stringify(data),
         headers: new Headers({
             'Content-Type': 'application/json'
         })
     })
-    .then(data => {
-        console.log('data sent successfully!');
+    .then(res => res.json())
+    .then(body => {
+        if(!document.cookie){
+            // document.cookie.sessionId = body.sessionId;
+            document.cookie = `sessionId=${body.sessionId}`
+        }
+        console.log(body.sessionId);
     })
     .catch(err => {
         console.error('There was an error sending data!');
