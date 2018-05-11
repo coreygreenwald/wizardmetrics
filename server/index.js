@@ -71,7 +71,7 @@ app.post('/data', (req, res, next) => {
 
 app.use('/', (req, res, next) => {
     // console.log('this was hit');
-    res.sendFile(path.join(__dirname, '../public/main.js'));
+    res.sendFile(path.join(__dirname, '../public/bundle.js'));
 })
 
 /*

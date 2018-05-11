@@ -6,9 +6,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
     })
     .then(() => {
         document.addEventListener('click', (e) => {
-            console.log(e);
-            console.log(e.target);
-            console.log(e.target.innerHtml);
             fireData({
                 type: e.type,
                 path: window.location.pathname,
@@ -44,7 +41,6 @@ function fireData(payload){
         session: document.cookie || "",
         payload
     }
-    console.log('outgoing cookie', document.cookie);
     return window.fetch('http://localhost:3000/data',  {
         method: 'POST',
         body: JSON.stringify(data),
@@ -55,12 +51,10 @@ function fireData(payload){
     .then(res => res.json())
     .then(body => {
         if(!document.cookie){
-            // document.cookie.sessionId = body.sessionId;
             document.cookie = `sessionId=${body.sessionId}`
         }
-        console.log(body.sessionId);
     })
     .catch(err => {
-        console.error('There was an error sending data!');
+        console.error('There was an error sending data to WizardLead!');
     })
 }
