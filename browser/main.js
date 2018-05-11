@@ -41,7 +41,7 @@ function fireData(payload){
         session: document.cookie || "",
         payload
     }
-    return window.fetch('http://localhost:3000/data',  {
+    return window.fetch('https://wizardly.herokuapp.com/data',  {
         method: 'POST',
         body: JSON.stringify(data),
         headers: new Headers({
