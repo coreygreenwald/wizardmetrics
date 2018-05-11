@@ -69,11 +69,15 @@ app.post('/data', (req, res, next) => {
     })
 })
 
-app.use('/', (req, res, next) => {
+app.use('/plugin', (req, res, next) => {
     // console.log('this was hit');
     res.sendFile(path.join(__dirname, '../public/bundle.js'));
 })
 
+app.use('/', (req, res, next) => {
+    // console.log('this was hit');
+    res.sendFile(path.join(__dirname, '../admin/index.html'));
+})
 /*
 
 
