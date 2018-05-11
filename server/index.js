@@ -3,14 +3,11 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-// const session = require('express-session')
-// const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const { db, Action, Session } = require('../db')
-// const sessionStore = new SequelizeStore({db})
 
 const crypto = require("crypto");
 
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -45,18 +42,6 @@ app.post('/data', (req, res, next) => {
 
 })
 
-// app.use(session({
-//     secret: process.env.SESSION_SECRET || 'server defau lt secret',
-//     store: sessionStore,
-//     resave: false,
-//     saveUninitialized: true
-// }))
-
-// app.use((req, res, next) => {
-//     console.log('THIS WAS HIT', req.session.id);
-//     next(); 
-// })
-
 app.post('/data', (req, res, next) => {
     // console.log(req.session.id, req.body);
     Action.create({
@@ -74,22 +59,11 @@ app.use('/plugin', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../public/bundle.js'));
 })
 
-app.use('/', (req, res, next) => {
+app.use(express.static(path.join(__dirname, '../admin')))
+
+app.get('*', (req, res, next) => {
     // console.log('this was hit');
     res.sendFile(path.join(__dirname, '../admin/index.html'));
 })
-/*
-
-
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'my best friend is Cody',
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false
-  }))
-
-
-
-*/
 
 module.exports = app;
