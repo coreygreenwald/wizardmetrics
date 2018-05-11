@@ -22,11 +22,12 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use('/data', (req, res, next) => {
-    // console.log('SESSION CHECK', req.body);
+app.post('/data', (req, res, next) => {
+    console.log('SESSION CHECK', req.originalUrl, req.body.session || 'NOT YET CREATED');
     if(req.body.session && req.body.session.includes('sessionId')){
         req.body.session = req.body.session.slice(10);
     } else {
+        console.log('GENERATING NEW SESSION', req.body.session);
         req.body.session = crypto.randomBytes(20).toString('hex');
     }
     Session.findOrCreate({
@@ -58,7 +59,14 @@ app.use('/data', (req, res, next) => {
 
 app.post('/data', (req, res, next) => {
     // console.log(req.session.id, req.body);
-    res.send({sessionId: req.session.id});
+    Action.create({
+        type: req.body.type.toUpperCase(),
+        path: req.body.path,
+        info: req.body.info || {},
+        sessionId: req.session.id
+    }).then(action => {
+        res.send({sessionId: req.session.id});
+    })
 })
 
 app.use('/', (req, res, next) => {

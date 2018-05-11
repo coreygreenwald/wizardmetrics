@@ -2,12 +2,15 @@ const db = require('../_db');
 const Sequelize = require('sequelize');
 
 const Action = db.define('action', {
-    actionType: {
+    type: {
         type: Sequelize.ENUM('ARRIVAL', 'CLICK', 'INPUT', 'OTHER'),
         defaultValue: 'OTHER'
     },
-    value: {
+    path: {
         type: Sequelize.STRING
+    },
+    info: {
+        type: Sequelize.JSONB
     }
 })
 

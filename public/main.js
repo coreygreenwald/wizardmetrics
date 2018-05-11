@@ -1,11 +1,31 @@
 document.addEventListener('DOMContentLoaded', (e) => {
     console.log('This Application uses WizardLead!');
-    fireData({location: window.location})
+    fireData({
+        type: 'arrival',
+        path: window.location.pathname
+    })
     .then(() => {
         document.addEventListener('click', (e) => {
-            console.log('click!')
+            console.log(e);
+            console.log(e.target);
+            console.log(e.target.innerHtml);
             fireData({
-                location: window.location.pathname
+                type: e.type,
+                path: window.location.pathname,
+                info: {
+                    value: e.target.value || e.target.text || e.target.innerHtml,
+                    identifiers: {
+                        name: e.target.name,
+                        id: e.target.id,
+                        className: e.target.className,
+                        tagName: e.target.tagName
+                    },
+                    position: {
+                        x: e.pageX,
+                        y: e.pageY
+                    },
+                    html: e.target.innerHtml
+                }
             })
         })
     })
