@@ -1,7 +1,7 @@
 const server = require('./server');
 const { db } = require('./db');
-db.sync({force: true})
+db.sync()
     .then(() => {
-        server.listen(3000, () => console.log('server running on port 3000'));
+        server.listen(5000, () => console.log('server running on port 500'));
     })
     .catch(console.error)
