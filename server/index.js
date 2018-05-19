@@ -19,51 +19,13 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.post('/data', (req, res, next) => {
-    console.log('SESSION CHECK', req.originalUrl, req.body.session || 'NOT YET CREATED');
-    if(req.body.session && req.body.session.includes('sessionId')){
-        req.body.session = req.body.session.slice(10);
-    } else {
-        console.log('GENERATING NEW SESSION', req.body.session);
-        req.body.session = crypto.randomBytes(20).toString('hex');
-    }
-    Session.findOrCreate({
-        where: {
-            id: req.body.session
-        }
-    })
-    .then(([session, created]) => {
-        if(created) console.log('SESSION CREATION', session.id, req.originalUrl);
-        req.session = session;
-        req.body = req.body.payload;
-        next();
-    })
-    .catch(next);
-
-})
-
-app.post('/data', (req, res, next) => {
-    // console.log(req.session.id, req.body);
-    Action.create({
-        type: req.body.type.toUpperCase(),
-        path: req.body.path,
-        info: req.body.info || {},
-        sessionId: req.session.id
-    }).then(action => {
-        res.send({sessionId: req.session.id});
-    })
-})
-
-app.use('/plugin', (req, res, next) => {
-    // console.log('this was hit');
-    res.sendFile(path.join(__dirname, '../public/bundle.js'));
-})
+app.use('/plugin', require('./plugin-routes'));
+app.use('/admin', require('./admin-routes'));
 
 app.use(express.static(path.join(__dirname, '../admin')))
 
 app.get('*', (req, res, next) => {
-    // console.log('this was hit');
-    res.sendFile(path.join(__dirname, '../admin/index.html'));
+    res.redirect('/admin');
 })
 
 module.exports = app;

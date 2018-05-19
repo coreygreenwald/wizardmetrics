@@ -41,7 +41,8 @@ function fireData(payload){
         session: document.cookie || "",
         payload
     }
-    return window.fetch('https://wizardly.herokuapp.com/data',  {
+    //https://wizardly.herokuapp.com
+    return window.fetch(`http://localhost:3000/plugin/data?wizardId=${window.wizardId}`,  {
         method: 'POST',
         body: JSON.stringify(data),
         headers: new Headers({
@@ -51,7 +52,11 @@ function fireData(payload){
     .then(res => res.json())
     .then(body => {
         if(!document.cookie){
-            document.cookie = `sessionId=${body.sessionId}`
+            var now = new Date();
+            var time = now.getTime();
+            var expireTime = time + 1000*36000;
+            now.setTime(expireTime);
+            document.cookie = `sessionId=${body.sessionId};cookie=ok;expires=${now.toGMTString()}`
         }
     })
     .catch(err => {
