@@ -4,7 +4,8 @@ db.sync({force: true})
     .then(() => {
         return Customer.create({
             name: "SmiteMaster",
-            location: "401 E 68th Street"
+            location: "401 E 68th Street",
+            password: 'password123'
         })
     })
     .catch((err) => {
