@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main.js",
     "start-dev": "nodemon main.js",
-    "postinstall": "webpack-cli"
+    "postinstall": "webpack-cli & node seeders/db-seed.js"
   },
   "keywords": [],
   "author": "",

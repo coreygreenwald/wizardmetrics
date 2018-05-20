@@ -5,7 +5,6 @@ const crypto = require('crypto');
 const { db, Action, Session, Customer } = require('../../db')
 
 router.use('/data', (req, res, next) => {
-    // console.log(req.query);
     if(req.query.wizardId){
         Customer.findOne({
             publicId: req.query.wizardId
