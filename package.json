@@ -8,7 +8,7 @@
     "start": "node main.js",
     "start-dev": "nodemon main.js",
     "pack-admin": "webpack-cli --config webpack-configs/webpack-admin.config.js",
-    "postinstall": "webpack-cli --config webpack-configs/webpack-admin.config.js & webpack-cli --config webpack-configs/webpack.config.js & node seeders/db-seed.js"
+    "postinstall": "webpack-cli --config webpack-configs/webpack-admin.config.js & webpack-cli --config webpack-configs/webpack.config.js"
   },
   "keywords": [],
   "author": "",
