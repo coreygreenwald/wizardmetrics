@@ -8,6 +8,13 @@ db.sync({force: true})
             password: 'password123'
         })
     })
+    .then(() => {
+        return Customer.create({
+            name: "SpencerBratman",
+            location: "Random Address",
+            password: 'random123'
+        })
+    })
     .catch((err) => {
         console.log('THERE WAS AN ERROR', err)
     })

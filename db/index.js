@@ -6,6 +6,9 @@ const Customer = require('./models/Customer');
 Action.belongsTo(Session);
 Session.belongsTo(Customer);
 
+Session.hasMany(Action);
+Customer.hasMany(Session);
+
 module.exports = {
     db,
     Session,
