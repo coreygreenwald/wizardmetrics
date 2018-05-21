@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/plugin', require('./plugin-routes'));
 app.use('/admin', require('./admin-routes'));
 
-app.use(express.static(path.join(__dirname, '../admin')))
+app.use(express.static(path.join(__dirname, '../public/admin')))
 
 app.get('*', (req, res, next) => {
     res.redirect('/admin');

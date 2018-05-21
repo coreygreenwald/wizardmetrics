@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { Customer } = require('../../../db');
 
 router.post('/login', (req, res, next) => {
+  //, attributes: ['name', 'username', 'publicId', 'location']
   Customer.findOne({where: {username: req.body.username}})
     .then(customer => {
       if (!customer) {
@@ -12,7 +13,7 @@ router.post('/login', (req, res, next) => {
         res.status(401).send('Wrong username and/or password')
       } else {
         req.session.customer = customer.username;
-        res.send({message: 'All Logged In', customer: customer});
+        res.send(customer);
       }
     })
     .catch(next)
@@ -33,8 +34,7 @@ router.post('/login', (req, res, next) => {
 // })
 
 router.post('/logout', (req, res) => {
-  req.logout();
-  req.session.destroy();
+  delete req.session;
   res.redirect('/');
 })
 

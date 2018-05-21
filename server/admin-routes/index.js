@@ -14,7 +14,7 @@ router.use(session({
 router.use('/auth', require('./auth'));
 
 router.use('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../../admin/index.html'));
+    res.sendFile(path.join(__dirname, '../../public/admin/index.html'));
 })
 
 module.exports = router;
