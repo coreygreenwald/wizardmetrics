@@ -6,7 +6,7 @@ const path = require('path');
 
 router.use(session({
     secret: process.env.SESSION_SECRET || 'corey and spencer making an app',
-    store: new RedisStore(),
+    store: new RedisStore({url: process.env.REDIS_URL}),
     resave: false,
     saveUninitialized: true,
 }))
