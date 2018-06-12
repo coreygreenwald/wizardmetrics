@@ -53,11 +53,7 @@ function fireData(payload){
     })
     .then(res => res.json())
     .then(body => {
-        if(!document.cookie){
-            var now = new Date();
-            var time = now.getTime();
-            var expireTime = time + 1000*36000;
-            now.setTime(expireTime);
+        if(!localStorage.getItem('wizardSession')){
             localStorage.setItem('wizardSession', body.sessionId);
         }
     })
