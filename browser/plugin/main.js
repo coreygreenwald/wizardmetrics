@@ -38,10 +38,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 function fireData(payload){
     var data = {
-        session: document.cookie || "",
+        session: localStorage.getItem('wizardSession') || "",
         payload
     }
     //https://wizardly.herokuapp.com
+    // return window.fetch(`https://wizardly.herokuapp.com/plugin/data?wizardId=${window.wizardId}`
+    // return window.fetch(`http://localhost:3000/plugin/data?wizardId=${window.wizardId}`
     return window.fetch(`https://wizardly.herokuapp.com/plugin/data?wizardId=${window.wizardId}`,  {
         method: 'POST',
         body: JSON.stringify(data),
@@ -56,7 +58,7 @@ function fireData(payload){
             var time = now.getTime();
             var expireTime = time + 1000*36000;
             now.setTime(expireTime);
-            document.cookie = `sessionId=${body.sessionId};cookie=ok;expires=${now.toGMTString()}`
+            localStorage.setItem('wizardSession', body.sessionId);
         }
     })
     .catch(err => {

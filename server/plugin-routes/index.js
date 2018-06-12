@@ -23,9 +23,8 @@ router.use('/data', (req, res, next) => {
 })
 
 router.post('/data', (req, res, next) => {
-    if(req.body.session && req.body.session.includes('sessionId')){
-        req.body.session = req.body.session.slice(10);
-    } else {
+    console.log(req.body.session)
+    if(!req.body.session || !req.body.session.length){
         req.body.session = crypto.randomBytes(20).toString('hex');
     }
     Session.findOrCreate({
