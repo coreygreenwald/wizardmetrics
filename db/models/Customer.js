@@ -66,6 +66,14 @@ Customer.findSessionsAndActions = function(username){
     })
 }
 
+Customer.retrieveJourneyInfo = async (username) => {
+    let customerInfo = await Customer.findSessionsAndActions(username);
+    // let journeys = customerInfo.sessions;
+    console.log(customerInfo.sessions.map(session => {
+        return session.actions.length
+    }));
+}
+
 const setSaltAndPassword = customer => {
     if (customer.changed('password')) {
         customer.salt = Customer.generateSalt()

@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 /**
  * COMPONENT
  */
-export const DataTable = (props) => {
+export const AdminPanel = (props) => {
   const {username} = props
   return (
     <div>
@@ -23,11 +23,11 @@ const mapState = (state) => {
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(AdminPanel)
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+AdminPanel.propTypes = {
   name: PropTypes.string
 }

@@ -50,7 +50,7 @@ router.post('/data', (req, res, next) => {
         sessionId: req.session.id
     }).then(action => {
         res.send({sessionId: req.session.id});
-    })
+    }).catch(next);
 })
 
 router.use('/', (req, res, next) => {
