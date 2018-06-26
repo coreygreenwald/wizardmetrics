@@ -28,7 +28,7 @@ Action.hook('beforeCreate', async (action) => {
         for(let i = 0; i < conversions.length; i++){
             if(conversions[i].compareActionToConversion(action)){
                 action.isConversion = true;
-                action.setConversion(conversions[i]);
+                action.conversionId = conversions[i].id;
                 return;
             }
         }

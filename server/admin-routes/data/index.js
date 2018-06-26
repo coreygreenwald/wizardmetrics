@@ -1,7 +1,7 @@
 const router = require('express').Router()
-const { Customer, Session, Action } = require('../../../db');
+const { Customer, Session, Action, Conversion } = require('../../../db');
 
-router.use('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
     // console.log(req.customer);
     if(req.customer){
         Customer.findSessionsAndActions(req.customer.username)
@@ -14,4 +14,17 @@ router.use('/', (req, res, next) => {
     }
 })
 
+router.post('/conversions', (req, res, next) => {
+    if(req.customer && req.customer.username === req.body.username){
+        const conversion = req.body.conversion;
+        conversion.customerPublicId = req.customer.publicId;
+        Conversion.create(req.body.conversion)
+            .then(conversion => {
+                res.send('conversion added!');
+            })
+            .catch(next);
+    } else {
+        res.status(403).send('Forbidden'); 
+    }
+})
 module.exports = router; 

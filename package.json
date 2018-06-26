@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main.js",
-    "start-dev": "nodemon main.js",
+    "start-dev": "nodemon main.js & npm run pack-admin-watch",
     "pack-plugin": "webpack-cli --config webpack-configs/webpack.config.js",
     "pack-admin": "webpack-cli --config webpack-configs/webpack-admin.config.js",
+    "pack-admin-watch": "webpack-cli --watch --config webpack-configs/webpack-admin.config.js",
     "postinstall": "npm run pack-plugin & npm run pack-admin"
   },
   "keywords": [],

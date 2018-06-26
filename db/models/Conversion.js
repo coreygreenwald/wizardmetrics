@@ -15,14 +15,14 @@ const Conversion = db.define('conversion', {
 })
 
 Conversion.prototype.compareActionToConversion = function(action){
-    return action.type === this.type 
-    && action.path === this.path 
-    && Object.keys(this.matchData).reduce((prev, key) => {
+    let matchDataKeys = Object.keys(this.matchData);
+    return (action.type === this.type && action.path === this.path && (matchDataKeys.length > 0 ? (matchDataKeys.reduce((prev, key) => {
         if(prev && this.matchData[key] === action.info[key]){
             return true; 
         } 
         return false;
-    }, true)
+    }, true))
+    : true));
 }
 
 module.exports = Conversion;

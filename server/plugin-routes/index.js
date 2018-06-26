@@ -23,7 +23,6 @@ router.use('/data', (req, res, next) => {
 })
 
 router.post('/data', (req, res, next) => {
-    console.log(req.body.session)
     if(!req.body.session || !req.body.session.length){
         req.body.session = crypto.randomBytes(20).toString('hex');
     }

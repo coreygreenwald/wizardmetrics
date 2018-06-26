@@ -12,17 +12,26 @@ router.use(session({
 }))
 
 //deserialize a user off of a session. to be removed from here eventually
-const { Customer } = require('../../db');
+const { Customer, Conversion } = require('../../db');
 router.use((req, res, next) => {
     // console.log(req.session.customer);
     if(req.session && req.session.customer){
-        Customer.findOne({where: {username: req.session.customer}})
+        Customer.findOne({
+            where: {
+                username: req.session.customer
+            },
+            include: [
+                { model: Conversion}
+            ]
+        })
             .then(customer => {
                 req.customer = customer; 
                 next(); 
             })
+            .catch(next)
     } else {
-        next();
+        res.status(403); 
+        next('That Action is Forbidden! 403');
     }
 })
 
