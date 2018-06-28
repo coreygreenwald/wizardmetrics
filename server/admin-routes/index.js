@@ -30,9 +30,12 @@ router.use((req, res, next) => {
             })
             .catch(next)
     } else {
-        res.status(403); 
-        next('That Action is Forbidden! 403');
+        next();
     }
+    // else {
+    //     res.status(403); 
+    //     next('That Action is Forbidden! 403');
+    // }
 })
 
 router.use('/auth', require('./auth'));

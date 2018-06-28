@@ -1,10 +1,11 @@
 const db = require('../_db');
 const Conversion = require('./Conversion');
+const _ = require('lodash');
 const Sequelize = require('sequelize');
 
 const Action = db.define('action', {
     type: {
-        type: Sequelize.ENUM('ARRIVAL', 'CLICK', 'INPUT', 'OTHER'),
+        type: Sequelize.ENUM('ARRIVAL', 'CLICK', 'NAVIGATE', 'INPUT', 'OTHER'),
         defaultValue: 'OTHER'
     },
     path: {

@@ -13,16 +13,29 @@ class ConversionManager extends Component {
             action: 'ARRIVAL',
             path: '/',
             matchData: {
-
+                value: '',
+                identifiers: {
+                    id: '',
+                    name: '',
+                    tagName: '',
+                    className: ''
+                }
             }
         }
         this.handleChange = this.handleChange.bind(this); 
+        this.handleIdentifiers = this.handleIdentifiers.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange(e){
-        console.log('fired', e.target.value)
         this.setState({
             [e.target.name]: e.target.value
+        })
+    }
+    handleIdentifiers(e){
+        const matchData = Object.assign({}, this.state.matchData);
+        matchData.identifiers[e.target.name] = e.target.value; 
+        this.setState({
+            matchData
         })
     }
     handleSubmit(e){
@@ -33,7 +46,7 @@ class ConversionManager extends Component {
             conversion: {
                 type: this.state.action,
                 path: this.state.path,
-                matchData: this.state.matchData
+                matchData: (this.state.action !== 'ARRIVAL' && this.state.action !== 'NAVIGATE') ? this.state.matchData : {}
             }
         })
             .then(res => res.data)
@@ -72,26 +85,38 @@ class ConversionManager extends Component {
                     (
                         <div className="conversion-manager-add-form">
                             <br />
+                            <div className="conversion-manager-add-form-path">
+                                <label> Enter Your Relative Website Path (ex. /order/confirmation). Delineate any variable parts of the path by preceeding with a ':' (ex. /orders/:id/confirm):
+                                    <input name="path" onChange={this.handleChange} type="text" name="path" value={this.state.path} onChange={this.handleChange} />
+                                </label>
+                            </div>
+                            <br />
                             <div className="conversion-manager-add-form-action">
                                 <label> Select the action a user must do to trigger a conversion:
                                     <select name="action" value={this.state.action} onChange={this.handleChange}>
                                         <option value="ARRIVAL">ARRIVAL - Flag Arrivals To A Particular Page</option>
+                                        <option value="NAVIGATE">NAVIGATE - Flags Arrivals To A Particular Page from Another Page</option>
                                         <option value="CLICK">CLICK - Flag Clicks On A Particular Page </option>
                                         <option value="INPUT">INPUT - Watch For Input to a Particular HTML Element</option>
                                         <option value="OTHER">OTHER - Make Your Conversion ACTION agnostic</option>
                                     </select>
                                 </label>
                             </div>
-                            <div className="conversion-manager-add-form-path">
-                                <label> Enter Your Relative Website Path (ex. /order/confirmation). Delineate any variable parts of the path by preceeding with a ':' (ex. /orders/:id/confirm):
-                                    <input name="path" onChange={this.handleChange} type="text" name="path" value={this.state.path} onChange={this.handleChange} />
-                                </label>
-                            </div>
-                            <div className="conversion-manager-add-form-additional-info">
-                                <label> Select Any Optional Info You'd Like to Match Actions On
-                                    
-                                </label>
-                            </div>
+                            <br />
+                            {
+                                this.state.action === 'CLICK' ?
+                                (
+                                    <div className="conversion-manager-add-form-additional-info">
+                                        <label> Select Any Optional Info You'd Like to Match Actions On.
+                                            <input name="id" onChange={this.handleIdentifiers} type="text" placeholder="HTML id of the element to match on"/>
+                                            <input name="className" onChange={this.handleIdentifiers} type="text" placeholder="HTML class the element to match on"/>
+                                            <input name="name" onChange={this.handleIdentifiers} type="text" placeholder="HTML element to match on"/>
+                                            <input name="tagName" onChange={this.handleIdentifiers} type="text" placeholder="HTML element to match on"/>
+                                        </label>
+                                    </div>
+                                ) : null
+                            }
+                            <br />
                             <button type="submit" onClick={this.handleSubmit}>Submit Form</button>
                         </div>
                     ) : 

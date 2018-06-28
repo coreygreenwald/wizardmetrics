@@ -2,7 +2,6 @@ const router = require('express').Router()
 const { Customer, Session, Action, Conversion } = require('../../../db');
 
 router.get('/', (req, res, next) => {
-    // console.log(req.customer);
     if(req.customer){
         Customer.findSessionsAndActions(req.customer.username)
             .then(customerWithSessionAndActions => {

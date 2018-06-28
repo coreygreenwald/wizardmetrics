@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 const Conversion = db.define('conversion', {
     type: {
-        type: Sequelize.ENUM('ARRIVAL', 'CLICK', 'INPUT', 'OTHER'),
+        type: Sequelize.ENUM('ARRIVAL', 'CLICK', 'NAVIGATE', 'INPUT', 'OTHER'),
         defaultValue: 'OTHER'
     },
     path: {
