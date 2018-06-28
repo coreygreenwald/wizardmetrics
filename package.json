@@ -20,6 +20,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "body-parser": "^1.18.2",
+    "chalk": "^2.4.1",
     "connect-redis": "^3.3.3",
     "connect-session-sequelize": "^5.2.1",
     "express": "^4.16.3",

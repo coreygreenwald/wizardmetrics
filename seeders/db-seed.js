@@ -1,4 +1,4 @@
-const { db, Customer, Session, Action } = require('../db');
+const { db, Customer, Session, Action, Conversion } = require('../db');
 
 db.sync({force: true})
     .then(() => {
@@ -6,6 +6,14 @@ db.sync({force: true})
             name: "SmiteMaster",
             location: "401 E 68th Street",
             password: 'password123'
+        })
+    })
+    .then((customer1) => {
+        return Conversion.create({
+            type: 'ARRIVAL',
+            path: '/gods',
+            matchData: {},
+            customerPublicId: customer1.publicId
         })
     })
     .then(() => {
@@ -18,3 +26,4 @@ db.sync({force: true})
     .catch((err) => {
         console.log('THERE WAS AN ERROR', err)
     })
+    .finally(() => db.close())

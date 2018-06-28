@@ -77,7 +77,8 @@ const setSaltAndPassword = customer => {
 
 Customer.addHook('beforeValidate', (customer) => {
     customer.publicId = crypto.randomBytes(20).toString('hex');
-    customer.username = customer.name + crypto.randomBytes(4).toString('hex');
+    // TODO: eventually generate more unique usernames. disabled for testing and alpha. 
+    customer.username = customer.name + crypto.randomBytes(2).toString('hex');
 })
 
 
@@ -86,7 +87,13 @@ Customer.calculateJourneyInfo = async (username) => {
         const customerInfo = await Customer.findSessionsAndActions(username);
         let totalJourneys = 0;
         let completedJourneys = 0;
-        // const shortestJourneyLength = []; 
+        let shortestJourneys = {
+            byLength: [],
+            byTime: {
+                actions: [],
+                time: Infinity
+            }
+        }
         //something about checking the length of each journey or something by time or by s
         const journeyInfo = [];
     
@@ -100,12 +107,12 @@ Customer.calculateJourneyInfo = async (username) => {
                 //This variable is to separate journeys by conversion
                 let endOfJourneyPointer = 0;
                 let endOfJourneyTimer = 0;
+                let sessionModulus = 0;
                 //Loop over each action that exists for each session.
                 for(let j = 0; j < actions.length; j++){
                     let currAction = actions[j].toJSON();
                     //Do all work regarding time stamps here before deletion.
                     let secondsOnAction = !currAction.isConversion && actions[j + 1] ? (actions[j + 1].toJSON().createdAt - currAction.createdAt) / 1000 : null;
-                    endOfJourneyTimer += secondsOnAction;
                     deleteObjectKeys(currAction, ['id', 'createdAt', 'updatedAt', 'sessionId']); 
                     if(!journeyInfo[j]){
                         journeyInfo[j] = new Map(); 
@@ -123,20 +130,32 @@ Customer.calculateJourneyInfo = async (username) => {
                     }
                     if(!foundAction) journeyInfo[j].set(currAction, {count: 1, secondsOnAction});
                     if(currAction.isConversion) { 
+                        if(shortestJourneys.byLength.length > (j - sessionModulus) || shortestJourneys.byLength.length === 0){
+                            shortestJourneys.byLength = actions.slice(sessionModulus, j + 1);
+                        }
+                        if(shortestJourneys.byTime.time > endOfJourneyTimer){
+                            shortestJourneys.byTime.time = endOfJourneyTimer; 
+                            shortestJourneys.byTime.action = actions.slice(sessionModulus, j + 1);
+                        }
                         sessionModulus = j; 
                         completedJourneys++;
                         if(actions[j + 1]){
                             totalJourneys++;
                         }
+                    } else {
+                        endOfJourneyTimer += secondsOnAction;
                     }
                 }
                 totalJourneys++;
             }
-            console.log(journeyInfo)
             return {
-                journeyInfo,
-                completed: completedJourneys,
-                total: totalJourneys
+                info: journeyInfo,
+                completedJourneys: completedJourneys,
+                totalJourneys: totalJourneys,
+                shortestJourneyTime: shortestJourneys.byTime.time,
+                shortestJourneyByTime: shortestJourneys.byTime.actions.map(action => action.id),
+                shortestJourneyLength: shortestJourneys.byLength.length,
+                shortestJourneyByLength: shortestJourneys.byLength.map(action => action.id)
             }
         } else {
             throw new Error(`Customer ${username} doesn't exist or have any existing sessions`)

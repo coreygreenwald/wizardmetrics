@@ -3,6 +3,7 @@ const Session = require('./models/Session');
 const Action = require('./models/Action');
 const Customer = require('./models/Customer');
 const Conversion = require('./models/Conversion');
+const Journey = require('./models/Journey');
 
 Action.belongsTo(Session);
 Session.belongsTo(Customer);
@@ -13,6 +14,9 @@ Customer.hasMany(Session);
 Conversion.belongsTo(Customer);
 Customer.hasMany(Conversion);
 
+Journey.belongsTo(Customer);
+Customer.hasMany(Journey);
+
 Action.belongsTo(Conversion);
 
 module.exports = {
@@ -20,5 +24,6 @@ module.exports = {
     Session,
     Action,
     Customer,
-    Conversion
+    Conversion,
+    Journey
 }
