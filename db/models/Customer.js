@@ -116,17 +116,12 @@ Customer.calculateJourneyInfo = async (username) => {
                     let secondsOnAction = !currAction.isConversion && actions[j + 1] ? (actions[j + 1].toJSON().createdAt - currAction.createdAt) / 1000 : null;
                     let savedId = currAction.id
                     deleteObjectKeys(currAction, ['id', 'createdAt', 'updatedAt', 'sessionId']); 
-                    // console.log(i, j, journeyInfoPosition);
                     if(!journeyInfo[journeyInfoPosition]){
                         journeyInfo[journeyInfoPosition] = [];
                     }
                     let foundAction = false;
-                    console.log('JOURNEY INFO LENGTH ---> ', journeyInfo.length);
                     for(action in journeyInfo[journeyInfoPosition]){
-                        console.log('JOURNEY INFO POSITION --->', journeyInfoPosition);
                         let {metaData, actionData} = journeyInfo[journeyInfoPosition][action];
-                        // console.log('CURR ACTION ----->', currAction);
-                        // console.log('ACTION DATA ----->', actionData);
                         if(_.isEqual(actionData, currAction)){
                             metaData.count += 1;
                             metaData.secondsOnAction += secondsOnAction; 
@@ -137,7 +132,6 @@ Customer.calculateJourneyInfo = async (username) => {
                         }
                     }
                     if(!foundAction) journeyInfo[journeyInfoPosition].push({actionData: currAction, metaData: {count: 1, secondsOnAction, actionIds: [currAction.id]}});
-                    // if(j===0) console.log(journeyInfo);
                     if(currAction.isConversion) { 
                         if((shortestJourneys.byLength.length > journeyInfoPosition) || shortestJourneys.byLength.length === 0){
                             shortestJourneys.byLength = actions.slice(endOfJourneyPointer, j + 1);
