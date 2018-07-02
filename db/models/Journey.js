@@ -23,8 +23,8 @@ const Journey = db.define('journey', {
     shortestJourneyByLength: {
         type: Sequelize.ARRAY(Sequelize.INTEGER)
     },
-    day: {
-        type: Sequelize.DATEONLY
+    dayString: {
+        type: Sequelize.STRING
     }
 })
 

@@ -107,37 +107,46 @@ Customer.calculateJourneyInfo = async (username) => {
                 //This variable is to separate journeys by conversion
                 let endOfJourneyPointer = 0;
                 let endOfJourneyTimer = 0;
-                let sessionModulus = 0;
+                // let sessionModulus = 0;
                 //Loop over each action that exists for each session.
                 for(let j = 0; j < actions.length; j++){
                     let currAction = actions[j].toJSON();
+                    let journeyInfoPosition = j - endOfJourneyPointer; 
                     //Do all work regarding time stamps here before deletion.
                     let secondsOnAction = !currAction.isConversion && actions[j + 1] ? (actions[j + 1].toJSON().createdAt - currAction.createdAt) / 1000 : null;
+                    let savedId = currAction.id
                     deleteObjectKeys(currAction, ['id', 'createdAt', 'updatedAt', 'sessionId']); 
-                    if(!journeyInfo[j]){
-                        journeyInfo[j] = new Map(); 
+                    // console.log(i, j, journeyInfoPosition);
+                    if(!journeyInfo[journeyInfoPosition]){
+                        journeyInfo[journeyInfoPosition] = [];
                     }
                     let foundAction = false;
-                    for(action of journeyInfo[j - endOfJourneyPointer]){
-                        let [keyObj, actionData] = action;
-                        if(_.isEqual(keyObj, currAction)){
-                            actionData.count += 1;
-                            actionData.secondsOnAction += secondsOnAction; 
-                            journeyInfo[j - endOfJourneyPointer].set(keyObj, actionData);
+                    console.log('JOURNEY INFO LENGTH ---> ', journeyInfo.length);
+                    for(action in journeyInfo[journeyInfoPosition]){
+                        console.log('JOURNEY INFO POSITION --->', journeyInfoPosition);
+                        let {metaData, actionData} = journeyInfo[journeyInfoPosition][action];
+                        // console.log('CURR ACTION ----->', currAction);
+                        // console.log('ACTION DATA ----->', actionData);
+                        if(_.isEqual(actionData, currAction)){
+                            metaData.count += 1;
+                            metaData.secondsOnAction += secondsOnAction; 
+                            metaData.actionIds.push(savedId);
+                            journeyInfo[journeyInfoPosition][action] = {actionData, metaData};
                             foundAction = true;
                             break;
                         }
                     }
-                    if(!foundAction) journeyInfo[j].set(currAction, {count: 1, secondsOnAction});
+                    if(!foundAction) journeyInfo[journeyInfoPosition].push({actionData: currAction, metaData: {count: 1, secondsOnAction, actionIds: [currAction.id]}});
+                    // if(j===0) console.log(journeyInfo);
                     if(currAction.isConversion) { 
-                        if(shortestJourneys.byLength.length > (j - sessionModulus) || shortestJourneys.byLength.length === 0){
-                            shortestJourneys.byLength = actions.slice(sessionModulus, j + 1);
+                        if((shortestJourneys.byLength.length > journeyInfoPosition) || shortestJourneys.byLength.length === 0){
+                            shortestJourneys.byLength = actions.slice(endOfJourneyPointer, j + 1);
                         }
                         if(shortestJourneys.byTime.time > endOfJourneyTimer){
                             shortestJourneys.byTime.time = endOfJourneyTimer; 
-                            shortestJourneys.byTime.action = actions.slice(sessionModulus, j + 1);
+                            shortestJourneys.byTime.actions = actions.slice(endOfJourneyPointer, j + 1);
                         }
-                        sessionModulus = j; 
+                        endOfJourneyPointer =  j + 1; 
                         completedJourneys++;
                         if(actions[j + 1]){
                             totalJourneys++;

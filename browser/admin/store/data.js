@@ -27,6 +27,12 @@ export const retrieveCustomerData = () =>
         dispatch(getData(res.data)))
       .catch(err => console.log(err));
 
+export const retrieveJourneyData = () => 
+      dispatch =>
+        axios.get('/admin/data/journeys')
+          .then(res =>
+            dispatch(getData(res.data)))
+          .catch(err => console.log(err));
 /**
  * REDUCER
  */

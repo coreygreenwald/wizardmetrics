@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const { Customer, Session, Action, Conversion } = require('../../../db');
 
+router.use('/journeys', require('./journeys')); 
+
 router.get('/', (req, res, next) => {
     if(req.customer){
         Customer.findSessionsAndActions(req.customer.username)
@@ -26,4 +28,5 @@ router.post('/conversions', (req, res, next) => {
         res.status(403).send('Forbidden'); 
     }
 })
+
 module.exports = router; 

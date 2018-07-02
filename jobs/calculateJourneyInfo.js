@@ -8,8 +8,10 @@ const calculateJourneyInfoRunner = async () => {
             let customer = customers[i];
             let journey = await Customer.calculateJourneyInfo(customer.username);
             journey.customerPublicId = customer.publicId
+            let date = new Date();
+            let newDate = date.toISOString().replace(/[-:,TZ]/g, '')
+            journey.day = newDate.slice(0, newDate.length - 4); 
             await Journey.create(journey);
-            if(i == 0) console.log(journey);
             console.log(chalk.green('Journey Data Created for ', customer.username));
         }
     } catch(err){
