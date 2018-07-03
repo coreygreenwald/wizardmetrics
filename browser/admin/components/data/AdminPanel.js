@@ -15,12 +15,12 @@ class AdminPanel extends Component {
   //   this.props.fetchJourneyData()
   // }
   render(){
-    const { info } = this.props.data;
+    const { info, shortestJourneyLength, shortestJourneyTime, completedJourneys, totalJourneys } = this.props.data;
     return (
       <div className="admin-panel">
         <div className="admin-panel-funnel">
           {
-            info && info.length ? mostCommonJourney(info).map(({actionData, percent, occurrences }) => {
+            info && info.length ? mostCommonJourney(info).map(({actionData, percent, occurrences, time }) => {
               return (
                 <div className="admin-panel-funnel-item">
                   <div className="admin-panel-funnel-item-event">
@@ -35,8 +35,9 @@ class AdminPanel extends Component {
                     }
                   </div> 
                   <div className="admin-panel-funnel-item-data">
-                    <h2>PERCENT OF ACTIONS: {percent}%</h2> 
-                    <h2>TOTAL OCCURRENCES: {occurrences}</h2>
+                    <h2>Average Time Spent on This Action: {time} seconds</h2>
+                    <h2>Percent Of Actions: {percent}%</h2> 
+                    <h2>Total Actions At This Stage: {occurrences}</h2>
                   </div> 
                 </div>
               )
@@ -45,6 +46,10 @@ class AdminPanel extends Component {
           }
         </div>
         <div className="admin-panel-stats">
+          <h2>Acquisitions: {totalJourneys}</h2>
+          <h2>Conversions: {completedJourneys}</h2>
+          <h2>Shortest Journey Length (Time): {shortestJourneyTime} seconds </h2>
+          <h2>Shortest Journey Length (Steps): {shortestJourneyLength} steps</h2>
         </div>
       </div>
     )
