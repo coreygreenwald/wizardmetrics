@@ -38,7 +38,7 @@ export const retrieveJourneyData = () =>
  */
 export default function (state = defaultData, action) {
   switch (action.type) {
-    case GET_USER:
+    case GET_DATA:
       return action.data
     default:
       return state

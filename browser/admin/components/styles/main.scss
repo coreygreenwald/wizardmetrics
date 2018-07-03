@@ -1,0 +1,33 @@
+.navbar {
+    background-color: $nav-color;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    &-title {
+        color: #FFFFFF;
+        width: 20%;
+        text-align: center;
+        padding: 0px 10px;
+        margin: 0px;
+    }
+    &-links {
+        width: 80%;
+        &-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding: 0px 20px;
+            // align-items: center;
+            a {
+                font-size: 24px;
+                margin: 0px 10px;
+                color: #FFFFFF;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

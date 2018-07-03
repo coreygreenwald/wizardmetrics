@@ -1,0 +1,9 @@
+@import './components/styles/colors.scss'; 
+@import './components/styles/main.scss';
+
+body {
+    margin: 0;
+}
+.main-container {
+    background-color: $background-color;
+}
