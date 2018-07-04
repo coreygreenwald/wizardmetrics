@@ -29,4 +29,18 @@ router.post('/conversions', (req, res, next) => {
     }
 })
 
+router.get('/conversions/:id', (req, res, next) => {
+    if(req.customer){
+        Action.findAll({
+            where: {
+                conversionId: Number(req.params.id)
+            }
+        }).then(actions => {
+            res.json(actions);
+        })
+    } else {
+        res.status(403).send('Forbidden'); 
+    }
+})
+
 module.exports = router; 

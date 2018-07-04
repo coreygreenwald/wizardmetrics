@@ -24,8 +24,8 @@ app.use('/admin', require('./admin-routes'));
 
 app.use(express.static(path.join(__dirname, '../public/admin')))
 
-app.get('*', (req, res, next) => {
-    res.redirect('/admin');
+app.use('*', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '../public/admin/index.html'));
 })
 
 module.exports = app;

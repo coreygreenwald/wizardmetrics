@@ -18,21 +18,23 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        {
-          isLoggedIn &&
-            <Switch>
-              {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
-              <Route path="/admin" component={AdminPanel} />
-              <Route path="/conversions" component={ConversionManager} />
-            </Switch>
-        }
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
-      </Switch>
+      <div className="main">
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          <Route path="/login" component={Login} />
+          {
+            isLoggedIn &&
+              <Switch>
+                {/* Routes placed here are only available after logging in */}
+                <Route path="/journeys" component={AdminPanel} />
+                <Route path="/conversions" component={ConversionManager} />
+                <Route exact path="/" component={UserHome} />
+              </Switch>
+          }
+          {/* Displays our Login component as a fallback */}
+          <Route component={Login} />
+        </Switch>
+      </div>
     )
   }
 }

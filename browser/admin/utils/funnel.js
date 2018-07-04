@@ -13,7 +13,8 @@ export const mostCommonJourney = (journey) => {
             actionData: actions[maxIndex].actionData,
             percent: ((actions[maxIndex].metaData.count / totalCount) * 100).toFixed(2),
             time: (actions[maxIndex].metaData.secondsOnAction / actions[maxIndex].metaData.count).toFixed(2),
-            occurrences: actions[maxIndex].metaData.count
+            occurrences: actions[maxIndex].metaData.count,
+            totalCount: totalCount
         }
     })
 }

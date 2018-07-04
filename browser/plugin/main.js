@@ -52,7 +52,7 @@ function fireData(payload){
     //https://wizardly.herokuapp.com
     // return window.fetch(`https://wizardly.herokuapp.com/plugin/data?wizardId=${window.wizardId}`
     // return window.fetch(`http://localhost:3000/plugin/data?wizardId=${window.wizardId}`
-    return window.fetch(`https://wizardly.herokuapp.com/plugin/data?wizardId=${window.wizardId}`,  {
+    return window.fetch(`http://localhost:3000/plugin/data?wizardId=${window.wizardId}`,  {
         method: 'POST',
         body: JSON.stringify(data),
         headers: new Headers({

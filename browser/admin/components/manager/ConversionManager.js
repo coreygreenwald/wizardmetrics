@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios';
+import Conversion from './Conversion';
+import './ConversionManager.scss'
 /**
  * COMPONENT
  */
@@ -10,6 +12,7 @@ class ConversionManager extends Component {
         super(props);
         this.state = {
             addFormVisible: false,
+            conversions: [],
             action: 'ARRIVAL',
             path: '/',
             matchData: {
@@ -25,6 +28,13 @@ class ConversionManager extends Component {
         this.handleChange = this.handleChange.bind(this); 
         this.handleIdentifiers = this.handleIdentifiers.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    componentDidMount(){
+        Promise.all(this.props.conversions.map(conversion => {
+            return axios.get(`/admin/data/conversions/${conversion.id}`)
+        })).then(conversions => {
+            this.setState({conversions})
+        }).catch(err => console.log(err));
     }
     handleChange(e){
         this.setState({
@@ -57,27 +67,17 @@ class ConversionManager extends Component {
         return (
           <div className="conversion-manager">
               <div className="conversion-manager-existing">
-                  <table className="conversion-manager-existing-table">
-                      <tr className="conversion-manager-existing-table-header">
+                  <div className="conversion-manager-existing-table">
+                      {/* <tr className="conversion-manager-existing-table-header">
                           <th>Number</th>
                           <th>Type</th>
                           <th>Path</th>
                           <th>Data To Match</th>
-                      </tr>
+                      </tr> */}
                       {
-                          conversions.map((conversion, idx) => {
-                              return (
-                                  <tr key={conversion.id} className="conversion-manager-existing-table-row">
-                                      <th>{idx + 1}</th>
-                                      <th>{conversion.type}</th>
-                                      <th>{conversion.path}</th>
-                                      <th>{JSON.stringify(conversion.matchData)}</th>
-                                      <button onClick={() => console.log('this will remove eventually')}>REMOVE CONVERSION</button>
-                                  </tr>
-                              )
-                          })
+                          conversions.map((conversion, idx) => <Conversion conversion={conversion} position={idx + 1} actionData={this.state.conversions[idx]}/>)
                       }
-                  </table> 
+                  </div> 
               </div>
               <div className="conversion-manager-add">
                 {
