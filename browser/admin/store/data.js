@@ -9,7 +9,7 @@ const GET_DATA = 'GET_DATA'
 /**
  * INITIAL STATE
  */
-const defaultData = [];
+const defaultData = {};
 
 /**
  * ACTION CREATORS

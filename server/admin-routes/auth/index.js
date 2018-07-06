@@ -1,21 +1,25 @@
 const router = require('express').Router()
-const { Customer } = require('../../../db');
+const { Customer, Conversion } = require('../../../db');
 
 router.post('/login', (req, res, next) => {
-  //, attributes: ['name', 'username', 'publicId', 'location']
-  Customer.findOne({where: {username: req.body.username}})
-    .then(customer => {
-      if (!customer) {
-        console.log('No such customer found:', req.body.email)
-        res.status(401).send('Wrong username and/or password')
-      } else if (!customer.validatePassword(req.body.password)) {
-        console.log('Incorrect password for customer:', req.body.email)
-        res.status(401).send('Wrong username and/or password')
-      } else {
-        req.session.customer = customer.username;
-        res.send(customer);
-      }
-    })
+  Customer.findOne({
+    where: {
+      username: req.body.username,
+    }, include: [
+      { model: Conversion }
+    ]
+  }).then(customer => {
+    if (!customer) {
+      console.log('No such customer found:', req.body.email)
+      res.status(401).send('Wrong username and/or password')
+    } else if (!customer.validatePassword(req.body.password)) {
+      console.log('Incorrect password for customer:', req.body.email)
+      res.status(401).send('Wrong username and/or password')
+    } else {
+      req.session.customer = customer.username;
+      res.send(customer);
+    }
+  })
     .catch(next)
 })
 

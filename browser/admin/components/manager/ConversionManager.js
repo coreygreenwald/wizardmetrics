@@ -17,12 +17,10 @@ class ConversionManager extends Component {
             path: '/',
             matchData: {
                 value: '',
-                identifiers: {
-                    id: '',
-                    name: '',
-                    tagName: '',
-                    className: ''
-                }
+                id: '',
+                name: '',
+                tagName: '',
+                className: ''
             }
         }
         this.handleChange = this.handleChange.bind(this); 
@@ -43,7 +41,7 @@ class ConversionManager extends Component {
     }
     handleIdentifiers(e){
         const matchData = Object.assign({}, this.state.matchData);
-        matchData.identifiers[e.target.name] = e.target.value; 
+        matchData[e.target.name] = e.target.value; 
         this.setState({
             matchData
         })
@@ -83,7 +81,7 @@ class ConversionManager extends Component {
                 {
                     this.state.addFormVisible ? 
                     (
-                        <div className="conversion-manager-add-form">
+                        <div className="conversion-manager-add-form modal-dialog">
                             <br />
                             <div className="conversion-manager-add-form-path">
                                 <label> Enter Your Relative Website Path (ex. /order/confirmation). Delineate any variable parts of the path by preceeding with a ':' (ex. /orders/:id/confirm):
@@ -112,6 +110,7 @@ class ConversionManager extends Component {
                                             <input name="className" onChange={this.handleIdentifiers} type="text" placeholder="HTML class the element to match on"/>
                                             <input name="name" onChange={this.handleIdentifiers} type="text" placeholder="HTML element to match on"/>
                                             <input name="tagName" onChange={this.handleIdentifiers} type="text" placeholder="HTML element to match on"/>
+                                            <input name="value" onChange={this.handleIdentifiers} type="text" placeholder="If the HTML element you want to mark as a conversion has an expected value to match on"/>
                                         </label>
                                     </div>
                                 ) : null

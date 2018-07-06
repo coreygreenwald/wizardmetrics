@@ -29,9 +29,11 @@ class AdminPanel extends Component {
   constructor(props){
     super(props); 
   }
-  // componentDidMount(){
-  //   this.props.fetchJourneyData()
-  // }
+  componentDidMount(){
+    if(!this.props.data.info){
+      this.props.fetchJourneyData()
+    }
+  }
   render(){
     const { info, shortestJourneyLength, shortestJourneyTime, completedJourneys, totalJourneys } = this.props.data;
     return (
@@ -88,15 +90,15 @@ const mapState = (state) => {
   }
 }
 
-// const mapDispatch = (dispatch) => {
-//   return {
-//     fetchJourneyData(){
-//       dispatch(retrieveJourneyData())
-//     }
-//   }
-// }
+const mapDispatch = (dispatch) => {
+  return {
+    fetchJourneyData(){
+      dispatch(retrieveJourneyData())
+    }
+  }
+}
 
-export default connect(mapState)(AdminPanel)
+export default connect(mapState, mapDispatch)(AdminPanel)
 
 /**
  * PROP TYPES

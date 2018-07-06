@@ -19,12 +19,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 path: window.location.pathname,
                 info: {
                     value: e.target.value || e.target.text || e.target.innerHtml,
-                    identifiers: {
-                        name: e.target.name,
-                        id: e.target.id,
-                        className: e.target.className,
-                        tagName: e.target.tagName
-                    },
+                    name: e.target.name,
+                    id: e.target.id,
+                    className: e.target.className,
+                    tagName: e.target.tagName
                     // position: {
                     //     x: e.pageX,
                     //     y: e.pageY
