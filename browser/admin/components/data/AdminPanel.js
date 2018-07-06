@@ -40,7 +40,7 @@ class AdminPanel extends Component {
           {
             info && info.length ? mostCommonJourney(info).map(({actionData, percent, occurrences, time, totalCount }) => {
               return (
-                <div style={{width: `${((Number(occurrences) / completedJourneys) * 45) + 50}%`, height: '150px', backgroundColor: colorChooser(occurrences, completedJourneys)}} className="admin-panel-funnel-item">
+                <div style={{width: `${((Number(occurrences) / totalJourneys) * 45) + 50}%`, height: '150px', backgroundColor: colorChooser(occurrences, completedJourneys)}} className="admin-panel-funnel-item">
                   <div className="admin-panel-funnel-item-event">
                     <h2>ACTION</h2>
                     <h4>TYPE: {actionData.type}</h4>
