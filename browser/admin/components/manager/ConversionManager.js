@@ -81,7 +81,7 @@ class ConversionManager extends Component {
                 {
                     this.state.addFormVisible ? 
                     (
-                        <div className="conversion-manager-add-form modal-dialog">
+                        <div className="conversion-manager-add-form">
                             <br />
                             <div className="conversion-manager-add-form-path">
                                 <label> Enter Your Relative Website Path (ex. /order/confirmation). Delineate any variable parts of the path by preceeding with a ':' (ex. /orders/:id/confirm):
