@@ -24,7 +24,6 @@ class ConversionManager extends Component {
         return (
             <div key={conversion.id} className="single-conversion">
                 <div className="single-conversion-description">
-                    <h2>Number: {position}</h2>
                     <h2>Type: {conversion.type}</h2>
                     <h2>Path: {conversion.path}</h2>
                     {
@@ -42,7 +41,7 @@ class ConversionManager extends Component {
                     ) : null
                     }
                     
-                    <button className="btn white" onClick={() => console.log('this will remove eventually')}>REMOVE CONVERSION</button>
+                    <button className="btn" onClick={() => console.log('this will remove eventually')}>REMOVE CONVERSION</button>
                 </div>
                 <div className="single-conversion-data">
                     {/* <h2>Number of Matches: {actionData}</h2>  */}

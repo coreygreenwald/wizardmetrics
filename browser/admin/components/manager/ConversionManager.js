@@ -56,8 +56,10 @@ class ConversionManager extends Component {
                 path: this.state.path,
                 matchData: (this.state.action !== 'ARRIVAL' && this.state.action !== 'NAVIGATE') ? this.state.matchData : {}
             }
+        }).then(res => res.data)
+        .then(() => {
+            this.setState({addFormVisible: false})
         })
-            .then(res => res.data)
             .catch(() => console.log('there was an error'));
     }
     render(){
@@ -81,16 +83,15 @@ class ConversionManager extends Component {
                 {
                     this.state.addFormVisible ? 
                     (
-                        <div className="conversion-manager-add-form">
-                            <br />
+                        <div className="conversion-manager-add-form modal">
                             <div className="conversion-manager-add-form-path">
-                                <label> Enter Your Relative Website Path (ex. /order/confirmation). Delineate any variable parts of the path by preceeding with a ':' (ex. /orders/:id/confirm):
+                            {/* Delineate any variable parts of the path by preceeding with a ':' (ex. /orders/:id/confirm): */}
+                                <label>PATH - Enter a relative URI (ex. /order/confirmation):
                                     <input name="path" onChange={this.handleChange} type="text" name="path" value={this.state.path} onChange={this.handleChange} />
                                 </label>
                             </div>
-                            <br />
                             <div className="conversion-manager-add-form-action">
-                                <label> Select the action a user must do to trigger a conversion:
+                                <label> ACTION - Which task will be marked as a conversion:
                                     <select name="action" value={this.state.action} onChange={this.handleChange}>
                                         <option value="ARRIVAL">ARRIVAL - Flag Arrivals To A Particular Page</option>
                                         <option value="NAVIGATE">NAVIGATE - Flags Arrivals To A Particular Page from Another Page</option>
@@ -100,26 +101,25 @@ class ConversionManager extends Component {
                                     </select>
                                 </label>
                             </div>
-                            <br />
                             {
                                 this.state.action === 'CLICK' ?
                                 (
                                     <div className="conversion-manager-add-form-additional-info">
-                                        <label> Select Any Optional Info You'd Like to Match Actions On.
-                                            <input name="id" onChange={this.handleIdentifiers} type="text" placeholder="HTML id of the element to match on"/>
-                                            <input name="className" onChange={this.handleIdentifiers} type="text" placeholder="HTML class the element to match on"/>
-                                            <input name="name" onChange={this.handleIdentifiers} type="text" placeholder="HTML element to match on"/>
-                                            <input name="tagName" onChange={this.handleIdentifiers} type="text" placeholder="HTML element to match on"/>
-                                            <input name="value" onChange={this.handleIdentifiers} type="text" placeholder="If the HTML element you want to mark as a conversion has an expected value to match on"/>
-                                        </label>
+                                        <label> Specify Specific Elements for Your Conversion: </label>
+                                        <div className="conversion-manager-add-form-additional-info-inputs" >
+                                            <label>Id of an element:<input name="id" onChange={this.handleIdentifiers} type="text" placeholder="ex. home-submit-button"/></label>
+                                            <label>Class of an element:<input name="className" onChange={this.handleIdentifiers} type="text" placeholder="ex. btn"/></label>
+                                            <label>Name of an element:<input name="name" onChange={this.handleIdentifiers} type="text" placeholder="ex. email-input"/></label>
+                                            <label>Tag name of an element:<input name="tagName" onChange={this.handleIdentifiers} type="text" placeholder="ex. button"/></label>
+                                            <label>Value of an element:<input name="value" onChange={this.handleIdentifiers} type="text" placeholder="ex. 73"/></label>
+                                        </div>
                                     </div>
                                 ) : null
                             }
-                            <br />
-                            <button type="submit" onClick={this.handleSubmit}>Submit Form</button>
+                            <button className="btn white" type="submit" onClick={this.handleSubmit}>Submit Form</button>
                         </div>
                     ) : 
-                    <button onClick={() => this.setState({addFormVisible: true})}>Add A Conversion!</button> 
+                    <button className="btn" onClick={() => this.setState({addFormVisible: true})}>Add A Conversion!</button> 
                 }  
               </div>
           </div>
