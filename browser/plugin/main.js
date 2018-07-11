@@ -1,3 +1,6 @@
+
+// const ORIGIN_URL = `http://localhost:3000/plugin/data/userInfo?wizardId=${window.wizardId}`;
+const REMOTE_URL = `https://wizardly.herokuapp.com`;
 document.addEventListener('DOMContentLoaded', (e) => {
     console.log('This Application uses WizardLead!');
     let location = window.location.pathname;
@@ -6,11 +9,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
         path: window.location.pathname
     })
     .then(() => {
-        return window.fetch(`http://localhost:3000/plugin/data/userInfo?wizardId=${window.wizardId}`)
+        return window.fetch(`${REMOTE_URL}/plugin/data/userInfo?wizardId=${window.wizardId}`)
     })
     .then(res => res.json())
     .then((userInfo) => {
-        console.log('USER INFO ------', userInfo)
         document.addEventListener('click', (e) => {
             let type;
             if(userInfo && userInfo.submitId && userInfo.submitId === e.target.id){
@@ -51,7 +53,7 @@ function setUserInfo(userIdentifier){
         session: localStorage.getItem('wizardSession') || "",
         userIdentifier
     }
-    return window.fetch(`http://localhost:3000/plugin/data/userInfo?wizardId=${window.wizardId}`,  {
+    return window.fetch(`${REMOTE_URL}/plugin/data/userInfo?wizardId=${window.wizardId}`,  {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: new Headers({
@@ -74,7 +76,7 @@ function fireData(payload){
     //https://wizardly.herokuapp.com
     // return window.fetch(`https://wizardly.herokuapp.com/plugin/data?wizardId=${window.wizardId}`
     // return window.fetch(`http://localhost:3000/plugin/data?wizardId=${window.wizardId}`
-    return window.fetch(`http://localhost:3000/plugin/data?wizardId=${window.wizardId}`,  {
+    return window.fetch(`${REMOTE_URL}/plugin/data?wizardId=${window.wizardId}`,  {
         method: 'POST',
         body: JSON.stringify(data),
         headers: new Headers({
