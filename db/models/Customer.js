@@ -142,12 +142,26 @@ Customer.calculateJourneyInfo = async (username) => {
                             metaData.actionIds.push(savedId);
                             //Remember ot clean up null pointers in the future
                             metaData.referrers[referrer] = metaData.referrers[referrer] + 1 || 1;
+                            if(sessions[i].userIdentifier && j === actions.length - 1){
+                                metaData.identifiers.push(sessions[i].userIdentifier);
+                            }
                             journeyInfo[journeyInfoPosition][action] = {actionData, metaData};
                             foundAction = true;
                             break;
                         }
                     }
-                    if(!foundAction) journeyInfo[journeyInfoPosition].push({actionData: currAction, metaData: {count: 1, secondsOnAction, actionIds: [currAction.id], referrers: {[referrer]: 1}}});
+                    if(!foundAction) {
+                        const identifiers = (sessions[i].userIdentifier && j === actions.length - 1) ? [sessions[i].userIdentifier] : [];
+                        journeyInfo[journeyInfoPosition].push({
+                            actionData: currAction, 
+                            metaData: {
+                                count: 1, secondsOnAction, 
+                                actionIds: [currAction.id], 
+                                referrers: {[referrer]: 1}, 
+                                identifiers
+                            }
+                        });
+                    }
                     if(currAction.isConversion) { 
                         if((shortestJourneys.byLength.length > journeyInfoPosition) || shortestJourneys.byLength.length === 0){
                             shortestJourneys.byLength = actions.slice(endOfJourneyPointer, j + 1);
