@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, UserHome, AdminPanel, ConversionManager} from './components'
+import {Login, UserHome, AdminPanel, ConversionManager, Settings} from './components'
 import {me, retrieveJourneyData} from './store'
 
 /**
@@ -28,6 +28,7 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/journeys" component={AdminPanel} />
                 <Route path="/conversions" component={ConversionManager} />
+                <Route path="/settings" component={Settings} />
                 <Route exact path="/" component={UserHome} />
               </Switch>
           }

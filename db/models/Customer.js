@@ -16,11 +16,24 @@ const Customer = db.define('customer', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    originUrl: {
+        type: Sequelize.STRING,
+        validate: {
+            isUrl: true
+        }
+    },
     name: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
             notEmpty: true
+        }
+    },
+    sessionInfoGrabber: {
+        type: Sequelize.JSON,
+        defaultValue: {
+            submitId: '',
+            dataLocationId: ''
         }
     },
     location: {
@@ -100,7 +113,6 @@ Customer.calculateJourneyInfo = async (username) => {
         //Check to ensure that customerInfo exists and sessions have been created. 
         if(customerInfo && customerInfo.sessions){
             let sessions = customerInfo.sessions;
-            // let  = []; 
             //Loop over each session that exists for each customer.
             for(let i = 0; i < sessions.length; i++){
                 let actions = sessions[i].actions && sessions[i].actions.length ? sessions[i].actions : [];
@@ -115,23 +127,27 @@ Customer.calculateJourneyInfo = async (username) => {
                     //Do all work regarding time stamps here before deletion.
                     let secondsOnAction = !currAction.isConversion && actions[j + 1] ? (actions[j + 1].toJSON().createdAt - currAction.createdAt) / 1000 : null;
                     let savedId = currAction.id
-                    deleteObjectKeys(currAction, ['id', 'createdAt', 'updatedAt', 'sessionId']); 
+                    let referrer = currAction.referrer;
+                    deleteObjectKeys(currAction, ['id', 'createdAt', 'updatedAt', 'sessionId', 'referrer']); 
                     if(!journeyInfo[journeyInfoPosition]){
                         journeyInfo[journeyInfoPosition] = [];
                     }
                     let foundAction = false;
+                    //Go over all actions found at this position.
                     for(action in journeyInfo[journeyInfoPosition]){
                         let {metaData, actionData} = journeyInfo[journeyInfoPosition][action];
                         if(_.isEqual(actionData, currAction)){
                             metaData.count += 1;
                             metaData.secondsOnAction += secondsOnAction; 
                             metaData.actionIds.push(savedId);
+                            //Remember ot clean up null pointers in the future
+                            metaData.referrers[referrer] = metaData.referrers[referrer] + 1 || 1;
                             journeyInfo[journeyInfoPosition][action] = {actionData, metaData};
                             foundAction = true;
                             break;
                         }
                     }
-                    if(!foundAction) journeyInfo[journeyInfoPosition].push({actionData: currAction, metaData: {count: 1, secondsOnAction, actionIds: [currAction.id]}});
+                    if(!foundAction) journeyInfo[journeyInfoPosition].push({actionData: currAction, metaData: {count: 1, secondsOnAction, actionIds: [currAction.id], referrers: {[referrer]: 1}}});
                     if(currAction.isConversion) { 
                         if((shortestJourneys.byLength.length > journeyInfoPosition) || shortestJourneys.byLength.length === 0){
                             shortestJourneys.byLength = actions.slice(endOfJourneyPointer, j + 1);

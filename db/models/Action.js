@@ -14,6 +14,9 @@ const Action = db.define('action', {
     info: {
         type: Sequelize.JSONB
     },
+    referrer: {
+        type: Sequelize.STRING
+    },
     isConversion: {
         type: Sequelize.BOOLEAN
     }
@@ -27,11 +30,14 @@ Action.hook('beforeCreate', async (action) => {
         let customer = await session.getCustomer(); 
         let conversions = await customer.getConversions();
         for(let i = 0; i < conversions.length; i++){
+            let referrer = action.referrer;
+            delete action.referrer;
             if(conversions[i].compareActionToConversion(action)){
                 action.isConversion = true;
                 action.conversionId = conversions[i].id;
                 return;
             }
+            action.referrer = referrer;
         }
     } catch(err){
         console.log(err);

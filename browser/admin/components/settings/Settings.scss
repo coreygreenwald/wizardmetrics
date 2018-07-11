@@ -1,0 +1,12 @@
+.settings {
+    &-user-info {
+        display: flex;
+        flex-direction: column;
+        background-color: #AAAAAA;
+        border:4px solid black;
+        border-radius: 15px;
+        width: 500px;
+        justify-content: center;
+        align-items: center;
+    }
+}

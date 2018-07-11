@@ -46,10 +46,43 @@ router.post('/data', (req, res, next) => {
         type: req.body.type.toUpperCase(),
         path: req.body.path,
         info: req.body.info || {},
+        referrer: req.body.referrer,
         sessionId: req.session.id
     }).then(action => {
         res.send({sessionId: req.session.id});
     }).catch(next);
+})
+
+router.get('/data/userInfo', (req, res, next) => {
+    if(req.customer){
+        res.json(req.customer.sessionInfoGrabber)
+    } else {
+        res.status(404).send('Cannot')
+    }
+})
+
+router.put('/data/userInfo', (req, res, next) => {
+    console.log(req.body.userIdentifier);
+    if(req.customer){
+        if(!req.body.session || !req.body.session.length){
+            req.body.session = crypto.randomBytes(20).toString('hex');
+        }
+        Session.findOrCreate({
+            where: {
+                id: req.body.session,
+                customerPublicId: req.customer.publicId
+            }
+        })
+        .then(([session, created]) => {
+            return session.update({userIdentifier: req.body.userIdentifier})
+        })
+        .then((updatedSession) => {
+            res.status(203).send('User Identification Updated');
+        })
+        .catch(next);
+    } else {
+        res.status(404).send('Cannot')
+    }
 })
 
 router.use('/', (req, res, next) => {

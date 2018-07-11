@@ -6,8 +6,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
         path: window.location.pathname
     })
     .then(() => {
+        return window.fetch(`http://localhost:3000/plugin/data/userInfo?wizardId=${window.wizardId}`)
+    })
+    .then(res => res.json())
+    .then((userInfo) => {
+        console.log('USER INFO ------', userInfo)
         document.addEventListener('click', (e) => {
             let type;
+            if(userInfo && userInfo.submitId && userInfo.submitId === e.target.id){
+                let userIdentifier = document.getElementById(userInfo.dataLocationId).value;
+                if(userIdentifier){
+                    setUserInfo(userIdentifier)
+                }
+            }
             if(window.location.pathname != location){
                 type = 'navigate';
                 location = window.location.pathname;
@@ -35,7 +46,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
     .catch(() => console.log('There was an error initializing WizardLead'));
 })
 
-
+function setUserInfo(userIdentifier){
+    var data = {
+        session: localStorage.getItem('wizardSession') || "",
+        userIdentifier
+    }
+    return window.fetch(`http://localhost:3000/plugin/data/userInfo?wizardId=${window.wizardId}`,  {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    })
+}
 // document.addEventListener('keypress', (e) => {
 //     fireData({
 //         keyPress: e.keyCode
@@ -43,6 +66,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 // })
 
 function fireData(payload){
+    payload.referrer = document.referrer || null;
     var data = {
         session: localStorage.getItem('wizardSession') || "",
         payload

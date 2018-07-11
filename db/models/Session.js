@@ -6,6 +6,9 @@ const Session = db.define('session', {
         type: Sequelize.STRING,
         unique: true,
         primaryKey: true
+    },
+    userIdentifier: {
+        type: Sequelize.STRING
     }
 })
 

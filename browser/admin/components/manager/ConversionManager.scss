@@ -24,6 +24,10 @@
             flex-direction: column;
         }
     }
+
+    &-close {
+        position: absolute;
+    }
     div {
         margin: 10px;
     }

@@ -84,6 +84,7 @@ class ConversionManager extends Component {
                     this.state.addFormVisible ? 
                     (
                         <div className="conversion-manager-add-form modal">
+                            <button className="btn white conversion-manager-add-form-close" onClick={() => this.setState({addFormVisible: false})}>CLOSE</button>
                             <div className="conversion-manager-add-form-path">
                             {/* Delineate any variable parts of the path by preceeding with a ':' (ex. /orders/:id/confirm): */}
                                 <label>PATH - Enter a relative URI (ex. /order/confirmation):
