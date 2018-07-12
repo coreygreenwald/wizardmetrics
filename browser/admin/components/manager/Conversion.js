@@ -26,6 +26,7 @@ class ConversionManager extends Component {
                 <div className="single-conversion-description">
                     <h2>Type: {conversion.type}</h2>
                     <h2>Path: {conversion.path}</h2>
+                    <h2>Strength: {conversion.strength}</h2>
                     {
                         Object.keys(conversion.matchData).length ? (
                         <div className="single-conversion-match">
