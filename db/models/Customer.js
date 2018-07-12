@@ -173,12 +173,12 @@ Customer.calculateJourneyInfo = async (username) => {
                         }
                         endOfJourneyPointer =  j + 1;
                         let actualConversion = await Conversion.findById(currAction.conversionId);
-                        if(actualConversion.strength === 'HARD'){
-                            break;
-                        }
                         completedJourneys++;
                         if(actions[j + 1]){
                             totalJourneys++;
+                        }
+                        if(actualConversion.strength === 'HARD'){
+                            break;
                         }
                     } else {
                         endOfJourneyTimer += secondsOnAction;

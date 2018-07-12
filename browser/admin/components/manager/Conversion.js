@@ -20,7 +20,6 @@ class ConversionManager extends Component {
         //     return arr;
         // }
         const { conversion, position, actionData } = this.props;
-        console.log(conversion);
         return (
             <div key={conversion.id} className="single-conversion">
                 <div className="single-conversion-description">
