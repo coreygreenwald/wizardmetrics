@@ -13,6 +13,7 @@ db.sync({force: true})
             type: 'ARRIVAL',
             path: '/gods',
             matchData: {},
+            strength: 'HARD',
             customerPublicId: customer1.publicId
         })
     })

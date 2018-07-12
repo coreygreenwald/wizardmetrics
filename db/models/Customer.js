@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const crypto = require('crypto'); 
 const Session = require('./Session'); 
 const Action = require('./Action');
+const Conversion = require('./Conversion');
 const _ = require('lodash');
 const { deleteObjectKeys } = require('../../utils/general');
 
@@ -170,7 +171,11 @@ Customer.calculateJourneyInfo = async (username) => {
                             shortestJourneys.byTime.time = endOfJourneyTimer; 
                             shortestJourneys.byTime.actions = actions.slice(endOfJourneyPointer, j + 1);
                         }
-                        endOfJourneyPointer =  j + 1; 
+                        endOfJourneyPointer =  j + 1;
+                        let actualConversion = await Conversion.findById(currAction.conversionId);
+                        if(actualConversion.strength === 'HARD'){
+                            break;
+                        }
                         completedJourneys++;
                         if(actions[j + 1]){
                             totalJourneys++;

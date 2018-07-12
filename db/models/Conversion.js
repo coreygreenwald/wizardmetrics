@@ -11,10 +11,15 @@ const Conversion = db.define('conversion', {
     },
     matchData: {
         type: Sequelize.JSONB
+    },
+    strength: {
+        type: Sequelize.ENUM('SOFT', 'HARD'),
+        defaultValue: 'SOFT'
     }
 })
 
 Conversion.prototype.compareActionToConversion = function(action){
+    delete this.matchData.strength;
     let matchDataKeys = Object.keys(this.matchData);
     return (action.type === this.type && action.path === this.path && (matchDataKeys.length > 0 ? (matchDataKeys.reduce((prev, key) => {
         if(prev && this.matchData[key] === action.info[key]){

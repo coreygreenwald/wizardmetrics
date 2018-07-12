@@ -13,6 +13,7 @@ class ConversionManager extends Component {
         this.state = {
             addFormVisible: false,
             conversions: [],
+            strength: 'SOFT',
             action: 'ARRIVAL',
             path: '/',
             matchData: {
@@ -54,6 +55,7 @@ class ConversionManager extends Component {
             conversion: {
                 type: this.state.action,
                 path: this.state.path,
+                strength: this.state.strength,
                 matchData: (this.state.action !== 'ARRIVAL' && this.state.action !== 'NAVIGATE') ? this.state.matchData : {}
             }
         }).then(res => res.data)
@@ -84,7 +86,15 @@ class ConversionManager extends Component {
                     this.state.addFormVisible ? 
                     (
                         <div className="conversion-manager-add-form modal">
-                            <button className="btn white conversion-manager-add-form-close" onClick={() => this.setState({addFormVisible: false})}>CLOSE</button>
+                            <button className="btn white conversion-manager-add-form-close" onClick={() => this.setState({addFormVisible: false})}>X</button>
+                            <div className="conversion-manager-add-form-strength">
+                                <label> STRENGTH - Will this conversion end a journey?
+                                    <select name="strength" value={this.state.strength} onChange={this.handleChange}>
+                                        <option value="HARD">HARD - This Conversion Signifies the End of a Customer Journey.</option>
+                                        <option value="SOFT">SOFT -This Conversion Marks a Significant Action But Not The End of the Customer Journey</option>
+                                    </select>
+                                </label>
+                            </div>
                             <div className="conversion-manager-add-form-path">
                             {/* Delineate any variable parts of the path by preceeding with a ':' (ex. /orders/:id/confirm): */}
                                 <label>PATH - Enter a relative URI (ex. /order/confirmation):

@@ -47,8 +47,24 @@ h2, h4 {
                 width: 70%;
                 font-size: 12px;
             }
+
+            &-users-modal {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center; 
+
+                &-buttons {
+                    display: flex;
+                    width: 50%;
+                    margin: 10px;
+                    justify-content: space-evenly;
+                }
+            }
         }
     }
+    
     &-stats {
         width: 35%;
         // margin: 20px;
