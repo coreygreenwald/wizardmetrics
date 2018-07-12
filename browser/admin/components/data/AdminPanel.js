@@ -11,6 +11,9 @@ import './AdminPanel.scss';
 class AdminPanel extends Component {
   constructor(props){
     super(props); 
+    this.state = {
+      activeItem: 0
+    }
   }
   componentDidMount(){
     if(!this.props.data.info){
@@ -21,23 +24,36 @@ class AdminPanel extends Component {
     const { info, shortestJourneyLength, shortestJourneyTime, completedJourneys, totalJourneys } = this.props.data;
     return (
       <div className="admin-panel">
-        <div className="admin-panel-funnel">
-          {
-            info && info.length ? mostCommonJourney(info).map(({actionData, percent, occurrences, time, totalCount, referrers, identifiers }) => {
-              return (
-                <FunnelItem actionData={actionData} percent={percent} occurrences={occurrences} time={time} totalCount={totalCount} completedJourneys={completedJourneys} totalJourneys={totalJourneys} referrers={referrers} identifiers={identifiers}/>
-              )
-            }) : 
-            ( <h1> Sorry No Data Today! </h1>)
-          }
-        </div>
         <div className="admin-panel-stats">
           <div className="admin-panel-stats-content">
-            <h1>Journey Metrics</h1>
-            <h2>Acquisitions: {totalJourneys}</h2>
-            <h2>Conversions: {completedJourneys}</h2>
-            <h2>Shortest Journey Length (Time): {shortestJourneyTime} seconds </h2>
-            <h2>Shortest Journey Length (Steps): {shortestJourneyLength} steps</h2>
+            <h1>Journey Overview</h1>
+            <div className="admin-panel-stats-content-holder">
+              <div className="admin-panel-stats-content-holder-child">
+                <h2>Total Users in Funnel: {totalJourneys}</h2>
+                <h2>Total Conversions: {completedJourneys}</h2>
+                <h2>Total Email Signups: PLACEHOLDER </h2>
+              </div>
+              <div className="admin-panel-stats-content-holder-child">
+                <h2>Average Nurturing Time / Steps PLACEHOLDER </h2>
+                <h2>Shortest Journey Length (Time): {shortestJourneyTime} seconds </h2>
+                <h2>Shortest Journey Length (Steps): {shortestJourneyLength} steps</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="admin-panel-funnel">
+          <div className="admin-panel-funnel-items">
+            {
+              info && info.length ? mostCommonJourney(info).map(({actionData, percent, occurrences, time, totalCount, referrers, identifiers }) => {
+                return (
+                  <FunnelItem actionData={actionData} percent={percent} occurrences={occurrences} time={time} totalCount={totalCount} completedJourneys={completedJourneys} totalJourneys={totalJourneys} referrers={referrers} identifiers={identifiers}/>
+                )
+              }) : 
+              ( <h1> Sorry No Data Today! </h1>)
+            }
+          </div>
+          <div className="admin-panel-funnel-stats">
+            <h1> HI </h1>
           </div>
         </div>
       </div>

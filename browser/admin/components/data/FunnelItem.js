@@ -39,7 +39,8 @@ export default class FunnelItem extends Component {
     render(){
         const {actionData, percent, occurrences, time, totalCount, completedJourneys, totalJourneys, referrers, identifiers} = this.props
         return (
-            <div style={{width: `${((Number(occurrences) / totalJourneys) * 45) + 50}%`, height: '150px', backgroundColor: colorChooser(occurrences, completedJourneys)}} className="admin-panel-funnel-item">
+            // {width: `${((Number(occurrences) / totalJourneys) * 45) + 50}%`
+            <div style={{width: '95%', height: '150px', backgroundColor: colorChooser(occurrences, completedJourneys)}} className="admin-panel-funnel-item">
                 <div className="admin-panel-funnel-item-event">
                     <h2>ACTION</h2>
                     <h4>TYPE: {actionData.type}</h4>
