@@ -1,6 +1,6 @@
 
-const REMOTE_URL = `http://localhost:3000`;
-// const REMOTE_URL = `https://wizardly.herokuapp.com`;
+// const REMOTE_URL = `http://localhost:3000`;
+const REMOTE_URL = `https://wizardly.herokuapp.com`;
 document.addEventListener('DOMContentLoaded', (e) => {
     console.log('This Application uses WizardLead!');
     let location = window.location.pathname;
