@@ -53,7 +53,45 @@ class AdminPanel extends Component {
             }
           </div>
           <div className="admin-panel-funnel-stats">
-            <h1> HI </h1>
+            <h1> Metrics / Step 2 </h1>
+            <div className="admin-panel-funnel-stats-metrics">
+              <div className="admin-panel-funnel-stats-metrics-metric">
+                <h2>55%</h2>
+                <p>Step 2 - Visit Page</p>
+              </div>
+              <div className="admin-panel-funnel-stats-metrics-metric">
+                <h2>1:26 Minutes</h2>
+                <p>Avg Time On /home</p>
+              </div>
+              <div className="admin-panel-funnel-stats-metrics-metric">
+                <h2>68% Bounce Rate</h2>
+                <p>Avg Bounce Rate</p>
+              </div>
+              <div className="admin-panel-funnel-stats-metrics-metric">
+                <h2>80%</h2>
+                <p>Avg Scroll Length</p>
+              </div>
+              <div className="admin-panel-funnel-stats-metrics-metric">
+                <h2>0</h2>
+                <p>Conversions at Step 2</p>
+              </div>
+              <div className="admin-panel-funnel-stats-metrics-metric">
+                <h2>2.1k</h2>
+                <p># of Users at Step 2</p>
+              </div>
+            </div>
+            <div className="admin-panel-funnel-stats-recommendations">
+              <h2>Recommendations</h2>
+              <p>You have 264 users stuck at this step. It is suggested to export a list of these users and send them an email to get them to /features/pricing to continue on their journey.</p>
+            </div>
+            <div className="admin-panel-funnel-stats-actions">
+              <h2>Actions</h2>
+              <div className="admin-panel-funnel-stats-actions-body">
+                <button> Export Emails </button>
+                <button> Do Other Things </button>
+                <button> Do Some Other Stuff </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

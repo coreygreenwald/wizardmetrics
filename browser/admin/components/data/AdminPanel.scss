@@ -19,8 +19,44 @@ h2, h4 {
     &-funnel {
         width: 100%;
         margin: 0 10px;
-        @include flex(row, space-between, center);
-    
+        @include flex(row, space-between, flex-start);
+        
+        &-stats {
+            border-radius: 15px;
+            border:1px solid black;
+            width: 60%;
+            margin: 10px;
+            height: auto;
+            @include flex(column, center, flex-start);   
+
+            h1 {
+                margin: 10px;
+            }
+            &-metrics {
+                @include flex(row, space-between, flex-start);
+                flex-wrap: wrap;
+
+                &-metric {
+                    margin: 10px;
+                }
+                // width: 30%;
+            }
+
+            &-recommendations {
+                text-align: left;
+                margin: 10px 20px;
+            }
+
+            &-actions {
+                text-align: left;
+                margin: 10px 20px;
+            }
+        }
+
+        &-items {
+            width: 40%;
+        }
+
         &-item {
             width: 100%;
             display: flex;
@@ -69,6 +105,7 @@ h2, h4 {
     &-stats {
         width: 100%;
         margin: 20px auto;
+
         &-content {
             display: flex;
             flex-direction: column;
