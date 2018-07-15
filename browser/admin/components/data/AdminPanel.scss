@@ -24,7 +24,7 @@ h2, h4 {
         &-stats {
             border-radius: 15px;
             border:1px solid black;
-            width: 60%;
+            width: 55%;
             margin: 10px;
             height: auto;
             @include flex(column, center, flex-start);   
@@ -33,9 +33,13 @@ h2, h4 {
                 margin: 10px;
             }
             &-metrics {
-                @include flex(row, space-between, flex-start);
-                flex-wrap: wrap;
-
+                @include flex(column, center, center);
+                width: 100%;
+                // flex-wrap: wrap;
+                &-block {
+                    width: 100%;
+                    @include flex(row, space-between, center); 
+                }
                 &-metric {
                     margin: 10px;
                 }
@@ -54,7 +58,7 @@ h2, h4 {
         }
 
         &-items {
-            width: 40%;
+            width: 45%;
         }
 
         &-item {
@@ -67,11 +71,12 @@ h2, h4 {
             border-radius: 15px;
             border:1px solid black;
             margin: 10px 2px;
+            color: #FFFFFF;
 
             &-event {
                 width: 30%;
                 text-align: center;
-                border:2px dotted black;
+                // border:2px dotted black;
                 border-radius: 15px;
                 margin: 5px;
                 h2 {
@@ -113,7 +118,7 @@ h2, h4 {
             h1 {
                 font-size: 26px; 
                 // font-weight: 500;
-                margin: 2px;
+                margin: 2px auto;
             }
 
             h2 {
@@ -126,6 +131,7 @@ h2, h4 {
                 margin: auto;
 
                 &-child {
+                    margin: 5px 20px;
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
