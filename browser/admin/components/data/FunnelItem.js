@@ -29,15 +29,6 @@ export default class FunnelItem extends Component {
           showUsers: false
       } 
     }
-    downloadCSV(event, identifiers){
-        event.preventDefault();
-        let csvContent = "data:text/csv;charset=utf-8,";
-        identifiers.forEach((row) => {
-           csvContent += row + "\r\n";
-        });
-        let encodedUri = encodeURI(csvContent);
-        window.open(encodedUri);
-    }
     render(){
         const {actionData, percent, occurrences, time, totalCount, completedJourneys, totalJourneys, referrers, identifiers, handleClick, index, selected} = this.props
         const styleObj = {width: '95%', height: '150px', backgroundColor: colorChooser(occurrences, completedJourneys)};
@@ -53,12 +44,26 @@ export default class FunnelItem extends Component {
                     <h4>TYPE: {actionData.type}</h4>
                     <h4>PATH: {actionData.path}</h4> */}
                     {/* <h4>INFO: {actionData.info}</h4> */}
-                    {
-                        actionData.isConversion &&
-                        (
-                        <h4>CONVERSION 	✅</h4>
-                        )
-                    }
+                    <div className="admin-panel-funnel-item-event-special">
+                        {
+                            actionData.isConversion &&
+                            (
+                            <h5>Conversion	✅</h5>
+                            )
+                        }
+                        {
+                            identifiers && identifiers.length ?
+                                (
+                                    <h5>Stuck Customers ❌</h5>
+                                ) : null
+                        }
+                        {
+                            Object.keys(referrers) && Object.keys(referrers).length ? 
+                                (
+                                    <h5>Referrals Found	✅</h5>
+                                ) : null
+                        }
+                    </div>
                 </div> 
                 <div className="admin-panel-funnel-item-data">
                     <h2>TYPE: {actionData.type}</h2>
@@ -69,26 +74,6 @@ export default class FunnelItem extends Component {
                     <h2>Total Actions Of This Type: {occurrences}</h2>
                     <h2>Total Customers At This Step: {totalCount}</h2> */}
                 </div> 
-                {
-                    identifiers && identifiers.length ?
-                    (
-                        <div className="admin-panel-funnel-item-users">
-                            <button onClick={() => this.setState({showUsers: true})}>See Customers</button>
-                            {
-                                this.state.showUsers ? 
-                                (
-                                    <div className="modal admin-panel-funnel-item-users-modal">
-                                        <h2>{identifiers.join(', ')}</h2>
-                                        <div className="admin-panel-funnel-item-users-modal-buttons">
-                                            <button className="btn white" onClick={(e) => this.downloadCSV(e, identifiers)}> Download CSV </button>
-                                            <button className="btn white" onClick={() => this.setState({showUsers: false})}> Close </button>
-                                        </div>
-                                    </div>
-                                ) : null 
-                            }
-                        </div>
-                    ) : null
-                }
             </div>
         )
     }

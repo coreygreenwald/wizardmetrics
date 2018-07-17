@@ -30,11 +30,17 @@ const Customer = db.define('customer', {
             notEmpty: true
         }
     },
+    status: {
+        type: Sequelize.ENUM('FREE', 'BASIC', 'PREMIUM', 'ALL', 'SUPER_ADMIN'),
+        defaultValue: 'FREE'
+    },
     sessionInfoGrabber: {
         type: Sequelize.JSON,
         defaultValue: {
             submitId: '',
-            dataLocationId: ''
+            submitType: 'ID',
+            dataLocationId: '',
+            dataLocationType: 'ID'
         }
     },
     location: {

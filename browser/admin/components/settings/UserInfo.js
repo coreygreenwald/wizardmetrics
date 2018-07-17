@@ -7,16 +7,20 @@ export default class Settings_UserInfo extends Component {
         super(props);
         this.state = {
             userInfoId: '',
-            userSubmitId: ''
+            userInfoType: 'ID',
+            userSubmitId: '',
+            userSubmitType: 'ID'
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount(){
-        const {submitId, dataLocationId} = this.props.userInfo;
+        const {submitId, submitType, dataLocationId, dataLocationType} = this.props.userInfo;
         this.setState({
             userInfoId: dataLocationId,
-            userSubmitId: submitId
+            userSubmitId: submitId,
+            userInfoType: dataLocationType,
+            userSubmitType: submitType 
         })
     }
     handleChange(e){
@@ -27,13 +31,35 @@ export default class Settings_UserInfo extends Component {
     handleSubmit(e){
         e.preventDefault();
         e.stopPropagation();
-        console.log('this will update when route is made!');
+        const { userInfoId, userSubmitId, userInfoType, userSubmitType} = this.state; 
+        axios.put('/admin/settings', {
+         sessionInfoGrabber: {
+            dataLocationId: userInfoId,
+            submitId: userSubmitId,
+            dataLocationType: userInfoType,
+            submitType: userSubmitType
+         }   
+        }).then(() => {
+            alert('This will be replaced with a toast! But everything worked :)')
+        }).catch(() => console.log('error'));
     }
     render(){
         return (
             <div className="settings-user-info">
-                <label>Id of Input Box for Email/Username Form<input name="userInfoId" onChange={this.handleChange} value={this.state.userInfoId}/></label>
-                <label>Id of Submit Button for Email/Username Form<input name="userSubmitId" onChange={this.handleChange} value={this.state.userSubmitId}/></label>
+                <label>Id of Input Box for Email/Username Form
+                    <input name="userInfoId" onChange={this.handleChange} value={this.state.userInfoId}/>
+                    <select name="userInfoType" onChange={this.handleChange} value={this.state.userInfoType}>   
+                        <option value="ID">ID - Identify an Input Field by Its Id</option>
+                        <option value="CLASS">CLASS - Identify an Input Field by Its Class</option>
+                    </select>
+                </label>
+                <label>Id of Submit Button for Email/Username Form
+                    <input name="userSubmitId" onChange={this.handleChange} value={this.state.userSubmitId}/>
+                    <select name="userSubmitType" onChange={this.handleChange} value={this.state.userSubmitType}>   
+                        <option value="ID">ID - Identify a Submit Button by Its Id</option>
+                        <option value="CLASS">CLASS - Identify a Submit Button by Its Class</option>
+                    </select>
+                </label>
                 <button onClick={this.handleSubmit} className="btn">Update User-Session Mapper</button>
             </div>
         )

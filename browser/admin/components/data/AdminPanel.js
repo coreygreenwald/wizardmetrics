@@ -12,25 +12,37 @@ class AdminPanel extends Component {
   constructor(props){
     super(props); 
     this.state = {
-      activeItem: 0
+      activeItem: 0,
+      showUsers: false,
+      showReferrers: false
     }
     this.handleClick = this.handleClick.bind(this); 
   }
+  downloadCSV(event, identifiers){
+    event.preventDefault();
+    let csvContent = "data:text/csv;charset=utf-8,";
+    identifiers.forEach((row) => {
+       csvContent += row + "\r\n";
+    });
+    let encodedUri = encodeURI(csvContent);
+    window.open(encodedUri);
+}
   componentDidMount(){
     if(!this.props.data.info){
       this.props.fetchJourneyData()
     }
   }
   handleClick(itemNumber){
-    // console.log(itemNumber);
     this.setState({
       activeItem: itemNumber
     })
   }
   render(){
     const { info, shortestJourneyLength, shortestJourneyTime, completedJourneys, totalJourneys } = this.props.data;
-    const mostCommonInfo = (info && info.length) ? mostCommonJourney(info).filter(step => (step.totalActionCount / totalJourneys) > .1) : [];
-    const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep, totalSignups } = mostCommonInfo[this.state.activeItem] || {}
+    const journeyInfo = (info && info.length) ? mostCommonJourney(info) : {journey: []};
+    const mostCommonInfo = journeyInfo.journey.filter(step => (step.totalActionCount / totalJourneys) > .1)
+    const { totalSignups } = journeyInfo; 
+    const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep } = mostCommonInfo[this.state.activeItem] || {}
     return (
       <div className="admin-panel">
         <div className="admin-panel-stats">
@@ -96,16 +108,63 @@ class AdminPanel extends Component {
                 </div>
               </div>
             </div>
-            <div className="admin-panel-funnel-stats-recommendations">
-              <h2>Recommendations</h2>
-              <p>You have 264 users stuck at this step. It is suggested to export a list of these users and send them an email to get them to /features/pricing to continue on their journey.</p>
-            </div>
+            {
+              mostCommonInfo[this.state.activeItem + 1] ? 
+              (
+                <div className="admin-panel-funnel-stats-recommendations">
+                  <h2>Recommendations</h2>
+                  <p>You have {mostCommonInfo[this.state.activeItem].identifiers.length} users stuck on this action. It is suggested to export a list of these users and send them an email to get them to {mostCommonInfo[this.state.activeItem + 1].actionData.path} as the suggested next step on their journey.</p>
+                </div>
+              ) : null
+            }
             <div className="admin-panel-funnel-stats-actions">
               <h2>Actions</h2>
               <div className="admin-panel-funnel-stats-actions-body">
-                <button> Export Emails </button>
-                <button> Do Other Things </button>
-                <button> Do Some Other Stuff </button>
+              {
+                    identifiers && identifiers.length ?
+                    (
+                        <div className="admin-panel-funnel-item-users">
+                            <button className="btn" onClick={() => this.setState({showUsers: true})}>See Customers</button>
+                            {
+                                this.state.showUsers ? 
+                                (
+                                    <div className="modal admin-panel-funnel-item-users-modal">
+                                        <h2>{identifiers.join(', ')}</h2>
+                                        <div className="admin-panel-funnel-item-users-modal-buttons">
+                                            <button className="btn white" onClick={(e) => this.downloadCSV(e, identifiers)}> Download CSV </button>
+                                            <button className="btn white" onClick={() => this.setState({showUsers: false})}> Close </button>
+                                        </div>
+                                    </div>
+                                ) : null 
+                            }
+                        </div>
+                    ) : null
+                }
+                {
+                    referrers && Object.keys(referrers).length ?
+                    (
+                        <div className="admin-panel-funnel-item-referrals">
+                            <button className="btn" onClick={() => this.setState({showReferrers: true})}>See Referrals</button>
+                            {
+                                this.state.showReferrers ? 
+                                (
+                                    <div className="modal admin-panel-funnel-item-users-modal">
+                                        <h2>{Object.keys(referrers).join(', ')}</h2>
+                                        <div className="admin-panel-funnel-item-users-modal-buttons">
+                                            <button className="btn white" onClick={(e) => this.downloadCSV(e, referrers)}> Download CSV </button>
+                                            <button className="btn white" onClick={() => this.setState({showReferrers: false})}> Close </button>
+                                        </div>
+                                    </div>
+                                ) : null 
+                            }
+                        </div>
+                    ) : null
+                }
+                {
+                  ((identifiers && identifiers.length) || (referrers && Object.keys(referrers).length)) ? null : (
+                    <h2> No actions to take at this step </h2>
+                  )
+                }
               </div>
             </div>
           </div>

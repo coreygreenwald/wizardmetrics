@@ -83,6 +83,15 @@ h2, h4 {
                     text-decoration: underline;
                     font-size: 14px;
                 }
+
+                &-special {
+                    margin: auto;
+                    h5 {
+                        font-size: 12px;
+                        margin: 1px;
+                        text-align: center;
+                    }
+                }
             }
 
             &-data {

@@ -1,6 +1,7 @@
+import user from "../admin/store/user";
 
-// const REMOTE_URL = `http://localhost:3000`;
-const REMOTE_URL = `https://wizardly.herokuapp.com`;
+const REMOTE_URL = `http://localhost:3000`;
+// const REMOTE_URL = `https://wizardly.herokuapp.com`;
 document.addEventListener('DOMContentLoaded', (e) => {
     console.log('This Application uses WizardLead!');
     let location = window.location.pathname;
@@ -13,10 +14,17 @@ document.addEventListener('DOMContentLoaded', (e) => {
     })
     .then(res => res.json())
     .then((userInfo) => {
+        console.log(userInfo);
         document.addEventListener('click', (e) => {
             let type;
-            if(userInfo && userInfo.submitId && userInfo.submitId === e.target.id){
-                let userIdentifier = document.getElementById(userInfo.dataLocationId).value;
+            console.log(userInfo, userInfo.submitId, e.target.id)
+            if(userInfo && userInfo.submitId && (userInfo.submitId === e.target.id || userInfo.submitId === e.target.className)){
+                let userIdentifier;
+                if(userInfo.dataLocationType === 'CLASS'){
+                    userIdentifier = document.getElementsByClassName(userInfo.dataLocationId)[0].value;
+                } else {
+                    userIdentifier = document.getElementById(userInfo.dataLocationId).value;
+                }
                 if(userIdentifier){
                     setUserInfo(userIdentifier)
                 }

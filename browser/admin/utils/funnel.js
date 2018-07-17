@@ -1,6 +1,6 @@
 export const mostCommonJourney = (journey) => {
     let totalSignups = 0;
-    return journey.map(actions => {
+    let journeyData = journey.map(actions => {
         let totalCount = 0;
         let conversionsAtStep = 0;
         let maxIndex = 0;
@@ -17,6 +17,8 @@ export const mostCommonJourney = (journey) => {
               maxIndex = i;
             }
         }
+        //to eventually do on BE
+        delete actions[maxIndex].metaData.referrers[null]
         return {
             actionData: actions[maxIndex].actionData,
             referrers: actions[maxIndex].metaData.referrers,
@@ -26,8 +28,11 @@ export const mostCommonJourney = (journey) => {
             time: (actions[maxIndex].metaData.secondsOnAction / actions[maxIndex].metaData.count).toFixed(2),
             occurrences: actions[maxIndex].metaData.count,
             totalCount: totalCount,
-            conversionsAtStep: conversionsAtStep,
-            totalSignups: totalSignups
+            conversionsAtStep: conversionsAtStep
         }
     })
+    return {
+        journey: journeyData,
+        totalSignups: totalSignups
+    }
 }

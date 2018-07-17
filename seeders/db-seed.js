@@ -21,7 +21,8 @@ db.sync({force: true})
         return Customer.create({
             name: "SpencerBratman",
             location: "Random Address",
-            password: 'random123'
+            password: 'random123',
+            status: 'SUPER_ADMIN'
         })
     })
     .catch((err) => {

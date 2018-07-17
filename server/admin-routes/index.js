@@ -38,6 +38,7 @@ router.use((req, res, next) => {
     // }
 })
 
+router.use('/settings', require('./settings'));
 router.use('/auth', require('./auth'));
 router.use('/data', require('./data'));
 
