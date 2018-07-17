@@ -65,6 +65,7 @@ router.get('/data/userInfo', (req, res, next) => {
 })
 
 router.put('/data/userInfo', (req, res, next) => {
+    console.log(req.body.session, req.body.userIdentifier)
     if(req.customer){
         if(!req.body.session || !req.body.session.length){
             req.body.session = crypto.randomBytes(20).toString('hex');
