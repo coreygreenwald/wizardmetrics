@@ -14,10 +14,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
     })
     .then(res => res.json())
     .then((userInfo) => {
-        console.log(userInfo);
         document.addEventListener('click', (e) => {
             let type;
-            console.log(userInfo, userInfo.submitId, e.target.id)
             if(userInfo && userInfo.submitId && (userInfo.submitId === e.target.id || userInfo.submitId === e.target.className)){
                 let userIdentifier;
                 if(userInfo.dataLocationType === 'CLASS'){
@@ -44,11 +42,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
                     id: e.target.id,
                     className: e.target.className,
                     tagName: e.target.tagName
-                    // position: {
-                    //     x: e.pageX,
-                    //     y: e.pageY
-                    // },
-                    // html: e.target.innerHtml
                 }
             })
         })

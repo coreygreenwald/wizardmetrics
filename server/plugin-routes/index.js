@@ -12,13 +12,16 @@ router.use('/data', (req, res, next) => {
             }
         })
         .then(customer => {
-            //TODO catch if customer is not found.
-            req.customer = customer;
-            next();
+            if(!customer){
+                res.status(404).send(`Cannot Find Customer With Public Id ${req.query.wizardId}` )
+            } else {
+                req.customer = customer;
+                next();
+            }
         })
         .catch(next);
     } else {
-        res.sendStatus(403);
+        res.status(403).send('This Action is Forbidden');
     }
 })
 
@@ -62,7 +65,6 @@ router.get('/data/userInfo', (req, res, next) => {
 })
 
 router.put('/data/userInfo', (req, res, next) => {
-    console.log(req.body.userIdentifier);
     if(req.customer){
         if(!req.body.session || !req.body.session.length){
             req.body.session = crypto.randomBytes(20).toString('hex');
