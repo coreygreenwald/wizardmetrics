@@ -12,7 +12,7 @@ class AdminPanel extends Component {
   constructor(props){
     super(props); 
     this.state = {
-      activeItem: 0,
+      activeItem: -1,
       showUsers: false,
       showReferrers: false
     }
@@ -33,9 +33,15 @@ class AdminPanel extends Component {
     }
   }
   handleClick(itemNumber){
-    this.setState({
-      activeItem: itemNumber
-    })
+    if(this.state.activeItem === itemNumber){
+      this.setState({
+        activeItem: -1
+      })
+    } else {
+      this.setState({
+        activeItem: itemNumber
+      })
+    }
   }
   render(){
     const { info, shortestJourneyLength, shortestJourneyTime, completedJourneys, totalJourneys } = this.props.data;
@@ -74,7 +80,7 @@ class AdminPanel extends Component {
             }
           </div>
           {
-            mostCommonInfo.length && (
+            mostCommonInfo.length && this.state.activeItem >= 0 && (
             <div className="admin-panel-funnel-stats">
             <h1> Metrics / Step {this.state.activeItem + 1} </h1>
             <div className="admin-panel-funnel-stats-metrics">

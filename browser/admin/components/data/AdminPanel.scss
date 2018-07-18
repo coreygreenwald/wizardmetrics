@@ -19,7 +19,7 @@ h2, h4 {
     &-funnel {
         width: 100%;
         margin: 0 10px;
-        @include flex(row, space-between, flex-start);
+        @include flex(row, center, flex-start);
         
         &-stats {
             border-radius: 15px;
@@ -63,10 +63,11 @@ h2, h4 {
 
         &-item {
             width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+            @include flex(row, space-between, center);
+            // display: flex;
+            // flex-direction: row;
+            // justify-content: space-between;
+            // align-items: center;
             padding: 5px; 
             border-radius: 15px;
             border:1px solid black;
@@ -95,7 +96,7 @@ h2, h4 {
             }
 
             &-data {
-                width: 70%;
+                width: 40%;
                 font-size: 12px;
             }
 

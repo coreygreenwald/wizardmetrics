@@ -30,6 +30,9 @@ const Customer = db.define('customer', {
             notEmpty: true
         }
     },
+    // originUrl: {
+    //     type: Sequelize.STRING
+    // },
     status: {
         type: Sequelize.ENUM('FREE', 'BASIC', 'PREMIUM', 'ALL', 'SUPER_ADMIN'),
         defaultValue: 'FREE'

@@ -14,7 +14,6 @@ router.use(session({
 //deserialize a user off of a session. to be removed from here eventually
 const { Customer, Conversion } = require('../../db');
 router.use((req, res, next) => {
-    // console.log(req.session.customer);
     if(req.session && req.session.customer){
         Customer.findOne({
             where: {
@@ -38,8 +37,8 @@ router.use((req, res, next) => {
     // }
 })
 
-router.use('/settings', require('./settings'));
 router.use('/auth', require('./auth'));
+router.use('/settings', require('./settings'));
 router.use('/data', require('./data'));
 
 router.use('/', (req, res, next) => {

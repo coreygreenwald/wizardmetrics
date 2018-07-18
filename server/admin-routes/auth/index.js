@@ -10,17 +10,16 @@ router.post('/login', (req, res, next) => {
     ]
   }).then(customer => {
     if (!customer) {
-      console.log('No such customer found:', req.body.email)
-      res.status(401).send('Wrong username and/or password')
-    } else if (!customer.validatePassword(req.body.password)) {
-      console.log('Incorrect password for customer:', req.body.email)
       res.status(401).send('Wrong username and/or password')
     } else {
-      req.session.customer = customer.username;
-      res.send(customer);
+      if (!customer.validatePassword(req.body.password)) {
+        res.status(401).send('Wrong username and/or password')
+      } else {
+        req.session.customer = customer.username;
+        res.send(customer);
+      }
     }
-  })
-    .catch(next)
+  }).catch(next)
 })
 
 // router.post('/signup', (req, res, next) => {

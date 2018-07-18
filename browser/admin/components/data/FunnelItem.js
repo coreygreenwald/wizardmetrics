@@ -48,7 +48,7 @@ export default class FunnelItem extends Component {
                         {
                             actionData.isConversion &&
                             (
-                            <h5>Conversion	✅</h5>
+                                <h5>Conversion	✅</h5>
                             )
                         }
                         {
@@ -64,12 +64,15 @@ export default class FunnelItem extends Component {
                                 ) : null
                         }
                     </div>
-                </div> 
+                </div>
+                {/* <div className="admin-panel-funnel-item-number"> */}
+                    <h2>{occurrences} Users</h2>
+                {/* </div> */}
                 <div className="admin-panel-funnel-item-data">
                     <h2>TYPE: {actionData.type}</h2>
                     <h2>Page URL: {actionData.path}</h2>
-                    <h2>Number of Users: {occurrences}</h2>
-                    <h2>Percent of Users: {percent}%</h2>
+                    {/* <h2>Number of Users: {occurrences}</h2>
+                    <h2>Percent of Users: {percent}%</h2> */}
                     {/* <h2>Percent Of Actions: {percent}%</h2> 
                     <h2>Total Actions Of This Type: {occurrences}</h2>
                     <h2>Total Customers At This Step: {totalCount}</h2> */}
