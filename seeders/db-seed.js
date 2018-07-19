@@ -5,7 +5,8 @@ db.sync({force: true})
         return Customer.create({
             name: "SmiteMaster",
             location: "401 E 68th Street",
-            password: 'password123'
+            password: 'password123',
+            originURL: 'https://www.smite-stats.herokuapp.com'
         })
     })
     .then((customer1) => {
@@ -22,7 +23,8 @@ db.sync({force: true})
             name: "SpencerBratman",
             location: "Random Address",
             password: 'random123',
-            status: 'SUPER_ADMIN'
+            status: 'SUPER_ADMIN',
+            originURL: 'https://www.degreescoop.com'
         })
     })
     .catch((err) => {

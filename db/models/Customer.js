@@ -16,7 +16,7 @@ const Customer = db.define('customer', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    originUrl: {
+    originURL: {
         type: Sequelize.STRING,
         validate: {
             isUrl: true
@@ -29,9 +29,9 @@ const Customer = db.define('customer', {
             notEmpty: true
         }
     },
-    // originUrl: {
-    //     type: Sequelize.STRING
-    // },
+    originUrl: {
+        type: Sequelize.STRING
+    },
     status: {
         type: Sequelize.ENUM('FREE', 'BASIC', 'PREMIUM', 'ALL', 'SUPER_ADMIN'),
         defaultValue: 'FREE'
