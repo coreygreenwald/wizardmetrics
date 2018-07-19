@@ -69,7 +69,7 @@ class AdminPanel extends Component {
           </div>
         </div>
         <div className="admin-panel-funnel">
-          <div className="admin-panel-funnel-items">
+          <div className={`admin-panel-funnel-items ${this.state.activeItem !== -1 ? 'admin-panel-funnel-items-collapse' : 'admin-panel-funnel-items'}`}>
             {
               mostCommonInfo.length ? mostCommonInfo.map(({actionData, percent, occurrences, time, totalCount, referrers, identifiers }, idx) => {
                 return (

@@ -14,17 +14,20 @@ h2, h4 {
     margin: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
 
     &-funnel {
         width: 100%;
         margin: 0 10px;
-        @include flex(row, center, flex-start);
+        // display: flex;
+        @include flex(row, inherit, flex-start);
         
         &-stats {
             border-radius: 15px;
             border:1px solid black;
-            width: 55%;
+            width: 45%;
+            position: fixed;
+            left: 45%;
             margin: 10px;
             height: auto;
             @include flex(column, center, flex-start);   
@@ -58,7 +61,11 @@ h2, h4 {
         }
 
         &-items {
-            width: 45%;
+            width: 90%;
+
+            &-collapse {
+                width: 40%;
+            }
         }
 
         &-item {
