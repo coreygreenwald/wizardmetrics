@@ -8,6 +8,7 @@ const calculateJourneyInfoRunner = async () => {
         const customers = await Customer.findAll();
         for(let i = 0; i < customers.length; i++){
             let customer = customers[i];
+            await customer.matchActionsToConversions()
             let journey = await journeys(customer.username);
             journey.customerPublicId = customer.publicId
             let date = new Date();

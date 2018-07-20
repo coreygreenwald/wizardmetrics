@@ -1,3 +1,4 @@
 module.exports = {
-    journeys: require('./journeys')
+    journeys: require('./journeys'),
+    conversionUtils: require('./conversions')
 }

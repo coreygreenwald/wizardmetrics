@@ -4,6 +4,8 @@ const crypto = require('crypto');
 const Session = require('./Session'); 
 const Action = require('./Action');
 const Conversion = require('./Conversion');
+// const { conversionUtils } = require('../../utils');
+const conversionUtils = require('../../utils/conversions');
 const _ = require('lodash');
 
 const Customer = db.define('customer', {
@@ -66,6 +68,29 @@ Customer.prototype.toJSON = function () {
     delete values.password;
     delete values.salt;
     return values;
+}
+
+Customer.prototype.matchActionsToConversions = async function() {
+    try {
+        let sessions = await Session.findAll({
+            where: {
+                customerPublicId: this.publicId
+            }, include: [{
+                model: Action
+            }]
+        })
+        let conversions = await this.getConversions();
+        for(let i = 0; i < sessions.length; i++){
+            let actions = sessions[i].actions;
+            await Promise.all(actions.map(action => {
+                action = conversionUtils.compareActionToConversions(action, conversions);
+                return action.save();
+            }))
+        }
+    } catch(err){
+        console.log('There was an error rematching conversions!', err); 
+    }
+    return false;
 }
 
 Customer.generateSalt = function () {

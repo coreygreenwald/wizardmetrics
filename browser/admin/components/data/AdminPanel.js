@@ -13,7 +13,7 @@ class AdminPanel extends Component {
     super(props); 
     this.state = {
       activeItem: -1,
-      dataModel: 'MOST_COMMON',
+      dataModel: 'MOST_IMPACTFUL',
       showUsers: false,
       showReferrers: false
     }
@@ -48,7 +48,6 @@ class AdminPanel extends Component {
 
   }
   render(){
-    console.log('rerender');
     const { info, shortestJourneyLength, shortestJourneyTime, completedJourneys, totalJourneys } = this.props.data;
     let journeyInfo = {journey: []};
     if(info && info.length){
@@ -82,8 +81,8 @@ class AdminPanel extends Component {
           </div>
         </div>
         <div className="admin-panel-selector tab">
-            <button className={`tablinks ${this.state.dataModel === 'MOST_COMMON' ? 'active' : ''}`} onClick={() => this.setState({dataModel: 'MOST_COMMON'})}>Most Common</button>
             <button className={`tablinks ${this.state.dataModel === 'MOST_IMPACTFUL' ? 'active' : ''}`}  onClick={() => this.setState({dataModel: 'MOST_IMPACTFUL'})}>Most Impactful</button>
+            <button className={`tablinks ${this.state.dataModel === 'MOST_COMMON' ? 'active' : ''}`} onClick={() => this.setState({dataModel: 'MOST_COMMON'})}>Most Common</button>
         </div>
         <div className="admin-panel-funnel">
           <div className={`${this.state.activeItem !== -1 ? 'admin-panel-funnel-items-collapse' : 'admin-panel-funnel-items'}`}>

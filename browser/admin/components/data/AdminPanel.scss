@@ -77,7 +77,6 @@ h2, h4 {
             // align-items: center;
             padding: 5px; 
             border-radius: 15px;
-            border:1px solid black;
             margin: 10px 2px;
             color: #FFFFFF;
 
@@ -172,7 +171,7 @@ h2, h4 {
 /* Style the buttons inside the tab */
 .tab button {
     background-color: inherit;
-    border: none;
+    // border: none;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
