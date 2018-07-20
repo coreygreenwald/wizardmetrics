@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {retrieveJourneyData} from '../../store'
-import { mostCommonJourney } from '../../utils'
+import { mostCommonJourney, mostImpactfulJourney } from '../../utils'
 import FunnelItem from './FunnelItem';
 import './AdminPanel.scss';
 /**
@@ -13,6 +13,7 @@ class AdminPanel extends Component {
     super(props); 
     this.state = {
       activeItem: -1,
+      dataModel: 'MOST_COMMON',
       showUsers: false,
       showReferrers: false
     }
@@ -43,9 +44,21 @@ class AdminPanel extends Component {
       })
     }
   }
+  handleModelSelection(){
+
+  }
   render(){
+    console.log('rerender');
     const { info, shortestJourneyLength, shortestJourneyTime, completedJourneys, totalJourneys } = this.props.data;
-    const journeyInfo = (info && info.length) ? mostCommonJourney(info) : {journey: []};
+    let journeyInfo = {journey: []};
+    if(info && info.length){
+      if(this.state.dataModel === 'MOST_COMMON'){
+        journeyInfo = mostCommonJourney(info); 
+      } else {
+        journeyInfo = mostImpactfulJourney(info, 'BOTH')
+      }
+    }
+    // const journeyInfo = (info && info.length) ? mostCommonJourney(info) : {journey: []};
     const mostCommonInfo = journeyInfo.journey.filter(step => (step.totalActionCount / totalJourneys) > .1)
     const { totalSignups } = journeyInfo; 
     const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep } = mostCommonInfo[this.state.activeItem] || {}
@@ -67,6 +80,10 @@ class AdminPanel extends Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className="admin-panel-selector tab">
+            <button className={`tablinks ${this.state.dataModel === 'MOST_COMMON' ? 'active' : ''}`} onClick={() => this.setState({dataModel: 'MOST_COMMON'})}>Most Common</button>
+            <button className={`tablinks ${this.state.dataModel === 'MOST_IMPACTFUL' ? 'active' : ''}`}  onClick={() => this.setState({dataModel: 'MOST_IMPACTFUL'})}>Most Impactful</button>
         </div>
         <div className="admin-panel-funnel">
           <div className={`${this.state.activeItem !== -1 ? 'admin-panel-funnel-items-collapse' : 'admin-panel-funnel-items'}`}>
