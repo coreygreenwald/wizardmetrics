@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { Customer, Session, Action, Conversion } = require('../../../db');
 
 router.use('/journeys', require('./journeys')); 
+router.use('/conversions', require('./conversions')); 
 
 router.get('/', (req, res, next) => {
     if(req.customer){
@@ -12,34 +13,6 @@ router.get('/', (req, res, next) => {
             .catch(next);
     } else {
         res.status(403).send('Forbidden!');
-    }
-})
-
-router.post('/conversions', (req, res, next) => {
-    if(req.customer && req.customer.username === req.body.username){
-        const conversion = req.body.conversion;
-        conversion.customerPublicId = req.customer.publicId;
-        Conversion.create(req.body.conversion)
-            .then(conversion => {
-                res.send('conversion added!');
-            })
-            .catch(next);
-    } else {
-        res.status(403).send('Forbidden'); 
-    }
-})
-
-router.get('/conversions/:id', (req, res, next) => {
-    if(req.customer){
-        Action.findAll({
-            where: {
-                conversionId: Number(req.params.id)
-            }
-        }).then(actions => {
-            res.json(actions);
-        })
-    } else {
-        res.status(403).send('Forbidden'); 
     }
 })
 

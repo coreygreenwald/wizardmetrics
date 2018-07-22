@@ -4,21 +4,12 @@ import axios from 'axios';
 /**
  * COMPONENT
  */
-class ConversionManager extends Component {
+class Conversion extends Component {
     constructor(props){
         super(props);
     }
 
     render(){
-
-        // function generateMatchHtml(matchData){
-        //     let arr = [];
-        //     for(let k in matchData){
-        //         arr.push((<h3>{k}: {matchData[k] || 'UNMATCHED'}</h3>))
-        //     }
-        //     console.log(arr);
-        //     return arr;
-        // }
         const { conversion, position, actionData } = this.props;
         return (
             <div key={conversion.id} className="single-conversion">
@@ -41,7 +32,7 @@ class ConversionManager extends Component {
                     ) : null
                     }
                     
-                    <button className="btn" onClick={() => console.log('this will remove eventually')}>REMOVE CONVERSION</button>
+                    <button className="btn" onClick={this.props.removeConversionHandler}>REMOVE CONVERSION</button>
                 </div>
                 <div className="single-conversion-data">
                     {/* <h2>Number of Matches: {actionData}</h2>  */}
@@ -51,4 +42,4 @@ class ConversionManager extends Component {
     }
 }
 
-export default ConversionManager;
+export default Conversion;

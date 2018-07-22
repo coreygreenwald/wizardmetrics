@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios';
 import Conversion from './Conversion';
+import { retrieveConversions, createConversion, deleteConversion } from '../../store';
 import './ConversionManager.scss'
 /**
  * COMPONENT
@@ -29,11 +30,14 @@ class ConversionManager extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount(){
-        Promise.all(this.props.conversions.map(conversion => {
-            return axios.get(`/admin/data/conversions/${conversion.id}`)
-        })).then(conversions => {
-            this.setState({conversions})
-        }).catch(err => console.log(err));
+        if(!this.props.conversions.length){
+            this.props.loadConversions();
+        }
+        // Promise.all(this.props.conversions.map(conversion => {
+        //     return axios.get(`/admin/data/conversions/${conversion.id}`)
+        // })).then(conversions => {
+        //     this.setState({conversions})
+        // }).catch(err => console.log(err));
     }
     handleChange(e){
         this.setState({
@@ -50,19 +54,16 @@ class ConversionManager extends Component {
     handleSubmit(e){
         e.preventDefault();
         e.stopPropagation();
-        axios.post('/admin/data/conversions',{
-            username: this.props.username,
-            conversion: {
-                type: this.state.action,
-                path: this.state.path,
-                strength: this.state.strength,
-                matchData: (this.state.action !== 'ARRIVAL' && this.state.action !== 'NAVIGATE') ? this.state.matchData : {}
-            }
-        }).then(res => res.data)
-        .then(() => {
-            this.setState({addFormVisible: false})
+        const newConversion = {
+            type: this.state.action,
+            path: this.state.path,
+            strength: this.state.strength,
+            matchData: (this.state.action !== 'ARRIVAL' && this.state.action !== 'NAVIGATE') ? this.state.matchData : {}
+        }
+        this.props.addConversion(newConversion);
+        this.setState({
+            addFormVisible: false
         })
-            .catch(() => console.log('there was an error'));
     }
     render(){
         const {conversions} = this.props
@@ -70,14 +71,8 @@ class ConversionManager extends Component {
           <div className="conversion-manager">
               <div className="conversion-manager-existing">
                   <div className="conversion-manager-existing-table">
-                      {/* <tr className="conversion-manager-existing-table-header">
-                          <th>Number</th>
-                          <th>Type</th>
-                          <th>Path</th>
-                          <th>Data To Match</th>
-                      </tr> */}
                       {
-                          conversions.map((conversion, idx) => <Conversion conversion={conversion} position={idx + 1} actionData={this.state.conversions[idx]}/>)
+                          conversions.map((conversion, idx) => <Conversion conversion={conversion} position={idx + 1} removeConversionHandler={() => this.props.removeConversion(conversion.id)} actionData={this.state.conversions[idx]}/>)
                       }
                   </div> 
               </div>
@@ -144,11 +139,24 @@ class ConversionManager extends Component {
 const mapState = (state) => {
   return {
     username: state.user.username,
-    conversions: state.user.conversions || []
+    conversions: state.conversions || []
   }
 }
 
-export default connect(mapState)(ConversionManager)
+const mapDispatch = (dispatch) => {
+    return {
+        loadConversions(){
+            dispatch(retrieveConversions())
+        },
+        addConversion(conversionToAdd){
+            dispatch(createConversion(conversionToAdd))
+        },
+        removeConversion(conversionId){
+            dispatch(deleteConversion(conversionId))
+        }
+    }
+}
+export default connect(mapState, mapDispatch)(ConversionManager)
 
 /**
  * PROP TYPES
