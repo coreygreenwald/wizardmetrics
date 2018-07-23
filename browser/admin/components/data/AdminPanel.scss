@@ -69,6 +69,7 @@ h2, h4 {
         }
 
         &-item {
+            margin: auto;
             width: 100%;
             @include flex(row, space-between, center);
             // display: flex;
@@ -102,6 +103,7 @@ h2, h4 {
             }
 
             &-data {
+                @include flex(row, space-evenly, center);
                 width: 40%;
                 font-size: 12px;
             }

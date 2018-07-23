@@ -1,0 +1,32 @@
+.main-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-banner {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        margin: 15px;
+        &-metric {
+            h1 {
+                font-size: 40px;
+                font-weight: 700;
+                margin: 5px;
+            }
+            h2 {
+                font-size: 14px;
+                margin: 5px;
+            }
+        }
+    }
+
+    &-chart { 
+        margin: 10px;
+    }
+}
+
+.recharts-wrapper {
+    overflow-y: hidden !important;
+}

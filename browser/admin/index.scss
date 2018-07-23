@@ -1,5 +1,7 @@
 //Import Fonts
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700');
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600|Titillium+Web');
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans|Titillium+Web:400,600');
 @import './components/styles/colors.scss'; 
 @import './components/styles/main.scss';
 
@@ -12,6 +14,7 @@
 
 * { 
     font-family: 'Titillium Web', sans-serif;
+    font-weight: 400;
     overflow-y: scroll;
     overflow-x: hidden;
 }

@@ -4,7 +4,7 @@
  * having to figure out which file they belong to!
  */
 export {default as Navbar} from './navbar'
-export {default as UserHome} from './user-home'
+export {default as UserHome} from './home/UserHome'
 export {Login, Signup} from './auth/auth-form'
 export {default as AdminPanel} from './data/AdminPanel'
 export {default as ConversionManager} from './manager/ConversionManager'

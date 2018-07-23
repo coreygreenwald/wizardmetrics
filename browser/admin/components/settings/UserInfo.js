@@ -46,14 +46,14 @@ export default class Settings_UserInfo extends Component {
     render(){
         return (
             <div className="settings-user-info">
-                <label>Id of Input Box for Email/Username Form
+                <label>Identifier of Input Box for Email/Username Form
                     <input name="userInfoId" onChange={this.handleChange} value={this.state.userInfoId}/>
                     <select name="userInfoType" onChange={this.handleChange} value={this.state.userInfoType}>   
                         <option value="ID">ID - Identify an Input Field by Its Id</option>
                         <option value="CLASS">CLASS - Identify an Input Field by Its Class</option>
                     </select>
                 </label>
-                <label>Id of Submit Button for Email/Username Form
+                <label>Identifier of Submit Button for Email/Username Form
                     <input name="userSubmitId" onChange={this.handleChange} value={this.state.userSubmitId}/>
                     <select name="userSubmitType" onChange={this.handleChange} value={this.state.userSubmitType}>   
                         <option value="ID">ID - Identify a Submit Button by Its Id</option>

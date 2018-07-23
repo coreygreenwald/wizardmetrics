@@ -63,7 +63,7 @@ class AdminPanel extends Component {
     const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep } = mostCommonInfo[this.state.activeItem] || {}
     return (
       <div className="admin-panel">
-        <div className="admin-panel-stats">
+        {/* <div className="admin-panel-stats">
           <div className="admin-panel-stats-content">
             <h1>Journey Overview</h1>
             <div className="admin-panel-stats-content-holder">
@@ -75,11 +75,11 @@ class AdminPanel extends Component {
               <div className="admin-panel-stats-content-holder-child">
                 <h2>Average Steps To Nurture: {mostCommonInfo.length}</h2>
                 <h2>Average Journey Length (Time): {(mostCommonInfo.reduce((total, next) => total + Number(next.time), 0)).toFixed(1)} seconds </h2>
-                {/* <h2>Shortest Journey Length (Steps): {shortestJourneyLength} steps</h2> */}
+                <h2>Shortest Journey Length (Steps): {shortestJourneyLength} steps</h2>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="admin-panel-selector tab">
             <button className={`tablinks ${this.state.dataModel === 'MOST_IMPACTFUL' ? 'active' : ''}`}  onClick={() => this.setState({dataModel: 'MOST_IMPACTFUL'})}>Most Impactful</button>
             <button className={`tablinks ${this.state.dataModel === 'MOST_COMMON' ? 'active' : ''}`} onClick={() => this.setState({dataModel: 'MOST_COMMON'})}>Most Common</button>

@@ -11,7 +11,9 @@ class Settings extends Component {
     
     render(){
         return(
-            <UserInfo userInfo={this.props.userInfo}/>
+            <div className="settings">
+                <UserInfo userInfo={this.props.userInfo}/>
+            </div>
         )
     }
 }

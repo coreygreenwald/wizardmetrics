@@ -31,7 +31,7 @@ export default class FunnelItem extends Component {
     }
     render(){
         const {actionData, percent, occurrences, time, totalCount, completedJourneys, totalJourneys, referrers, identifiers, handleClick, index, selected} = this.props
-        const styleObj = {width: '95%', height: '150px', backgroundColor: colorChooser(occurrences, completedJourneys)};
+        const styleObj = {width: '95%', height: '120px', backgroundColor: colorChooser(occurrences, completedJourneys)};
         if(selected){
             styleObj.border = '4px solid #f1ff18';
         }
@@ -69,8 +69,13 @@ export default class FunnelItem extends Component {
                     <h2>{occurrences} Users</h2>
                 {/* </div> */}
                 <div className="admin-panel-funnel-item-data">
-                    <h2>TYPE: {actionData.type}</h2>
-                    <h2>Page URL: {actionData.path}</h2>
+                    <div className="admin-pannel-funnel-item-image">
+                        <img src={`/assets/icons/${actionData.isConversion ? 'conversion' : actionData.type}.png`}/>
+                    </div>
+                    <div className="admin-pannel-funnel-item-block">
+                        <h2>TYPE: {actionData.type}</h2>
+                        <h2>Page URL: {actionData.path}</h2>
+                    </div>
                     {/* <h2>Number of Users: {occurrences}</h2>
                     <h2>Percent of Users: {percent}%</h2> */}
                     {/* <h2>Percent Of Actions: {percent}%</h2> 
