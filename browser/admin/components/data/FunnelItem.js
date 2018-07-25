@@ -63,7 +63,7 @@ export default class FunnelItem extends Component {
                 <h2>{occurrences} Users</h2>
                 <div className="admin-panel-funnel-item-data">
                     <div className="admin-pannel-funnel-item-image">
-                        <img src={`/assets/icons/${actionData.isConversion ? 'conversion' : actionData.type}.png`}/>
+                        <img src={`/assets/icons/${actionData.isConversion ? 'conversion' : actionData.type.toLowerCase()}.png`}/>
                     </div>
                     <div className="admin-pannel-funnel-item-block">
                         <h2>TYPE: {actionData.type}</h2>
