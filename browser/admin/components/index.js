@@ -5,7 +5,7 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './home/UserHome'
-export {Login, Signup} from './auth/auth-form'
+export {Login} from './auth/auth-form'
 export {default as AdminPanel} from './data/AdminPanel'
 export {default as ConversionManager} from './manager/ConversionManager'
 export {default as Settings} from './settings/Settings';

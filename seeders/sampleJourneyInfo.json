@@ -1,0 +1,1593 @@
+[
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 64.853999999999999,
+          "futureConversionCounter" : {
+            "hard" : 1977,
+            "soft" : 0
+          },
+          "count" : 14565,
+          "actionIds" : [
+            null,
+            6,
+            12,
+            20,
+            26,
+            41,
+            47,
+            51,
+            56,
+            61,
+            65,
+            70,
+            76,
+            81,
+            86,
+            91,
+            96,
+            99,
+            103,
+            108,
+            112,
+            118
+          ],
+          "referrers" : {
+            "null" : 22
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+  
+          },
+          "conversionId" : null,
+          "type" : "ARRIVAL",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 62.8,
+          "futureConversionCounter" : {
+            "hard" : 256,
+            "soft" : 0
+          },
+          "count" : 2345,
+          "actionIds" : [
+            null,
+            97
+          ],
+          "referrers" : {
+            "null" : 2
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+            "id" : "",
+            "className" : "btn",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 15,
+          "futureConversionCounter" : {
+            "hard" : 77,
+            "soft" : 0
+          },
+          "count" : 1250,
+          "actionIds" : [
+            null,
+            13
+          ],
+          "referrers" : {
+            "null" : 2
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+            "id" : "main-input",
+            "className" : "",
+            "tagName" : "INPUT",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 47.811,
+          "futureConversionCounter" : {
+            "hard" : 495,
+            "soft" : 0
+          },
+          "count" : 7441,
+          "actionIds" : [
+            null,
+            49,
+            58,
+            63,
+            119
+          ],
+          "referrers" : {
+            "null" : 5
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "value" : "Stats by Gods",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 422.57799999999997,
+          "futureConversionCounter" : {
+            "hard" : 3,
+            "soft" : 0
+          },
+          "count" : 12,
+          "actionIds" : [
+            null,
+            43,
+            53,
+            67,
+            78,
+            83,
+            88,
+            93,
+            101,
+            105,
+            110,
+            114
+          ],
+          "referrers" : {
+            "null" : 12
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "className" : "btn",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 1.135,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+            "id" : "",
+            "tagName" : "DIV",
+            "className" : "nav-item"
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 4.766,
+          "futureConversionCounter" : {
+            "hard" : 3,
+            "soft" : 0
+          },
+          "count" : 4,
+          "actionIds" : [
+            null,
+            54,
+            68,
+            73
+          ],
+          "referrers" : {
+            "null" : 4
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "value" : "Stats by Gods",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0.157,
+          "futureConversionCounter" : {
+            "hard" : 1,
+            "soft" : 0
+          },
+          "count" : 2,
+          "actionIds" : [
+            null,
+            14
+          ],
+          "referrers" : {
+            "null" : 2
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+            "id" : "main-submit",
+            "className" : "",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 4.2590000000000003,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "main-input",
+            "className" : "",
+            "tagName" : "INPUT",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 2.3540000000000001,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 7,
+          "actionIds" : [
+            null,
+            79,
+            84,
+            89,
+            94,
+            102,
+            111
+          ],
+          "referrers" : {
+            "null" : 7
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "className" : "btn",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 9.7059999999999995,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "value" : "kills",
+            "tagName" : "SELECT",
+            "name" : "stat-selector",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0,
+          "futureConversionCounter" : {
+            "hard" : 1,
+            "soft" : 0
+          },
+          "count" : 2,
+          "actionIds" : [
+            null,
+            64
+          ],
+          "referrers" : {
+            "null" : 2
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+  
+          },
+          "conversionId" : 1,
+          "type" : "ARRIVAL",
+          "isConversion" : true
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 1.4450000000000001,
+          "futureConversionCounter" : {
+            "hard" : 2,
+            "soft" : 0
+          },
+          "count" : 2,
+          "actionIds" : [
+            null,
+            121
+          ],
+          "referrers" : {
+            "null" : 2
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "className" : "btn btn-chart",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : null,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+            "id" : "",
+            "className" : "btn",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0.41799999999999998,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "tagName" : "DIV",
+            "className" : "container"
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 52.076000000000001,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+  
+          },
+          "conversionId" : null,
+          "type" : "ARRIVAL",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0,
+          "futureConversionCounter" : {
+            "hard" : 3,
+            "soft" : 0
+          },
+          "count" : 4,
+          "actionIds" : [
+            null,
+            55,
+            60,
+            69
+          ],
+          "referrers" : {
+            "null" : 4
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+  
+          },
+          "conversionId" : 1,
+          "type" : "ARRIVAL",
+          "isConversion" : true
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 5.3380000000000001,
+          "futureConversionCounter" : {
+            "hard" : 1,
+            "soft" : 0
+          },
+          "count" : 2,
+          "actionIds" : [
+            null,
+            15
+          ],
+          "referrers" : {
+            "http:\/\/localhost:5000\/" : 2
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+  
+          },
+          "conversionId" : null,
+          "type" : "ARRIVAL",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0.14299999999999999,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "main-submit",
+            "className" : "",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0.41499999999999998,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "tagName" : "DIV",
+            "className" : "header"
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 1.0940000000000001,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "value" : "Stats by Gods",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0.98899999999999999,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "className" : "btn",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : -24.763999999999996,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 5,
+          "actionIds" : [
+            null,
+            85,
+            90,
+            95,
+            107
+          ],
+          "referrers" : {
+            "null" : 5
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "className" : "btn",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 2,
+          "actionIds" : [
+            null,
+            109
+          ],
+          "referrers" : {
+            "null" : 2
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "value" : "Gods by Stats",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : false
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 2.1200000000000001,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+            "id" : "",
+            "tagName" : "DIV",
+            "className" : "container"
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 1.161,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "tagName" : "DIV",
+            "className" : "stat-checkboxes-deaths"
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 17.456,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 2,
+          "actionIds" : [
+            null,
+            31
+          ],
+          "referrers" : {
+            "http:\/\/localhost:5000\/" : 1,
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "value" : "Stats by Gods",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0.85899999999999999,
+          "futureConversionCounter" : {
+            "hard" : 247,
+            "soft" : 0
+          },
+          "count" : 5800,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "http:\/\/localhost:5000\/" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "className" : "btn",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0,
+          "futureConversionCounter" : {
+            "hard" : 4355,
+            "soft" : 0
+          },
+          "count" : 2733,
+          "actionIds" : [
+            null,
+            46,
+            75
+          ],
+          "referrers" : {
+            "null": 300
+          }
+        },
+        "actionData" : {
+          "path" : "\/products/ANY",
+          "info" : {
+  
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : false
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 5,
+          "actionIds" : [
+            null,
+            82,
+            87,
+            92,
+            104
+          ],
+          "referrers" : {
+            "null" : 5
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "value" : "Gods by Stats",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : false
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : -458.98500000000001,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+  
+          },
+          "conversionId" : null,
+          "type" : "ARRIVAL",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 5.593,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "className" : "btn btn-chart",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : null,
+          "futureConversionCounter" : {
+            "hard" : 1800,
+            "soft" : 0
+          },
+          "count" : 1800,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/order-confirmation",
+          "info" : {
+  
+          },
+          "conversionId" : 1,
+          "type" : "ARRIVAL",
+          "isConversion" : true
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 2.839,
+          "futureConversionCounter" : {
+            "hard" : 77,
+            "soft" : 0
+          },
+          "count" : 1933,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/",
+          "info" : {
+            "id" : "",
+            "value" : "Stats by Gods",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 0.29299999999999998,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "tagName" : "DIV",
+            "className" : "stat-controller"
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : null,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "value" : "Gods by Stats",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : false
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : -46.018999999999998,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "value" : "Stats by Gods",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 3.5550000000000002,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "http:\/\/localhost:5000\/" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "value" : "Gods by Stats",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : false
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 1.4630000000000001,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "className" : "btn btn-chart",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : null,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 785,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+  
+          },
+          "conversionId" : 1,
+          "type" : "NAVIGATE",
+          "isConversion" : true
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : null,
+          "futureConversionCounter" : {
+            "hard" : 100,
+            "soft" : 0
+          },
+          "count" : 243,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "http:\/\/localhost:5000\/" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products/ANY",
+          "info" : {
+  
+          },
+          "conversionId" : 1,
+          "type" : "NAVIGATE",
+          "isConversion" : true
+        }
+      },
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 2.1059999999999999,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "value" : "losses",
+            "tagName" : "INPUT",
+            "name" : "losses",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 1.5289999999999999,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 77,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/order-confirmation",
+          "info" : {
+          },
+          "conversionId" : 1,
+          "type" : "ARRIVAL",
+          "isConversion" : true
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 1.397,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "className" : "btn",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 1.1970000000000001,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "value" : "Freya",
+            "tagName" : "SELECT",
+            "name" : "god-selector",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 1.1950000000000001,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "className" : "btn btn-chart",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 2.3839999999999999,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "className" : "btn btn-chart",
+            "tagName" : "BUTTON",
+            "name" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : -33.119999999999997,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/products",
+          "info" : {
+            "id" : "",
+            "value" : "Stats by Gods",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "CLICK",
+          "isConversion" : null
+        }
+      }
+    ],
+    [
+      {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : null,
+          "futureConversionCounter" : {
+            "hard" : 0,
+            "soft" : 0
+          },
+          "count" : 1,
+          "actionIds" : [
+            null
+          ],
+          "referrers" : {
+            "null" : 1
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+            "id" : "",
+            "value" : "Gods by Stats",
+            "tagName" : "A",
+            "name" : "",
+            "className" : ""
+          },
+          "conversionId" : null,
+          "type" : "NAVIGATE",
+          "isConversion" : false
+        }
+      }
+    ]
+  ]

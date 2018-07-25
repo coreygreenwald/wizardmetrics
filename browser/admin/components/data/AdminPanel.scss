@@ -38,15 +38,16 @@ h2, h4 {
             &-metrics {
                 @include flex(column, center, center);
                 width: 100%;
-                // flex-wrap: wrap;
                 &-block {
                     width: 100%;
                     @include flex(row, space-between, center); 
                 }
                 &-metric {
                     margin: 10px;
+                    h2 {
+                        font-weight: 700;
+                    }
                 }
-                // width: 30%;
             }
 
             &-recommendations {
@@ -72,6 +73,7 @@ h2, h4 {
             margin: auto;
             width: 100%;
             @include flex(row, space-between, center);
+            overflow-y: hidden;
             // display: flex;
             // flex-direction: row;
             // justify-content: space-between;

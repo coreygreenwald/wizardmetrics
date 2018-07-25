@@ -36,14 +36,9 @@ export default class FunnelItem extends Component {
             styleObj.border = '4px solid #f1ff18';
         }
         return (
-            // {width: `${((Number(occurrences) / totalJourneys) * 45) + 50}%`
             <div style={styleObj} className="admin-panel-funnel-item" onClick={() => handleClick(index)}>
                 <div className="admin-panel-funnel-item-event">
                     <h1>Step {index + 1}</h1>
-                    {/* <h2>ACTION</h2>
-                    <h4>TYPE: {actionData.type}</h4>
-                    <h4>PATH: {actionData.path}</h4> */}
-                    {/* <h4>INFO: {actionData.info}</h4> */}
                     <div className="admin-panel-funnel-item-event-special">
                         {
                             actionData.isConversion &&
@@ -65,9 +60,7 @@ export default class FunnelItem extends Component {
                         }
                     </div>
                 </div>
-                {/* <div className="admin-panel-funnel-item-number"> */}
-                    <h2>{occurrences} Users</h2>
-                {/* </div> */}
+                <h2>{occurrences} Users</h2>
                 <div className="admin-panel-funnel-item-data">
                     <div className="admin-pannel-funnel-item-image">
                         <img src={`/assets/icons/${actionData.isConversion ? 'conversion' : actionData.type}.png`}/>
@@ -76,11 +69,6 @@ export default class FunnelItem extends Component {
                         <h2>TYPE: {actionData.type}</h2>
                         <h2>Page URL: {actionData.path}</h2>
                     </div>
-                    {/* <h2>Number of Users: {occurrences}</h2>
-                    <h2>Percent of Users: {percent}%</h2> */}
-                    {/* <h2>Percent Of Actions: {percent}%</h2> 
-                    <h2>Total Actions Of This Type: {occurrences}</h2>
-                    <h2>Total Customers At This Step: {totalCount}</h2> */}
                 </div> 
             </div>
         )

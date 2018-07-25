@@ -58,28 +58,12 @@ class AdminPanel extends Component {
       }
     }
     // const journeyInfo = (info && info.length) ? mostCommonJourney(info) : {journey: []};
-    const mostCommonInfo = journeyInfo.journey.filter(step => (step.totalActionCount / totalJourneys) > .1)
+    const mostCommonInfo = journeyInfo.journey.filter((step, idx) => (((step.totalActionCount / totalJourneys) > .03 || step.totalActionCount > 50) && (idx === 0 || (journeyInfo.journey[idx - 1] && !journeyInfo.journey[idx - 1].metaData.isConversion))))
     const { totalSignups } = journeyInfo; 
-    const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep } = mostCommonInfo[this.state.activeItem] || {}
+    const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep, allIdentifiers, metaData } = mostCommonInfo[this.state.activeItem] || {}
+    const conversionIndicator = metaData ? (metaData.futureConversionCounter.hard / occurrences).toFixed(2) : 0;
     return (
       <div className="admin-panel">
-        {/* <div className="admin-panel-stats">
-          <div className="admin-panel-stats-content">
-            <h1>Journey Overview</h1>
-            <div className="admin-panel-stats-content-holder">
-              <div className="admin-panel-stats-content-holder-child">
-                <h2>Total Users in Funnel: {totalJourneys}</h2>
-                <h2>Total Conversions: {completedJourneys}</h2>
-                <h2>Total Email Signups: {totalSignups} </h2>
-              </div>
-              <div className="admin-panel-stats-content-holder-child">
-                <h2>Average Steps To Nurture: {mostCommonInfo.length}</h2>
-                <h2>Average Journey Length (Time): {(mostCommonInfo.reduce((total, next) => total + Number(next.time), 0)).toFixed(1)} seconds </h2>
-                <h2>Shortest Journey Length (Steps): {shortestJourneyLength} steps</h2>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <div className="admin-panel-selector tab">
             <button className={`tablinks ${this.state.dataModel === 'MOST_IMPACTFUL' ? 'active' : ''}`}  onClick={() => this.setState({dataModel: 'MOST_IMPACTFUL'})}>Most Impactful</button>
             <button className={`tablinks ${this.state.dataModel === 'MOST_COMMON' ? 'active' : ''}`} onClick={() => this.setState({dataModel: 'MOST_COMMON'})}>Most Common</button>
@@ -87,7 +71,7 @@ class AdminPanel extends Component {
         <div className="admin-panel-funnel">
           <div className={`${this.state.activeItem !== -1 ? 'admin-panel-funnel-items-collapse' : 'admin-panel-funnel-items'}`}>
             {
-              mostCommonInfo.length ? mostCommonInfo.map(({actionData, percent, occurrences, time, totalCount, referrers, identifiers }, idx) => {
+              mostCommonInfo.length ? mostCommonInfo.map(({actionData, percent, occurrences, time, totalCount, referrers, identifiers, allIdentifiers }, idx) => {
                 return (
                   <FunnelItem actionData={actionData} percent={percent} occurrences={occurrences} time={time} totalCount={totalCount} completedJourneys={completedJourneys} totalJourneys={totalJourneys} referrers={referrers} identifiers={identifiers} index={idx} handleClick={this.handleClick} selected={this.state.activeItem === idx}/>
                 )
@@ -111,14 +95,14 @@ class AdminPanel extends Component {
                 </div>
                 <div className="admin-panel-funnel-stats-metrics-metric">
                 {/* We may want to use totalCount here */}
-                  <h2>{mostCommonInfo[this.state.activeItem + 1] ? Math.floor((occurrences - mostCommonInfo[this.state.activeItem + 1].occurrences) / occurrences * 100) : 'N/A'}% Bounce Rate</h2>
+                  <h2>{mostCommonInfo[this.state.activeItem + 1] ? Math.floor((occurrences - mostCommonInfo[this.state.activeItem + 1].occurrences) / occurrences * 100) : 'N/A'}%</h2>
                   <p>Avg Bounce Rate</p>
                 </div>
               </div>
               <div className="admin-panel-funnel-stats-metrics-block">
                 <div className="admin-panel-funnel-stats-metrics-metric">
-                  <h2>80%</h2>
-                  <p>Avg Scroll Length</p>
+                  <h2>{conversionIndicator}</h2>
+                  <p>Conversion Indicator Index</p>
                 </div>
                 <div className="admin-panel-funnel-stats-metrics-metric">
                   <h2>{conversionsAtStep}</h2>

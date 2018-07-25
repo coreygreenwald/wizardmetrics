@@ -33,7 +33,7 @@ export const auth = (username, password, method) =>
     axios.post(`/admin/auth/${method}`, { username, password })
       .then(res => {
         dispatch(getUser(res.data))
-        history.push('/home')
+        history.push('/')
       }, authError => {
         dispatch(getUser({error: authError}))
       })
