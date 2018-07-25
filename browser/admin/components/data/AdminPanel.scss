@@ -111,6 +111,7 @@ h2, h4 {
             }
 
             &-users-modal {
+                position: absolute;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;

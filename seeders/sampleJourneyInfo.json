@@ -5,7 +5,7 @@
           "identifiers" : [
   
           ],
-          "secondsOnAction" : 64.853999999999999,
+          "secondsOnAction" : 131777,
           "futureConversionCounter" : {
             "hard" : 1977,
             "soft" : 0
@@ -36,7 +36,10 @@
             118
           ],
           "referrers" : {
-            "null" : 22
+            "null" : 22,
+            "https://google.com?q=cookies": 197,
+            "https://SiteWeAdvertisOn.com": 440,
+            "https://facebook.com": 1440
           }
         },
         "actionData" : {
@@ -118,11 +121,11 @@
       {
         "metaData" : {
           "identifiers" : [
-  
+            "someemail1@gmail.com","someemail2@yahoo.com","someemail3@aol.com","someemail4@gmail.com","someemail5@yahoo.com","someemail6@hotmail.com","someemail7@hotmail.com","someemail8@yahoo.com","someemail9@gmail.com","someemail10@gmail.com","someemail11@hotmail.com","someemail12@hotmail.com","someemail13@hotmail.com","someemail14@aol.com","someemail15@yahoo.com","someemail16@yahoo.com","someemail17@hotmail.com","someemail18@aol.com","someemail19@hotmail.com","someemail20@hotmail.com","someemail21@hotmail.com","someemail22@aol.com","someemail23@hotmail.com","someemail24@yahoo.com","someemail25@yahoo.com","someemail26@yahoo.com","someemail27@yahoo.com","someemail28@gmail.com","someemail29@yahoo.com","someemail30@hotmail.com","someemail31@yahoo.com","someemail32@yahoo.com","someemail33@aol.com","someemail34@aol.com","someemail35@hotmail.com","someemail36@gmail.com","someemail37@gmail.com","someemail38@yahoo.com","someemail39@yahoo.com","someemail40@yahoo.com","someemail41@yahoo.com","someemail42@yahoo.com","someemail43@gmail.com","someemail44@aol.com","someemail45@gmail.com","someemail46@aol.com","someemail47@aol.com","someemail48@gmail.com","someemail49@aol.com","someemail50@hotmail.com","someemail51@yahoo.com","someemail52@yahoo.com","someemail53@hotmail.com","someemail54@aol.com","someemail55@yahoo.com","someemail56@yahoo.com","someemail57@aol.com","someemail58@gmail.com","someemail59@aol.com","someemail60@yahoo.com","someemail61@aol.com","someemail62@yahoo.com","someemail63@yahoo.com","someemail64@yahoo.com","someemail65@hotmail.com","someemail66@gmail.com","someemail67@aol.com","someemail68@aol.com","someemail69@hotmail.com","someemail70@gmail.com","someemail71@hotmail.com","someemail72@aol.com","someemail73@aol.com","someemail74@yahoo.com","someemail75@aol.com","someemail76@aol.com","someemail77@hotmail.com","someemail78@aol.com","someemail79@gmail.com","someemail80@yahoo.com","someemail81@yahoo.com","someemail82@hotmail.com","someemail83@yahoo.com","someemail84@gmail.com","someemail85@aol.com","someemail86@yahoo.com","someemail87@yahoo.com","someemail88@hotmail.com","someemail89@yahoo.com","someemail90@aol.com","someemail91@yahoo.com","someemail92@yahoo.com","someemail93@yahoo.com","someemail94@aol.com","someemail95@yahoo.com","someemail96@aol.com","someemail97@gmail.com","someemail98@yahoo.com","someemail99@yahoo.com","someemail100@yahoo.com","someemail101@gmail.com","someemail102@hotmail.com","someemail103@aol.com","someemail104@yahoo.com","someemail105@aol.com","someemail106@yahoo.com","someemail107@yahoo.com","someemail108@gmail.com","someemail109@aol.com","someemail110@aol.com","someemail111@hotmail.com","someemail112@yahoo.com","someemail113@yahoo.com","someemail114@gmail.com","someemail115@yahoo.com","someemail116@yahoo.com","someemail117@aol.com","someemail118@yahoo.com","someemail119@aol.com","someemail120@yahoo.com","someemail121@hotmail.com","someemail122@hotmail.com","someemail123@aol.com","someemail124@yahoo.com","someemail125@aol.com","someemail126@yahoo.com","someemail127@hotmail.com","someemail128@hotmail.com","someemail129@yahoo.com","someemail130@aol.com","someemail131@aol.com","someemail132@hotmail.com","someemail133@yahoo.com","someemail134@aol.com","someemail135@aol.com","someemail136@yahoo.com","someemail137@gmail.com","someemail138@yahoo.com","someemail139@aol.com","someemail140@aol.com"
           ],
-          "secondsOnAction" : 47.811,
+          "secondsOnAction" : 400000,
           "futureConversionCounter" : {
-            "hard" : 495,
+            "hard" : 1113,
             "soft" : 0
           },
           "count" : 7441,
@@ -156,7 +159,7 @@
           "identifiers" : [
   
           ],
-          "secondsOnAction" : 422.57799999999997,
+          "secondsOnAction" : 44,
           "futureConversionCounter" : {
             "hard" : 3,
             "soft" : 0
@@ -926,11 +929,11 @@
       {
         "metaData" : {
           "identifiers" : [
-  
+            "someemail1@hotmail.com","someemail2@aol.com","someemail3@aol.com","someemail4@hotmail.com","someemail5@gmail.com","someemail6@aol.com","someemail7@yahoo.com","someemail8@hotmail.com","someemail9@aol.com","someemail10@aol.com","someemail11@aol.com","someemail12@hotmail.com","someemail13@hotmail.com","someemail14@gmail.com","someemail15@hotmail.com","someemail16@aol.com","someemail17@yahoo.com","someemail18@yahoo.com","someemail19@aol.com","someemail20@yahoo.com","someemail21@hotmail.com","someemail22@gmail.com","someemail23@gmail.com","someemail24@aol.com","someemail25@hotmail.com","someemail26@gmail.com","someemail27@hotmail.com","someemail28@hotmail.com","someemail29@hotmail.com","someemail30@hotmail.com","someemail31@aol.com","someemail32@aol.com","someemail33@gmail.com","someemail34@aol.com","someemail35@yahoo.com","someemail36@gmail.com","someemail37@aol.com","someemail38@aol.com","someemail39@gmail.com","someemail40@gmail.com","someemail41@hotmail.com","someemail42@yahoo.com","someemail43@hotmail.com","someemail44@yahoo.com","someemail45@aol.com","someemail46@hotmail.com","someemail47@hotmail.com","someemail48@yahoo.com","someemail49@aol.com","someemail50@gmail.com","someemail51@aol.com","someemail52@yahoo.com","someemail53@aol.com","someemail54@hotmail.com","someemail55@hotmail.com","someemail56@yahoo.com","someemail57@gmail.com","someemail58@gmail.com","someemail59@yahoo.com","someemail60@yahoo.com","someemail61@hotmail.com","someemail62@gmail.com","someemail63@yahoo.com","someemail64@gmail.com","someemail65@yahoo.com","someemail66@gmail.com","someemail67@yahoo.com","someemail68@hotmail.com","someemail69@gmail.com","someemail70@aol.com","someemail71@yahoo.com","someemail72@gmail.com","someemail73@aol.com","someemail74@yahoo.com","someemail75@gmail.com","someemail76@hotmail.com","someemail77@gmail.com"
           ],
           "secondsOnAction" : 0,
           "futureConversionCounter" : {
-            "hard" : 4355,
+            "hard" : 2000,
             "soft" : 0
           },
           "count" : 2733,
@@ -940,7 +943,9 @@
             75
           ],
           "referrers" : {
-            "null": 300
+            "null": 300,
+            "https://www.gmail.com/mail": 199,
+            "https://facebook.com?utm-source=fb": 144
           }
         },
         "actionData" : {

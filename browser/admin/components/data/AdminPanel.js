@@ -68,6 +68,30 @@ class AdminPanel extends Component {
             <button className={`tablinks ${this.state.dataModel === 'MOST_IMPACTFUL' ? 'active' : ''}`}  onClick={() => this.setState({dataModel: 'MOST_IMPACTFUL'})}>Most Impactful</button>
             <button className={`tablinks ${this.state.dataModel === 'MOST_COMMON' ? 'active' : ''}`} onClick={() => this.setState({dataModel: 'MOST_COMMON'})}>Most Common</button>
         </div>
+        {
+          this.state.showUsers ? 
+            (
+                <div className="modal admin-panel-funnel-item-users-modal">
+                    <h2>{identifiers.slice(0,10).join(', ') + '...'}</h2>
+                    <div className="admin-panel-funnel-item-users-modal-buttons">
+                        <button className="btn white" onClick={(e) => this.downloadCSV(e, identifiers)}> Download CSV </button>
+                        <button className="btn white" onClick={() => this.setState({showUsers: false})}> Close </button>
+                    </div>
+                </div>
+            ) : null 
+        }
+        {
+          this.state.showReferrers ? 
+          (
+              <div className="modal admin-panel-funnel-item-users-modal">
+                  <h2>{Object.keys(referrers).join(', ')}</h2>
+                  <div className="admin-panel-funnel-item-users-modal-buttons">
+                      <button className="btn white" onClick={(e) => this.downloadCSV(e, referrers)}> Download CSV </button>
+                      <button className="btn white" onClick={() => this.setState({showReferrers: false})}> Close </button>
+                  </div>
+              </div>
+          ) : null 
+      }
         <div className="admin-panel-funnel">
           <div className={`${this.state.activeItem !== -1 ? 'admin-panel-funnel-items-collapse' : 'admin-panel-funnel-items'}`}>
             {
@@ -131,18 +155,6 @@ class AdminPanel extends Component {
                     (
                         <div className="admin-panel-funnel-item-users">
                             <button className="btn" onClick={() => this.setState({showUsers: true})}>See Customers</button>
-                            {
-                                this.state.showUsers ? 
-                                (
-                                    <div className="modal admin-panel-funnel-item-users-modal">
-                                        <h2>{identifiers.join(', ')}</h2>
-                                        <div className="admin-panel-funnel-item-users-modal-buttons">
-                                            <button className="btn white" onClick={(e) => this.downloadCSV(e, identifiers)}> Download CSV </button>
-                                            <button className="btn white" onClick={() => this.setState({showUsers: false})}> Close </button>
-                                        </div>
-                                    </div>
-                                ) : null 
-                            }
                         </div>
                     ) : null
                 }
@@ -151,18 +163,6 @@ class AdminPanel extends Component {
                     (
                         <div className="admin-panel-funnel-item-referrals">
                             <button className="btn" onClick={() => this.setState({showReferrers: true})}>See Referrals</button>
-                            {
-                                this.state.showReferrers ? 
-                                (
-                                    <div className="modal admin-panel-funnel-item-users-modal">
-                                        <h2>{Object.keys(referrers).join(', ')}</h2>
-                                        <div className="admin-panel-funnel-item-users-modal-buttons">
-                                            <button className="btn white" onClick={(e) => this.downloadCSV(e, referrers)}> Download CSV </button>
-                                            <button className="btn white" onClick={() => this.setState({showReferrers: false})}> Close </button>
-                                        </div>
-                                    </div>
-                                ) : null 
-                            }
                         </div>
                     ) : null
                 }
