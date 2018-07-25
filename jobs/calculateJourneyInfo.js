@@ -14,7 +14,9 @@ const calculateJourneyInfoRunner = async () => {
             let date = new Date();
             let newDate = date.toISOString().replace(/[-:,TZ]/g, '')
             journey.day = newDate.slice(0, newDate.length - 4); 
-            await Journey.create(journey);
+            if(customer.name !== "DemoAccount"){
+                await Journey.create(journey);
+            }
             console.log(chalk.green('Journey Data Created for ', customer.username));
         }
         await db.close();
