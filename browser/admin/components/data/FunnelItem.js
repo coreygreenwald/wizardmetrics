@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { kFormatter } from '../../utils'
 
 function colorChooser(occurrences, completedJourneys){
     let hex;
@@ -60,12 +61,12 @@ export default class FunnelItem extends Component {
                         }
                     </div>
                 </div>
-                <h2>{occurrences} Users</h2>
+                <h2>{kFormatter(occurrences)} Users</h2>
                 <div className="admin-panel-funnel-item-data">
-                    <div className="admin-pannel-funnel-item-image">
+                    <div className="admin-panel-funnel-item-image">
                         <img src={`/assets/icons/${actionData.isConversion ? 'conversion' : actionData.type.toLowerCase()}.png`}/>
                     </div>
-                    <div className="admin-pannel-funnel-item-block">
+                    <div className="admin-panel-funnel-item-block">
                         <h2>TYPE: {actionData.type}</h2>
                         <h2>Page URL: {actionData.path}</h2>
                     </div>

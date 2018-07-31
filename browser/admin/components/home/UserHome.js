@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {retrieveJourneyData} from '../../store'
+import {kFormatter} from '../../utils'
 import { LineChart, Line, Legend, Tooltip, CartesianGrid, XAxis, YAxis } from 'recharts'
 
 import './UserHome.scss';
@@ -41,11 +42,11 @@ class UserHome extends Component {
             <h2>Your Overall Conversion Rate</h2>
           </div>
           <div className="main-home-banner-metric">
-            <h1>{totalJourneys}</h1>
+            <h1>{kFormatter(totalJourneys)}</h1>
             <h2>Total Aquisitions</h2>
           </div>
           <div className="main-home-banner-metric">
-            <h1>{completedJourneys}</h1>
+            <h1>{kFormatter(completedJourneys)}</h1>
             <h2>Total Customers</h2>
           </div>
         </div>

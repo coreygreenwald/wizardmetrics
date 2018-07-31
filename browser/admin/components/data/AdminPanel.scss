@@ -27,25 +27,43 @@ h2, h4 {
             border:1px solid black;
             width: 45%;
             position: fixed;
-            left: 45%;
+            left: 50%;
             margin: 10px;
             height: auto;
             @include flex(column, center, flex-start);   
-
-            h1 {
+            &-header {
+                @include flex(row, space-between, flex-start);
+                width: 100%; 
+            }
+            &-selector, .tab{
                 margin: 10px;
+                .tablinks {
+                    padding: 10px;
+                }
+            }
+            h1, h2 {
+                margin: 10px;
+                font-weight: 700;
             }
             &-metrics {
                 @include flex(column, center, center);
                 width: 100%;
                 &-block {
                     width: 100%;
-                    @include flex(row, space-between, center); 
+                    @include flex(row, space-evenly, center); 
+                    margin: 20px 0px;
+                    flex-wrap: wrap;
                 }
                 &-metric {
-                    margin: 10px;
+                    margin: auto; 
+                    min-width: 30%;
                     h2 {
                         font-weight: 700;
+                    }
+                    h3 {
+                        font-weight: 700;
+                        font-size: 16px;
+                        margin: 0;
                     }
                 }
             }
@@ -65,7 +83,7 @@ h2, h4 {
             width: 90%;
             margin: auto;
             &-collapse {
-                width: 40%;
+                width: 50%;
             }
         }
 
@@ -74,17 +92,23 @@ h2, h4 {
             width: 100%;
             @include flex(row, space-between, center);
             overflow-y: hidden;
-            // display: flex;
-            // flex-direction: row;
-            // justify-content: space-between;
-            // align-items: center;
             padding: 5px; 
             border-radius: 15px;
             margin: 10px 2px;
             color: #FFFFFF;
+            &-image {
+                img {
+                    width: 65px;
+                    height: 65px;
+                }
+            }
+
+            &-block {
+                margin: auto;
+            }
 
             &-event {
-                width: 30%;
+                width: 20%;
                 text-align: center;
                 // border:2px dotted black;
                 border-radius: 15px;
@@ -105,8 +129,8 @@ h2, h4 {
             }
 
             &-data {
-                @include flex(row, space-evenly, center);
-                width: 40%;
+                @include flex(row, flex-start, center);
+                width: 50%;
                 font-size: 12px;
             }
 
