@@ -51,6 +51,11 @@ const Customer = db.define('customer', {
         type: Sequelize.STRING, 
         allowNull: false
     },
+    //In seconds, time until we consider that someone left this action.
+    timeForLeave: {
+        type: Sequelize.INTEGER,
+        defaultValue: 900
+    },
     password: {
         type: Sequelize.STRING,
     },

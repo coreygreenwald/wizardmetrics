@@ -1,4 +1,4 @@
-import { kFormatter } from '../../utils';
+import { kFormatter, timeFormatter } from '../../utils';
 import React, { Component } from 'react'
 
 export default class AdminPanel extends Component {
@@ -40,7 +40,7 @@ export default class AdminPanel extends Component {
                                     <p>Users Stuck on Action</p>
                                 </div>
                                 <div className="admin-panel-funnel-stats-metrics-metric">
-                                    <h2>{time} Seconds</h2>
+                                    <h2>{timeFormatter(time)}</h2>
                                     <p>Avg Time On {actionData.path}</p>
                                 </div>
                                 <div className="admin-panel-funnel-stats-metrics-metric">
