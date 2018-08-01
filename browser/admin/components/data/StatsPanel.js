@@ -1,5 +1,6 @@
 import { kFormatter, timeFormatter } from '../../utils';
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
 export default class AdminPanel extends Component {
     constructor(props){
@@ -86,7 +87,7 @@ export default class AdminPanel extends Component {
                         )
                     }
                 </div>
-                {
+                {/* {
                 nextItem && nextItem.actionData ? 
                 (
                     <div className="admin-panel-funnel-stats-recommendations">
@@ -94,29 +95,37 @@ export default class AdminPanel extends Component {
                     <p>You have {identifiers.length} users stuck on this action. It is suggested to export a list of these users and send them an email to get them to {nextItem.actionData.path} as the suggested next step on their journey.</p>
                     </div>
                 ) : null
-                }
+                } */}
                 <div className="admin-panel-funnel-stats-actions">
-                <h2>Actions</h2>
+                <h2>Actionable Insights</h2>
                 <div className="admin-panel-funnel-stats-actions-body">
                 {
-                        identifiers && identifiers.length ?
+                        identifiers && identifiers.length && identifiers.length > 15 && nextItem && nextItem.actionData ?
                         (
-                            <div className="admin-panel-funnel-item-users">
-                                <button className="btn" onClick={showUsersFunc}>See Customers</button>
+                            <div className="admin-panel-funnel-stats-actions-recommendation">
+                                <li>{identifiers.length} users are stuck on this action and {allIdentifiers.length} users have stopped at this step! Export these users and try to get them to {nextItem.actionData.path} <button className="btn" onClick={showUsersFunc}>See Customers</button></li>
                             </div>
                         ) : null
                     }
                     {
                         referrers && Object.keys(referrers).length ?
                         (
-                            <div className="admin-panel-funnel-item-referrals">
-                                <button className="btn" onClick={showReferrersFunc}>See Referrals</button>
+                            <div className="admin-panel-funnel-stats-actions-recommendation">
+                                <li>{Object.keys(referrers).length} sources have been found for this action. Check out which are most helpful and which are not working quite right!<button className="btn" onClick={showReferrersFunc}>See Referrals</button></li>
                             </div>
                         ) : null
                     }
                     {
-                    ((identifiers && identifiers.length) || (referrers && Object.keys(referrers).length)) ? null : (
-                        <h2> No actions to take at this step </h2>
+                        time > 900 ?
+                        (
+                            <div className="admin-panel-funnel-stats-actions-recommendation">
+                                <li>The average time spent here is much longer than your other actions. We suspect a lot of people have left or been diverted from their journey. Consider adding some conversion markers to focus on the problems within {actionData.path} <Link to="/conversions"><button className="btn">Manage Conversions</button></Link></li>
+                            </div>
+                        ) : null
+                    }
+                    {
+                    ((identifiers && identifiers.length) || (referrers && Object.keys(referrers).length) || (time > 900)) ? null : (
+                        <p> No actionable insights on this step </p>
                     )
                     }
                 </div>
