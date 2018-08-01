@@ -11,7 +11,7 @@ export default class AdminPanel extends Component {
     render(){
         const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep, allIdentifiers, metaData } = this.props.currItem || {}
         const { activeItemNum, showReferrersFunc, showUsersFunc } = this.props
-        const conversionIndicator = metaData ? (metaData.futureConversionCounter.hard / occurrences).toFixed(2) : 0;
+        const conversionIndicator = metaData ? (metaData.futureConversionCounter.hard / occurrences * 100).toFixed(2) : 0;
         const nextItem = this.props.nextItem || null;
         return (
             <div className="admin-panel-funnel-stats">
@@ -44,7 +44,7 @@ export default class AdminPanel extends Component {
                                     <p>Avg Time On {actionData.path}</p>
                                 </div>
                                 <div className="admin-panel-funnel-stats-metrics-metric">
-                                    <h2>{conversionIndicator}</h2>
+                                    <h2>{conversionIndicator}%</h2>
                                     <p>Conversion Likelihood</p>
                                 </div>
                                 <div className="admin-panel-funnel-stats-metrics-metric">
