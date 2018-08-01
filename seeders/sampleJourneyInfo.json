@@ -51,6 +51,54 @@
           "type" : "ARRIVAL",
           "isConversion" : null
         }
+      }, {
+        "metaData" : {
+          "identifiers" : [
+  
+          ],
+          "secondsOnAction" : 7900,
+          "futureConversionCounter" : {
+            "hard" : 1,
+            "soft" : 0
+          },
+          "count" : 123,
+          "actionIds" : [
+            null,
+            6,
+            12,
+            20,
+            26,
+            41,
+            47,
+            51,
+            56,
+            61,
+            65,
+            70,
+            76,
+            81,
+            86,
+            91,
+            96,
+            99,
+            103,
+            108,
+            112,
+            118
+          ],
+          "referrers" : {
+            "https://google.com?q=cookies": 11
+          }
+        },
+        "actionData" : {
+          "path" : "\/about",
+          "info" : {
+  
+          },
+          "conversionId" : null,
+          "type" : "ARRIVAL",
+          "isConversion" : null
+        }
       }
     ],
     [

@@ -21,8 +21,8 @@ db.sync({force: true})
                     customerPublicId: demoCustomer.publicId
                 }),
                 Journey.create({
-                    totalJourneys: 14565,
-                    completedJourneys: 1977,
+                    totalJourneys: 14688,
+                    completedJourneys: 1993,
                     shortestJourneyTime: 107,
                     shortestJourneyByTime: [43, 11, 16, 33, 123],
                     shortestJourneyLength: 4,
