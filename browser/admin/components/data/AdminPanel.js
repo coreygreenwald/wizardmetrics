@@ -59,7 +59,13 @@ class AdminPanel extends Component {
       }
     }
     // const journeyInfo = (info && info.length) ? mostCommonJourney(info) : {journey: []};
-    const mostCommonInfo = journeyInfo.journey.filter((step, idx) => (((step.totalActionCount / totalJourneys) > .03 || step.totalActionCount > 50) && (idx === 0 || (journeyInfo.journey[idx - 1] && !journeyInfo.journey[idx - 1].metaData.isConversion))))
+    const mostCommonInfo = journeyInfo.journey.filter((step, idx) => {
+      let returnFactor = true; 
+      if((step.totalActionCount / totalJourneys) < .03 || step.totalActionCount < 50) returnFactor = false;
+      if(idx !== 0 && journeyInfo.journey[idx - 1].metaData.isConversion) returnFactor = false;
+      return returnFactor;
+    })
+    // (((step.totalActionCount / totalJourneys) > .03 || step.totalActionCount > 50) && ((idx === 0 || (journeyInfo.journey[idx - 1]) && !journeyInfo.journey[idx - 1].metaData.isConversion))))
     const { totalSignups } = journeyInfo; 
     const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep, allIdentifiers, metaData } = mostCommonInfo[this.state.activeItem] || {}
     // const conversionIndicator = metaData ? (metaData.futureConversionCounter.hard / occurrences).toFixed(2) : 0;
@@ -68,6 +74,7 @@ class AdminPanel extends Component {
         <div className="admin-panel-selector tab">
             <button className={`tablinks ${this.state.dataModel === 'MOST_IMPACTFUL' ? 'active' : ''}`}  onClick={() => this.setState({dataModel: 'MOST_IMPACTFUL'})}>Most Impactful</button>
             <button className={`tablinks ${this.state.dataModel === 'MOST_COMMON' ? 'active' : ''}`} onClick={() => this.setState({dataModel: 'MOST_COMMON'})}>Most Common</button>
+            <button className={`tablinks ${this.state.dataModel === 'MOST_HURTFUL' ? 'active' : ''}`} onClick={() => alert('This Feature is Coming Soon!')}>Most Hurtful</button>
         </div>
         {
           this.state.showUsers ? 
