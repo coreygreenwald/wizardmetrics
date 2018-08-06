@@ -19,6 +19,17 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+app.get('/zap', (req, res, next) => {
+    if(req.query.api_key){
+        res.send({
+            name: 'testing',
+            value: 'does this work'
+        })
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+})
+
 app.use('/plugin', require('./plugin-routes'));
 app.use('/admin', require('./admin-routes'));
 
