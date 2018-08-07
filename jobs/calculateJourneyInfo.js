@@ -1,5 +1,5 @@
 const { Action, Customer, db, Journey } = require('../db');
-const { journeys } = require('../utils');
+const { journeys, compressor } = require('../utils');
 
 const chalk = require('chalk');
 
@@ -10,12 +10,14 @@ const calculateJourneyInfoRunner = async () => {
             let customer = customers[i];
             await customer.matchActionsToConversions()
             let journey = await journeys(customer.username);
+            //call cacher on journey info
             journey.customerPublicId = customer.publicId
             let date = new Date();
             let newDate = date.toISOString().replace(/[-:,TZ]/g, '')
             journey.day = newDate.slice(0, newDate.length - 4); 
             if(customer.name !== "DemoAccount"){
-                await Journey.create(journey);
+                let journeyObj = await Journey.create(journey);
+                compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'IMPACT', weight: 'MOST'}, {conversionType: 'BOTH'})
             }
             console.log(chalk.green('Journey Data Created for ', customer.username));
         }

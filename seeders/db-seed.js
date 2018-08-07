@@ -1,4 +1,4 @@
-const { db, Customer, Session, Action, Conversion, Journey } = require('../db');
+const { db, Customer, Session, Action, Conversion, Journey, Integration } = require('../db');
 
 db.sync({force: true})
     .then(() => {
@@ -57,6 +57,12 @@ db.sync({force: true})
             password: 'random123',
             status: 'SUPER_ADMIN',
             originURL: 'https://www.degreescoop.com'
+        })
+    })
+    .then(() => {
+        return Integration.create({
+            platform: 'Zapier',
+            permissions: 'READ'
         })
     })
     .catch((err) => {
