@@ -1,6 +1,6 @@
 const { db, Customer } = require('../db');
 
-db.sync({force: true})
+db.sync()
     .then(() => {
         const words = ["Abapical", "Antipodals", "Astrophysics", "Barosaurs", "Buyable", "Bwana", "Caespitose", "Company", "Corkboards", "Culpabilities", "Delations", "Doorposts", "Downheartedness", "Electric", "Exploiting", "Feirie", "Generalships", "Glial", "Groggery", "Hexastich", "Hookworms", "Hypoglycemias", "Joyously", "Lanely", "Maltreater", "Misthrow", "Moss", "Mull", "Mycophagy", "Oak", "Overwinds", "Parbuckle", "Playa", "Postural", "Reseeks", "Setout", "Sopranos", "Spininesses", "Stereotype", "Summarized", "Telexes", "Toilet", "Toilets", "Treddled", "Unsoldered", "Uprates", "Vagabondish", "Warrantee", "Whisks", 'Stable', 'Battery', 'Horse', 'Electric', 'Door', 'Monitor', 'Mixed', 'Ranch'];
         const password = words[Math.floor(Math.random() * words.length)] + words[Math.floor(Math.random() * words.length)] + Math.floor(Math.random() * 1000);
