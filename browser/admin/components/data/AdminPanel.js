@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {retrieveJourneyData, retrieveImpactModelData, retrieveCommonModelData} from '../../store'
-import { mostCommonJourney, mostImpactfulJourney, kFormatter } from '../../utils'
 import FunnelItem from './FunnelItem';
 import StatsPanel from './StatsPanel';
 import './AdminPanel.scss';
@@ -69,7 +68,7 @@ class AdminPanel extends Component {
     }
     const mostCommonInfo = journeyInfo.journeyData.filter((step, idx) => {
       let returnFactor = true; 
-      // if((step.totalActionCount / totalJourneys) < .03 || step.totalActionCount < 50) returnFactor = false;
+      if((step.totalActionCount / totalJourneys) < .03 || step.totalActionCount < 50) returnFactor = false;
       if(idx !== 0 && journeyInfo.journeyData[idx - 1].metaData.isConversion) returnFactor = false;
       return returnFactor;
     })

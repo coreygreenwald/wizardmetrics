@@ -1,7 +1,6 @@
 import user from "../admin/store/user";
 
-const REMOTE_URL = `http://localhost:3000`;
-// const REMOTE_URL = `https://app.wizardmetrics.com`;
+const REMOTE_URL = `https://app.wizardmetrics.com`;
 document.addEventListener('DOMContentLoaded', (e) => {
     console.log('This Application uses WizardLead!');
     let location = window.location.pathname;

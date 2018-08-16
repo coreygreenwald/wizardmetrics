@@ -8,10 +8,11 @@ import conversions from './conversions';
 
 
 const reducer = combineReducers({user, data, conversions})
-const middleware = composeWithDevTools(applyMiddleware(
-  thunkMiddleware,
-  createLogger({collapsed: true})
-))
+const middleware = applyMiddleware(thunkMiddleware); 
+// const middleware = composeWithDevTools(applyMiddleware(
+//   thunkMiddleware,
+//   createLogger({collapsed: true})
+// ))
 const store = createStore(reducer, middleware)
 
 export default store
