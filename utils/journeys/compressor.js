@@ -39,7 +39,7 @@ const compressor = (customerId, journeyId, journey, type, options) => {
             }
             if(
                 (type.model === 'IMPACT' && futureConversionCount > maxIndexConversionCount) || 
-                (type.model === 'IMPACT' && metaData.count > actions[maxIndex].metaData.count)
+                (type.model === 'COMMON' && metaData.count > actions[maxIndex].metaData.count)
             ) {
                 maxIndex = i;
             }
@@ -61,12 +61,11 @@ const compressor = (customerId, journeyId, journey, type, options) => {
         }
     })
     const cacheObj = {
-        journey,
+        journeyData,
         totalSignups
     }
-    console.log(`${customerId}:${journeyId}:${type.model}-${type.weight}`);
+    console.log(`${customerId}:${journeyId}:${type.model}-${type.weight}`, cacheObj.journeyData[3]);
     client.actions.setObj(`${customerId}:${journeyId}:${type.model}-${type.weight}`, cacheObj)
-    // client.actions.getObj('1:IMPACT-MOST')
     return cacheObj
 }
 

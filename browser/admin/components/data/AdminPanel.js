@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {retrieveJourneyData} from '../../store'
+import {retrieveJourneyData, retrieveImpactModelData, retrieveCommonModelData} from '../../store'
 import { mostCommonJourney, mostImpactfulJourney, kFormatter } from '../../utils'
 import FunnelItem from './FunnelItem';
 import StatsPanel from './StatsPanel';
@@ -30,8 +30,15 @@ class AdminPanel extends Component {
     window.open(encodedUri);
 }
   componentDidMount(){
-    if(!this.props.data.info){
+    if(!Object.keys(this.props.data).length){
       this.props.fetchJourneyData()
+    }
+    if(!Object.keys(this.props.mostImpactfulJourney).length){
+      this.props.fetchImpactData()
+    }
+    
+    if(!Object.keys(this.props.mostCommonJourney).length){
+      this.props.fetchCommonData()
     }
   }
   handleClick(itemNumber){
@@ -50,25 +57,24 @@ class AdminPanel extends Component {
   }
   render(){
     const { info, shortestJourneyLength, shortestJourneyTime, completedJourneys, totalJourneys } = this.props.data;
-    let journeyInfo = {journey: []};
-    if(info && info.length){
-      if(this.state.dataModel === 'MOST_COMMON'){
-        journeyInfo = mostCommonJourney(info); 
-      } else {
-        journeyInfo = mostImpactfulJourney(info, 'BOTH')
+    let journeyInfo = {journeyData: [], totalSignups: 0};
+    if(this.state.dataModel === 'MOST_COMMON'){
+      if(this.props.mostCommonJourney && this.props.mostCommonJourney.journeyData){
+        journeyInfo = this.props.mostCommonJourney; 
+      }
+    } else {
+      if(this.props.mostImpactfulJourney && this.props.mostImpactfulJourney.journeyData){
+        journeyInfo = this.props.mostImpactfulJourney;
       }
     }
-    // const journeyInfo = (info && info.length) ? mostCommonJourney(info) : {journey: []};
-    const mostCommonInfo = journeyInfo.journey.filter((step, idx) => {
+    const mostCommonInfo = journeyInfo.journeyData.filter((step, idx) => {
       let returnFactor = true; 
-      if((step.totalActionCount / totalJourneys) < .03 || step.totalActionCount < 50) returnFactor = false;
-      if(idx !== 0 && journeyInfo.journey[idx - 1].metaData.isConversion) returnFactor = false;
+      // if((step.totalActionCount / totalJourneys) < .03 || step.totalActionCount < 50) returnFactor = false;
+      if(idx !== 0 && journeyInfo.journeyData[idx - 1].metaData.isConversion) returnFactor = false;
       return returnFactor;
     })
-    // (((step.totalActionCount / totalJourneys) > .03 || step.totalActionCount > 50) && ((idx === 0 || (journeyInfo.journey[idx - 1]) && !journeyInfo.journey[idx - 1].metaData.isConversion))))
     const { totalSignups } = journeyInfo; 
     const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep, allIdentifiers, metaData } = mostCommonInfo[this.state.activeItem] || {}
-    // const conversionIndicator = metaData ? (metaData.futureConversionCounter.hard / occurrences).toFixed(2) : 0;
     return (
       <div className="admin-panel">
         <div className="admin-panel-selector tab">
@@ -127,7 +133,9 @@ class AdminPanel extends Component {
 const mapState = (state) => {
   return {
     name: state.user.username,
-    data: state.data
+    data: state.data.journeyMeta,
+    mostImpactfulJourney: state.data.impact,
+    mostCommonJourney: state.data.common
   }
 }
 
@@ -135,6 +143,12 @@ const mapDispatch = (dispatch) => {
   return {
     fetchJourneyData(){
       dispatch(retrieveJourneyData())
+    },
+    fetchImpactData(){
+      dispatch(retrieveImpactModelData())
+    },
+    fetchCommonData(){
+      dispatch(retrieveCommonModelData())
     }
   }
 }

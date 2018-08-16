@@ -4,29 +4,30 @@ const client = require('../cache');
 const chalk = require('chalk');
 
 const calculateJourneyInfoRunner = async () => {
-    // try {
-    //     const customers = await Customer.findAll();
-    //     for(let i = 0; i < customers.length; i++){
-    //         let customer = customers[i];
-    //         await customer.matchActionsToConversions()
-    //         let journey = await journeys(customer.username);
-    //         //call cacher on journey info
-    //         journey.customerPublicId = customer.publicId
-    //         let date = new Date();
-    //         let newDate = date.toISOString().replace(/[-:,TZ]/g, '')
-    //         journey.day = newDate.slice(0, newDate.length - 4); 
-    //         let journeyObj; 
-    //         if(customer.name !== "DemoAccount"){
-    //             journeyObj = await Journey.create(journey);
-    //             await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'IMPACT', weight: 'MOST'}, {conversionType: 'BOTH'})
-    //         }
-    //         await client.actions.setObj(`${customer.username}:JOURNEY:RECENT`, journeyObj || {})
-    //         console.log(chalk.green('Journey Data Created for ', customer.username));
-    //     }
-    //     // await db.close();
-    // } catch(err){
-    //     console.log('There was an error running the job!', err);
-    // }
+    try {
+        const customers = await Customer.findAll();
+        for(let i = 0; i < customers.length; i++){
+            let customer = customers[i];
+            await customer.matchActionsToConversions()
+            let journey = await journeys(customer.username);
+            //call cacher on journey info
+            journey.customerPublicId = customer.publicId
+            let date = new Date();
+            let newDate = date.toISOString().replace(/[-:,TZ]/g, '')
+            journey.day = newDate.slice(0, newDate.length - 4); 
+            let journeyObj; 
+            if(customer.name !== "DemoAccount"){
+                journeyObj = await Journey.create(journey);
+                await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'IMPACT', weight: 'MOST'}, {conversionType: 'BOTH'})
+                await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'COMMON', weight: 'MOST'}, {conversionType: 'BOTH'})
+            }
+            await client.actions.setObj(`${customer.username}:JOURNEY:RECENT`, journeyObj || {})
+            console.log(chalk.green('Journey Data Created for ', customer.username));
+        }
+        // await db.close();
+    } catch(err){
+        console.log('There was an error running the job!', err);
+    }
 }
 
 (async function(){

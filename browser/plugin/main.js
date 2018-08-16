@@ -1,7 +1,7 @@
 import user from "../admin/store/user";
 
-// const REMOTE_URL = `http://localhost:3000`;
-const REMOTE_URL = `https://wizardly.herokuapp.com`;
+const REMOTE_URL = `http://localhost:3000`;
+// const REMOTE_URL = `https://app.wizardmetrics.com`;
 document.addEventListener('DOMContentLoaded', (e) => {
     console.log('This Application uses WizardLead!');
     let location = window.location.pathname;
@@ -62,21 +62,12 @@ function setUserInfo(userIdentifier){
         })
     })
 }
-// document.addEventListener('keypress', (e) => {
-//     fireData({
-//         keyPress: e.keyCode
-//     })
-// })
-
 function fireData(payload){
     payload.referrer = document.referrer || null;
     var data = {
         session: localStorage.getItem('wizardSession') || "",
         payload
     }
-    //https://wizardly.herokuapp.com
-    // return window.fetch(`https://wizardly.herokuapp.com/plugin/data?wizardId=${window.wizardId}`
-    // return window.fetch(`http://localhost:3000/plugin/data?wizardId=${window.wizardId}`
     return window.fetch(`${REMOTE_URL}/plugin/data?wizardId=${window.wizardId}`,  {
         method: 'POST',
         body: JSON.stringify(data),

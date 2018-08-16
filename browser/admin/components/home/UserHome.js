@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {retrieveJourneyData} from '../../store'
 import {kFormatter} from '../../utils'
-import { LineChart, Line, Legend, Tooltip, CartesianGrid, XAxis, YAxis } from 'recharts'
+// import { LineChart, Line, Legend, Tooltip, CartesianGrid, XAxis, YAxis } from 'recharts'
 
 import './UserHome.scss';
 /**
@@ -16,7 +16,7 @@ class UserHome extends Component {
   }
 
   componentDidMount(){
-    if(!this.props.data.info){
+    if(!Object.keys(this.props.data).length){
       this.props.fetchJourneyData()
     }
   }
@@ -51,14 +51,14 @@ class UserHome extends Component {
           </div>
         </div>
         <div className="main-home-chart">
-        <LineChart width={950} height={430} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+        {/* <LineChart width={950} height={430} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis dataKey="percent" />
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="percent" stroke="#8884d8" />
-        </LineChart>
+        </LineChart> */}
         </div>
       </div>
     )
@@ -71,7 +71,7 @@ class UserHome extends Component {
 const mapState = (state) => {
   return {
     name: state.user.name,
-    data: state.data
+    data: state.data.journeyMeta
   }
 }
 

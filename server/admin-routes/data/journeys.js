@@ -8,7 +8,10 @@ router.get('/', async (req, res, next) => {
     if(req.customer){
         try {
             let recentJourney = await client.actions.getObj(`${req.customer.username}:JOURNEY:RECENT`);
-            //Fallback to making the query just to ensure there's no cached data.
+            if(req.query.model){
+                recentJourney = await client.actions.getObj(`${req.customer.username}:${recentJourney.id}:${req.query.model.toUpperCase()}-MOST`)
+            }
+            //Fallback to making the query incase there's no cached data.
             if(!recentJourney || !Object.keys(recentJourney).length){
                 [recentJourney] = await Journey.findAll({
                     limit: 1,
@@ -19,6 +22,7 @@ router.get('/', async (req, res, next) => {
                 })
             }
             if(recentJourney){
+                if(recentJourney.info) delete recentJourney.info;
                 res.send(recentJourney); 
             } else {
                 res.status(404).send('No Data Yet!')
