@@ -64,7 +64,6 @@ const compressor = (customerId, journeyId, journey, type, options) => {
         journeyData,
         totalSignups
     }
-    console.log(`${customerId}:${journeyId}:${type.model}-${type.weight}`, cacheObj.journeyData[3]);
     client.actions.setObj(`${customerId}:${journeyId}:${type.model}-${type.weight}`, cacheObj)
     return cacheObj
 }

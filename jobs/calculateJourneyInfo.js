@@ -20,6 +20,21 @@ const calculateJourneyInfoRunner = async () => {
                 journeyObj = await Journey.create(journey);
                 await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'IMPACT', weight: 'MOST'}, {conversionType: 'BOTH'})
                 await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'COMMON', weight: 'MOST'}, {conversionType: 'BOTH'})
+            } else {
+                [journeyObj] = await Journey.findAll({
+                    limit: 1,
+                    where: {
+                        customerPublicId: customer.publicId
+                    }, 
+                    order: [ [ 'createdAt' ]]
+                  })
+                // journeyObj = {
+                //     id: 5,
+                //     info: {}
+                // }
+                await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'IMPACT', weight: 'MOST'}, {conversionType: 'BOTH'})
+                await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'COMMON', weight: 'MOST'}, {conversionType: 'BOTH'})
+                console.log('succeeded!!!');
             }
             await client.actions.setObj(`${customer.username}:JOURNEY:RECENT`, journeyObj || {})
             console.log(chalk.green('Journey Data Created for ', customer.username));
