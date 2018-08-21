@@ -1,6 +1,6 @@
 const { db, Customer, Session, Action, Conversion, Journey, Integration } = require('../db');
 
-db.sync({force: true})
+db.sync()
     .then(() => {
         return Customer.create({
             name: "DemoAccount",
