@@ -4,7 +4,6 @@ const { APIKey, Integration } = require('../../../db');
 router.get('/:appName/key', async (req, res, next) => {
     try {
         if(req.customer){
-            // console.log(req.params.appName)
             const integration = await Integration.findOne({where: {
                 platform: req.params.appName.toUpperCase()
             }})
