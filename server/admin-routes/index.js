@@ -40,6 +40,7 @@ router.use((req, res, next) => {
 router.use('/auth', require('./auth'));
 router.use('/settings', require('./settings'));
 router.use('/data', require('./data'));
+router.use('/integrations', require('./integrations'));
 
 router.use('/', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../public/admin/index.html'));

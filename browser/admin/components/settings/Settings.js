@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import UserInfo from './UserInfo';
+import Integrations from './Integrations';
 import './Settings.scss';
 
 class Settings extends Component {
@@ -13,6 +14,7 @@ class Settings extends Component {
         return(
             <div className="settings">
                 <UserInfo userInfo={this.props.userInfo}/>
+                <Integrations />
             </div>
         )
     }

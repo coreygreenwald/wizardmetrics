@@ -61,7 +61,7 @@ db.sync()
     })
     .then(() => {
         return Integration.create({
-            platform: 'Zapier',
+            platform: 'ZAPIER',
             permissions: 'READ'
         })
     })
