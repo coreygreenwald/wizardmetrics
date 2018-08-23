@@ -76,7 +76,7 @@ function fireData(payload){
     })
     .then(res => res.json())
     .then(body => {
-        if(!localStorage.getItem('wizardSession')){
+        if(!localStorage.getItem('wizardSession') && body.sessionId){
             localStorage.setItem('wizardSession', body.sessionId);
         }
     })

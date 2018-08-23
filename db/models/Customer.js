@@ -4,7 +4,6 @@ const crypto = require('crypto');
 const Session = require('./Session'); 
 const Action = require('./Action');
 const Conversion = require('./Conversion');
-// const { conversionUtils } = require('../../utils');
 const conversionUtils = require('../../utils/conversions');
 const _ = require('lodash');
 
@@ -55,6 +54,10 @@ const Customer = db.define('customer', {
     timeForLeave: {
         type: Sequelize.INTEGER,
         defaultValue: 900
+    },
+    startingPoint: {
+        type: Sequelize.STRING,
+        defaultValue: null,
     },
     password: {
         type: Sequelize.STRING,

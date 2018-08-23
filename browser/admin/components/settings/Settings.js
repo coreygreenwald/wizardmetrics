@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import UserInfo from './UserInfo';
 import Integrations from './Integrations';
+import StartingPoint from './StartingPoint';
 import './Settings.scss';
 
 class Settings extends Component {
@@ -14,7 +15,8 @@ class Settings extends Component {
         return(
             <div className="settings">
                 <UserInfo userInfo={this.props.userInfo}/>
-                <Integrations />
+                <Integrations/>
+                <StartingPoint startingPoint={this.props.startingPoint}/>
             </div>
         )
     }
@@ -22,7 +24,8 @@ class Settings extends Component {
 
 const mapState = (state) => {
     return {
-      userInfo: state.user.sessionInfoGrabber
+      userInfo: state.user.sessionInfoGrabber,
+      startingPoint: state.user.startingPoint
     }
   }
 

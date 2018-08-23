@@ -26,22 +26,27 @@ router.use('/data', (req, res, next) => {
 })
 
 router.post('/data', (req, res, next) => {
-    if(!req.body.session || !req.body.session.length){
-        req.body.session = crypto.randomBytes(20).toString('hex');
-    }
-    Session.findOrCreate({
-        where: {
-            id: req.body.session,
-            customerPublicId: req.customer.publicId
+    //Ensure they started at the designated starting point.
+    if(req.body.session || !req.customer.startingPoint || req.customer.startingPoint === req.body.payload.path){
+        if(!req.body.session || !req.body.session.length){
+            req.body.session = crypto.randomBytes(20).toString('hex');
+            req.body.payload.type = 'ARRIVAL'; //TODO: Allow navigate and arrival events to coincide.
         }
-    })
-    .then(([session, created]) => {
-        req.session = session;
-        req.body = req.body.payload;
-        next();
-    })
-    .catch(next);
-
+        Session.findOrCreate({
+            where: {
+                id: req.body.session,
+                customerPublicId: req.customer.publicId
+            }
+        })
+        .then(([session, created]) => {
+            req.session = session;
+            req.body = req.body.payload;
+            next();
+        })
+        .catch(next);
+    } else {
+        res.send('200').status('Data Untracked Until User Reaches Starting Point.')
+    }
 })
 
 router.post('/data', (req, res, next) => {
