@@ -57,20 +57,19 @@ router.post('/data', (req, res, next) => {
         referrer: req.body.referrer,
         sessionId: req.session.id
     }).then(action => {
-        res.send({sessionId: req.session.id});
+        res.status(201).send({sessionId: req.session.id});
     }).catch(next);
 })
 
 router.get('/data/userInfo', (req, res, next) => {
     if(req.customer){
-        res.json(req.customer.sessionInfoGrabber)
+        res.status(200).send(req.customer.sessionInfoGrabber)
     } else {
         res.status(404).send('Cannot')
     }
 })
 
 router.put('/data/userInfo', (req, res, next) => {
-    console.log(req.body.session, req.body.userIdentifier)
     if(req.customer){
         if(!req.body.session || !req.body.session.length){
             req.body.session = crypto.randomBytes(20).toString('hex');
