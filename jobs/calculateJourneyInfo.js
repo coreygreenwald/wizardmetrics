@@ -7,6 +7,7 @@ const calculateJourneyInfoRunner = async () => {
     try {
         const customers = await Customer.findAll();
         for(let i = 0; i < customers.length; i++){
+            let startTime = new Date();
             let customer = customers[i];
             await customer.matchActionsToConversions()
             let journey = await journeys(customer.username);
@@ -37,7 +38,7 @@ const calculateJourneyInfoRunner = async () => {
                 console.log('succeeded!!!');
             }
             await client.actions.setObj(`${customer.username}:JOURNEY:RECENT`, journeyObj || {})
-            console.log(chalk.green('Journey Data Created for ', customer.username));
+            console.log(chalk.green('Journey Data Created for ', customer.username, 'TOTAL TIME: ', (new Date() - startTime) + ' MS'));
         }
         // await db.close();
     } catch(err){

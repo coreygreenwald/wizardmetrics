@@ -2,7 +2,7 @@ const { Session, Action, Customer, Conversion, Journey} = require('../../db');
 const { deleteObjectKeys } = require('../general');
 const _ = require('lodash');
 
-const JOURNEY_MAXIMUM_LENGTH = 15;
+const JOURNEY_MAXIMUM_LENGTH = process.env.JOURNEY_LENGTH_CAP || 40;
 
 async function determineFutureConversions(actions){
     //TODO: In the future determine how far an action IS from a conversion
@@ -48,7 +48,7 @@ const buildJourney = async (customerUsername) => {
                 //Loop over each action that exists for each session.
                 let conversionCounter = await determineFutureConversions(actions);
                 let journeyLengthCap = Math.min(actions.length, JOURNEY_MAXIMUM_LENGTH);
-                for(let j = 0; j < journeyLengthCap; j++){
+                for(let j = 0; j < actions.length; j++){
                     let currAction = actions[j].toJSON();
                     let journeyInfoPosition = j - endOfJourneyPointer; 
                     //Do all work regarding time stamps here before deletion.
@@ -56,45 +56,47 @@ const buildJourney = async (customerUsername) => {
                     let savedId = currAction.id
                     let referrer = currAction.referrer;
                     deleteObjectKeys(currAction, ['id', 'createdAt', 'updatedAt', 'sessionId', 'referrer']); 
-                    if(!journeyInfo[journeyInfoPosition]){
-                        journeyInfo[journeyInfoPosition] = [];
-                    }
-                    let foundAction = false;
-                    //Go over all actions found at this position.
-                    for(action in journeyInfo[journeyInfoPosition]){
-                        let {metaData, actionData} = journeyInfo[journeyInfoPosition][action];
-                        if(_.isEqual(actionData, currAction)){
-                            metaData.count += 1;
-                            metaData.secondsOnAction += secondsOnAction; 
-                            metaData.actionIds.push(savedId);
-                            metaData.futureConversionCounter.hard += conversionCounter.HARD;
-                            metaData.futureConversionCounter.soft += conversionCounter.SOFT;
-                            //Remember ot clean up null pointers in the future
-                            metaData.referrers[referrer] = metaData.referrers[referrer] + 1 || 1;
-                            if(sessions[i].userIdentifier && j === actions.length - 1){
-                                metaData.identifiers.push(sessions[i].userIdentifier);
-                            }
-                            journeyInfo[journeyInfoPosition][action] = {actionData, metaData};
-                            foundAction = true;
-                            break;
+                    if(j < journeyLengthCap){
+                        if(!journeyInfo[journeyInfoPosition]){
+                            journeyInfo[journeyInfoPosition] = [];
                         }
-                    }
-                    if(!foundAction) {
-                        const identifiers = (sessions[i].userIdentifier && j === actions.length - 1) ? [sessions[i].userIdentifier] : [];
-                        journeyInfo[journeyInfoPosition].push({
-                            actionData: currAction, 
-                            metaData: {
-                                count: 1, 
-                                secondsOnAction, 
-                                actionIds: [currAction.id], 
-                                referrers: {[referrer]: 1}, 
-                                identifiers,
-                                futureConversionCounter: {
-                                    hard: 0,
-                                    soft: 0
+                        let foundAction = false;
+                        //Go over all actions found at this position.
+                        for(action in journeyInfo[journeyInfoPosition]){
+                            let {metaData, actionData} = journeyInfo[journeyInfoPosition][action];
+                            if(_.isEqual(actionData, currAction)){
+                                metaData.count += 1;
+                                metaData.secondsOnAction += secondsOnAction; 
+                                // metaData.actionIds.push(savedId);
+                                metaData.futureConversionCounter.hard += conversionCounter.HARD;
+                                metaData.futureConversionCounter.soft += conversionCounter.SOFT;
+                                //Remember ot clean up null pointers in the future
+                                metaData.referrers[referrer] = metaData.referrers[referrer] + 1 || 1;
+                                if(sessions[i].userIdentifier && j === actions.length - 1){
+                                    metaData.identifiers.push(sessions[i].userIdentifier);
                                 }
+                                journeyInfo[journeyInfoPosition][action] = {actionData, metaData};
+                                foundAction = true;
+                                break;
                             }
-                        });
+                        }
+                        if(!foundAction) {
+                            const identifiers = (sessions[i].userIdentifier && j === actions.length - 1) ? [sessions[i].userIdentifier] : [];
+                            journeyInfo[journeyInfoPosition].push({
+                                actionData: currAction, 
+                                metaData: {
+                                    count: 1, 
+                                    secondsOnAction, 
+                                    actionIds: [currAction.id], 
+                                    referrers: {[referrer]: 1}, 
+                                    identifiers,
+                                    futureConversionCounter: {
+                                        hard: 0,
+                                        soft: 0
+                                    }
+                                }
+                            });
+                        }
                     }
                     if(currAction.isConversion) { 
                         if((shortestJourneys.byLength.length > journeyInfoPosition) || shortestJourneys.byLength.length === 0){
