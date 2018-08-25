@@ -2,6 +2,8 @@ const { Session, Action, Customer, Conversion, Journey} = require('../../db');
 const { deleteObjectKeys } = require('../general');
 const _ = require('lodash');
 
+const JOURNEY_MAXIMUM_LENGTH = 15;
+
 async function determineFutureConversions(actions){
     //TODO: In the future determine how far an action IS from a conversion
     let conversionCounter = {
@@ -45,7 +47,8 @@ const buildJourney = async (customerUsername) => {
                 // let sessionModulus = 0;
                 //Loop over each action that exists for each session.
                 let conversionCounter = await determineFutureConversions(actions);
-                for(let j = 0; j < actions.length; j++){
+                let journeyLengthCap = Math.min(actions.length, JOURNEY_MAXIMUM_LENGTH);
+                for(let j = 0; j < journeyLengthCap; j++){
                     let currAction = actions[j].toJSON();
                     let journeyInfoPosition = j - endOfJourneyPointer; 
                     //Do all work regarding time stamps here before deletion.

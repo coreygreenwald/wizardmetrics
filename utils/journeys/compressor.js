@@ -64,6 +64,7 @@ const compressor = (customerId, journeyId, journey, type, options) => {
         journeyData,
         totalSignups
     }
+    console.log('REDIS CACHE --> ', `${customerId}:${journeyId}:${type.model}-${type.weight}`)
     client.actions.setObj(`${customerId}:${journeyId}:${type.model}-${type.weight}`, cacheObj)
     return cacheObj
 }
