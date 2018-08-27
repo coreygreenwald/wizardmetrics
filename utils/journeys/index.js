@@ -20,6 +20,26 @@ async function determineFutureConversions(actions){
     return conversionCounter;
 }
 
+function deleteUnimportantReferrals(referrals){
+    const keys = Object.keys(referrals);
+    for(let i = 0; i < keys.length; i++){
+        if(referrals[keys[i]] < 10){
+            delete referrals[keys[i]];
+        }
+    }
+    return referrals;
+}
+
+function journeyObjectRunner(journeyObj, cb){
+    for(let i = 0; i < journeyObj.length; i++){
+        for(let action in journeyObj[i]){
+            const {metaData} = journeyObj[i][action];
+            journeyObj[i][action].metaData.referrers = cb(metaData.referrers);
+        }
+    }
+    return journeyObj;
+}
+
 const buildJourney = async (customerUsername) => {
     try {
         const customerInfo = await Customer.findSessionsAndActions(customerUsername);
@@ -33,7 +53,7 @@ const buildJourney = async (customerUsername) => {
             }
         }
         //something about checking the length of each journey or something by time or by s
-        const journeyInfo = [];
+        let journeyInfo = [];
     
         //Check to ensure that customerInfo exists and sessions have been created. 
         if(customerInfo && customerInfo.sessions){
@@ -87,7 +107,7 @@ const buildJourney = async (customerUsername) => {
                                 metaData: {
                                     count: 1, 
                                     secondsOnAction, 
-                                    actionIds: [currAction.id], 
+                                    // actionIds: [currAction.id], 
                                     referrers: {[referrer]: 1}, 
                                     identifiers,
                                     futureConversionCounter: {
@@ -121,6 +141,7 @@ const buildJourney = async (customerUsername) => {
                 }
                 totalJourneys++;
             }
+            journeyInfo = journeyObjectRunner(journeyInfo, deleteUnimportantReferrals);
             return {
                 info: journeyInfo,
                 completedJourneys: completedJourneys,
