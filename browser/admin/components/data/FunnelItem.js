@@ -2,24 +2,44 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { kFormatter } from '../../utils'
 
-function colorChooser(occurrences, completedJourneys){
+function colorChooser(conversionIndicator, conversionRate, occurrences, totalJourneys, totalConversionIndex){
     let hex;
-    let percentage = Number(occurrences) / completedJourneys;
-    if(percentage < .05){
-        hex = '#b62120'
-    } else if(percentage < .2){
-        hex = '#b53921'
-    } else if(percentage < .3){
-        hex = '#b65e21'
-    } else if(percentage < .5){
-        hex = '#b69920'
-    } else if(percentage < .65){
-        hex = '#9fb620';
-    } else if(percentage < .75){
-        hex = '#6eb620';
+    let percentage = conversionIndicator / conversionRate;
+    let occurrenceThres = occurrences / totalJourneys < .1;
+    if(totalConversionIndex > .5){
+        return '#22b654';
+    } else if(totalConversionIndex > .3){
+        return '#9fb620';
     } else {
-        hex = '#22b654';
+        if(percentage < .3 && occurrenceThres){
+            hex = '#b62120'
+        } else if(percentage < .5 && occurrenceThres){
+            hex = '#b53921'
+        } else if(percentage < .8){
+            hex = '#b65e21'
+        } else if((percentage >= .8 && percentage < 1.2) || !occurrenceThres){
+            hex = '#b69920'
+        } else if(percentage < 1.5){
+            hex = '#9fb620';
+        } else {
+            hex = '#22b654';
+        }
     }
+// if(percentage < .05){
+//         hex = '#b62120'
+//     } else if(percentage < .2){
+//         hex = '#b53921'
+//     } else if(percentage < .3){
+//         hex = '#b65e21'
+//     } else if(percentage < .5){
+//         hex = '#b69920'
+//     } else if(percentage < .65){
+//         hex = '#9fb620';
+//     } else if(percentage < .75){
+//         hex = '#6eb620';
+//     } else {
+//         hex = '#22b654';
+//     }
     return hex;
 }
 
@@ -31,8 +51,10 @@ export default class FunnelItem extends Component {
       } 
     }
     render(){
-        const {actionData, percent, occurrences, time, totalCount, completedJourneys, totalJourneys, referrers, identifiers, handleClick, index, selected} = this.props
-        const styleObj = {width: '95%', height: '120px', backgroundColor: colorChooser(occurrences, completedJourneys)};
+        const {metaData, conversionRate, actionData, percent, occurrences, time, totalCount, completedJourneys, totalJourneys, referrers, identifiers, handleClick, index, selected} = this.props
+        const conversionIndicator = metaData ? (metaData.futureConversionCounter.hard / occurrences * 100) : 0;
+        const totalConversionIndex = metaData ? metaData.futureConversionCounter.hard / completedJourneys : 1; 
+        const styleObj = {width: '95%', height: '120px', backgroundColor: colorChooser(conversionIndicator, conversionRate, occurrences, totalJourneys, totalConversionIndex)};
         if(selected){
             styleObj.border = '4px solid #f1ff18';
         }

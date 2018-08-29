@@ -56,6 +56,7 @@ class AdminPanel extends Component {
   }
   render(){
     const { info, shortestJourneyLength, shortestJourneyTime, completedJourneys, totalJourneys } = this.props.data;
+    const conversionRate = (completedJourneys / totalJourneys) * 100;
     let journeyInfo = {journeyData: [], totalSignups: 0};
     if(this.state.dataModel === 'MOST_COMMON'){
       if(this.props.mostCommonJourney && this.props.mostCommonJourney.journeyData){
@@ -68,7 +69,7 @@ class AdminPanel extends Component {
     }
     const mostCommonInfo = journeyInfo.journeyData.filter((step, idx) => {
       let returnFactor = true; 
-      if((step.totalActionCount / totalJourneys) < .03 || step.totalActionCount < 50) returnFactor = false;
+      if((step.totalActionCount / totalJourneys) < .03 && step.totalActionCount < 100) returnFactor = false;
       if(idx !== 0 && journeyInfo.journeyData[idx - 1].metaData.isConversion) returnFactor = false;
       return returnFactor;
     })
@@ -108,9 +109,9 @@ class AdminPanel extends Component {
         <div className="admin-panel-funnel">
           <div className={`${this.state.activeItem !== -1 ? 'admin-panel-funnel-items-collapse' : 'admin-panel-funnel-items'}`}>
             {
-              mostCommonInfo.length ? mostCommonInfo.map(({actionData, percent, occurrences, time, totalCount, referrers, identifiers, allIdentifiers }, idx) => {
+              mostCommonInfo.length ? mostCommonInfo.map(({actionData, percent, occurrences, time, totalCount, referrers, identifiers, allIdentifiers, metaData }, idx) => {
                 return (
-                  <FunnelItem actionData={actionData} percent={percent} occurrences={occurrences} time={time} totalCount={totalCount} completedJourneys={completedJourneys} totalJourneys={totalJourneys} referrers={referrers} identifiers={identifiers} index={idx} handleClick={this.handleClick} selected={this.state.activeItem === idx}/>
+                  <FunnelItem metaData={metaData} conversionRate={conversionRate} actionData={actionData} percent={percent} occurrences={occurrences} time={time} totalCount={totalCount} completedJourneys={completedJourneys} totalJourneys={totalJourneys} referrers={referrers} identifiers={identifiers} index={idx} handleClick={this.handleClick} selected={this.state.activeItem === idx}/>
                 )
               }) : 
               ( <h1> Sorry No Data Today! </h1>)
