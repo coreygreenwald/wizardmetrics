@@ -2,7 +2,7 @@ const { Session, Action, Customer, Conversion, Journey} = require('../../db');
 const { deleteObjectKeys } = require('../general');
 const _ = require('lodash');
 
-const JOURNEY_MAXIMUM_LENGTH = process.env.JOURNEY_LENGTH_CAP || 40;
+const JOURNEY_MAXIMUM_LENGTH = process.env.JOURNEY_LENGTH_CAP || 20;
 
 async function determineFutureConversions(actions){
     //TODO: In the future determine how far an action IS from a conversion
@@ -59,7 +59,11 @@ const buildJourney = async (customerUsername) => {
         if(customerInfo && customerInfo.sessions){
             let sessions = customerInfo.sessions;
             //Loop over each session that exists for each customer.
+            console.log('TOTAL SESSIONS', sessions.length);
             for(let i = 0; i < sessions.length; i++){
+                if(i > 0 && i % 1000 === 0){
+                    console.log(i + ' sessions complete for ' + customerUsername);
+                }
                 let actions = sessions[i].actions && sessions[i].actions.length ? sessions[i].actions : [];
                 //This variable is to separate journeys by conversion
                 let endOfJourneyPointer = 0;
@@ -141,7 +145,9 @@ const buildJourney = async (customerUsername) => {
                 }
                 totalJourneys++;
             }
+            let deleteReferralKeysStartTime = new Date();
             journeyInfo = journeyObjectRunner(journeyInfo, deleteUnimportantReferrals);
+            console.log('Referral key deletion total executable time: ', (new Date() - deleteReferralKeysStartTime), 'MS');
             return {
                 info: journeyInfo,
                 completedJourneys: completedJourneys,
