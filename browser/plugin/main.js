@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
     .then(res => res.json())
     .then((userInfo) => {
         document.addEventListener('click', (e) => {
+            if(e.target.tagName === 'A' && e.target.href){
+                const originMarker = e.target.href.indexOf(window.location.pathname);
+                if(originMarker >= 0 && !e.target.href.slice(originMarker).includes('#')){
+                    return;
+                }
+            }
             let type;
             if(userInfo && userInfo.submitId && (userInfo.submitId === e.target.id || userInfo.submitId === e.target.className)){
                 let userIdentifier;
