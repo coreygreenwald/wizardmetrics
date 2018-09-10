@@ -1,5 +1,6 @@
 const db = require('../_db');
 const Sequelize = require('sequelize');
+const { Op } = Sequelize
 const crypto = require('crypto'); 
 const Session = require('./Session'); 
 const Action = require('./Action');
@@ -109,18 +110,40 @@ Customer.encryptPassword = function (plainText, salt) {
     return crypto.createHash('RSA-SHA256').update(plainText).update(salt).digest('hex')
 }
 
-Customer.findSessionsAndActions = function(username){
-    return Customer.findOne({
+Customer.findSessionsAndActions = async function(username, currentOffset = 0, currentLimit = 1000){
+    const customer = await Customer.findOne({
         where: {
             username: username
+        }
+    })
+    const sessions = await Session.findAll({
+        where: {
+            customerPublicId: customer.publicId
         },
+        limit: currentLimit,
+        offset: currentOffset,
+        order: [['updatedAt']],
         include: [{
-            model: Session, 
-            include: [{
-                model: Action
-            }]
+            model: Action
         }]
     })
+    customer.sessions = sessions;
+    return customer;
+    // return Customer.findOne({
+    //     where: {
+    //         username: username
+    //     },
+    //     include: [{
+    //         model: Session,
+    //         limit: currentLimit,
+    //         offset: currentOffset,
+    //         order: [['updatedAt']],
+    //         include: [{
+    //             model: Action
+    //         }]
+    //     }]
+    //     //LIMIT AND OFFSET. 
+    // })
 }
 
 const setSaltAndPassword = customer => {

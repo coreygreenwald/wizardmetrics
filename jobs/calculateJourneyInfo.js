@@ -11,9 +11,9 @@ const calculateJourneyInfoRunner = async () => {
                 let startTime = new Date();
                 let customer = customers[i];
                 let matchingStartTime = new Date();
-                await customer.matchActionsToConversions()
+                // await customer.matchActionsToConversions()
                 console.log(chalk.yellow(customer.username + ' actions/conversions have been readjusted ' + (new Date() - matchingStartTime) + ' MS'));
-                let journey = await journeys(customer.username);
+                let journey = await journeys(customer.username, customer.publicId);
                 //call cacher on journey info
                 journey.customerPublicId = customer.publicId
                 let date = new Date();
@@ -21,6 +21,7 @@ const calculateJourneyInfoRunner = async () => {
                 journey.day = newDate.slice(0, newDate.length - 4); 
                 let journeyObj; 
                 if(customer.name !== "DemoAccount"){
+                    journey.id = 361;
                     journeyObj = await Journey.create(journey);
                     let modelCompressionStartTime = new Date(); 
                     await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'IMPACT', weight: 'MOST'}, {conversionType: 'BOTH'})
