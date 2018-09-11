@@ -3,11 +3,12 @@ const { journeys, compressor } = require('../utils');
 const client = require('../cache');
 const chalk = require('chalk');
 
+const defaultCustomer = process.env.CUSTOMER_TO_RUN || 'xeroshoes7100';
 const calculateJourneyInfoRunner = async () => {
     try {
         const customers = await Customer.findAll();
         for(let i = 0; i < customers.length; i++){
-            if(process.env.IGNORE_COMPANY !== customers[i].username){
+            if(customers[i].username === defaultCustomer){
                 let startTime = new Date();
                 let customer = customers[i];
                 let matchingStartTime = new Date();
