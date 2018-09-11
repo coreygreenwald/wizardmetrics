@@ -21,7 +21,6 @@ const calculateJourneyInfoRunner = async () => {
                 journey.day = newDate.slice(0, newDate.length - 4); 
                 let journeyObj; 
                 if(customer.name !== "DemoAccount"){
-                    journey.id = 368;
                     journeyObj = await Journey.create(journey);
                     let modelCompressionStartTime = new Date(); 
                     await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'IMPACT', weight: 'MOST'}, {conversionType: 'BOTH'})

@@ -70,7 +70,6 @@ const buildJourney = async (customerUsername, customerPublicId) => {
             offset += 1000;
             if(customerInfo && customerInfo.sessions){
                 let sessions = customerInfo.sessions;
-                console.log(customerInfo.sessions[0].id, sessions.length);
                 //Loop over each session that exists for each customer.
                 for(let i = 0; i < sessions.length; i++){
                     let actions = sessions[i].actions && sessions[i].actions.length ? sessions[i].actions : [];
@@ -146,7 +145,7 @@ const buildJourney = async (customerUsername, customerPublicId) => {
                                 if(actualConversion.strength === 'HARD'){
                                     break;
                                 } else if(actions[j + 1]){
-                                    totalJourneys++;
+                                    // totalJourneys++;
                                 }
                             } else {
                                 endOfJourneyTimer += secondsOnAction;
