@@ -70,9 +70,9 @@ const buildJourney = async (customerUsername, customerPublicId) => {
             offset += 1000;
             if(customerInfo && customerInfo.sessions){
                 let sessions = customerInfo.sessions;
+                console.log(customerInfo.sessions[0].id, sessions.length);
                 //Loop over each session that exists for each customer.
                 for(let i = 0; i < sessions.length; i++){
-                    totalJourneys++;
                     let actions = sessions[i].actions && sessions[i].actions.length ? sessions[i].actions : [];
                     //This variable is to separate journeys by conversion
                     let endOfJourneyPointer = 0;
@@ -142,17 +142,18 @@ const buildJourney = async (customerUsername, customerPublicId) => {
                                 endOfJourneyPointer =  j + 1;
                                 let actualConversion = await Conversion.findById(currAction.conversionId);
                                 completedJourneys++;
-                                if(actions[j + 1]){
-                                    totalJourneys++;
-                                }
                                 if(actualConversion.strength === 'HARD'){
                                     break;
+                                }
+                                if(actions[j + 1]){
+                                    totalJourneys++;
                                 }
                             } else {
                                 endOfJourneyTimer += secondsOnAction;
                             }
                         }  
                     }
+                    totalJourneys++;
                 }
             } else {
                 throw new Error(`Customer ${username} doesn't exist or have any existing sessions`)

@@ -110,7 +110,7 @@ Customer.encryptPassword = function (plainText, salt) {
     return crypto.createHash('RSA-SHA256').update(plainText).update(salt).digest('hex')
 }
 
-Customer.findSessionsAndActions = async function(username, currentOffset = 0, currentLimit = 1000){
+Customer.findSessionsAndActions = async function(username, currentOffset, currentLimit = 1000){
     const customer = await Customer.findOne({
         where: {
             username: username
@@ -122,7 +122,7 @@ Customer.findSessionsAndActions = async function(username, currentOffset = 0, cu
         },
         limit: currentLimit,
         offset: currentOffset,
-        order: [['updatedAt']],
+        // order: [['createdAt']],
         include: [{
             model: Action
         }]
@@ -135,9 +135,6 @@ Customer.findSessionsAndActions = async function(username, currentOffset = 0, cu
     //     },
     //     include: [{
     //         model: Session,
-    //         limit: currentLimit,
-    //         offset: currentOffset,
-    //         order: [['updatedAt']],
     //         include: [{
     //             model: Action
     //         }]
