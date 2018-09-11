@@ -81,6 +81,7 @@ const buildJourney = async (customerUsername, customerPublicId) => {
                     //Loop over each action that exists for each session.
                     // if(actions.length > 20) console.log('NO SESSIONS FOUND FOR SESSION', sessions[i].id)
                     let conversionCounter = await determineFutureConversions(actions);
+                    if(conversionCounter.HARD) completedJourneys++;
                     let journeyLengthCap = Math.min(actions.length, JOURNEY_MAXIMUM_LENGTH);
                     for(let j = 0; j < actions.length; j++){
                         let currAction = actions[j].toJSON();
@@ -141,11 +142,10 @@ const buildJourney = async (customerUsername, customerPublicId) => {
                                 }
                                 endOfJourneyPointer =  j + 1;
                                 let actualConversion = await Conversion.findById(currAction.conversionId);
-                                completedJourneys++;
+                                // completedJourneys++;
                                 if(actualConversion.strength === 'HARD'){
                                     break;
-                                }
-                                if(actions[j + 1]){
+                                } else if(actions[j + 1]){
                                     totalJourneys++;
                                 }
                             } else {
