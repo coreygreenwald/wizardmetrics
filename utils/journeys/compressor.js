@@ -14,6 +14,7 @@ const compressor = (customerId, journeyId, journey, type, options) => {
         let conversionsAtStep = 0;
         let maxIndex = 0;
         let allIdentifiers = [];
+        let totalBreaks = 0;
         let conversionType = options.conversionType || 'BOTH';
         for(let i = 0; i < actions.length; i++){
             const {metaData, actionData } = actions[i];
@@ -25,6 +26,7 @@ const compressor = (customerId, journeyId, journey, type, options) => {
                 allIdentifiers = allIdentifiers.concat(metaData.identifiers);
             }
             totalCount += metaData.count;
+            totalBreaks += metaData.breakCounter;
             let futureConversionCount;
             let maxIndexConversionCount;
             if(conversionType === 'HARD'){
@@ -54,9 +56,11 @@ const compressor = (customerId, journeyId, journey, type, options) => {
             allIdentifiers: allIdentifiers,
             totalActionCount: actions[maxIndex].metaData.count,
             percent: Math.floor((actions[maxIndex].metaData.count / totalCount) * 100),
-            time: (actions[maxIndex].metaData.secondsOnAction / actions[maxIndex].metaData.count).toFixed(2),
+            time: (actions[maxIndex].metaData.secondsOnAction / (actions[maxIndex].metaData.count - actions[maxIndex].metaData.breakCounter)).toFixed(2),
+            breakCounter: actions[maxIndex].metaData.breakCounter,
             occurrences: actions[maxIndex].metaData.count,
             totalCount: totalCount,
+            totalBreaks: totalBreaks,
             conversionsAtStep: conversionsAtStep
         }
     })

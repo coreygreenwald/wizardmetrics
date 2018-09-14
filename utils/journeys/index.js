@@ -59,6 +59,7 @@ const buildJourney = async (customerUsername, customerPublicId) => {
         //Check to ensure that customerInfo exists and sessions have been created. 
         // for(let offset = 0; offset < totalSession)
         let offset = 0;
+        let totalTemp = 0; 
         let limit = 1000;
         while(offset < totalSessions){
             let remainingSessions = totalSessions - offset;
@@ -80,7 +81,10 @@ const buildJourney = async (customerUsername, customerPublicId) => {
                     //Loop over each action that exists for each session.
                     // if(actions.length > 20) console.log('NO SESSIONS FOUND FOR SESSION', sessions[i].id)
                     let conversionCounter = await determineFutureConversions(actions);
-                    if(conversionCounter.HARD) completedJourneys++;
+                    if(conversionCounter.HARD) {
+                        completedJourneys++;
+                        totalTemp += conversionCounter.HARD; 
+                    }
                     let journeyLengthCap = Math.min(actions.length, JOURNEY_MAXIMUM_LENGTH);
                     for(let j = 0; j < actions.length; j++){
                         let currAction = actions[j].toJSON();
@@ -100,7 +104,12 @@ const buildJourney = async (customerUsername, customerPublicId) => {
                                 let {metaData, actionData} = journeyInfo[journeyInfoPosition][action];
                                 if(_.isEqual(actionData, currAction)){
                                     metaData.count += 1;
-                                    metaData.secondsOnAction += secondsOnAction; 
+                                    //If someone is on this action for 5 minutes and there is a next action.
+                                    if(secondsOnAction > 600 && actions[j + 1]){
+                                        metaData.breakCounter++; 
+                                    } else {
+                                        metaData.secondsOnAction += secondsOnAction; 
+                                    }
                                     // metaData.actionIds.push(savedId);
                                     metaData.futureConversionCounter.hard += conversionCounter.HARD;
                                     metaData.futureConversionCounter.soft += conversionCounter.SOFT;
@@ -120,7 +129,8 @@ const buildJourney = async (customerUsername, customerPublicId) => {
                                     actionData: currAction, 
                                     metaData: {
                                         count: 1, 
-                                        secondsOnAction, 
+                                        secondsOnAction: secondsOnAction < 600 ? secondsOnAction : 0, 
+                                        breakCounter: secondsOnAction < 600 ? 0 : 1,
                                         // actionIds: [currAction.id], 
                                         referrers: {[referrer]: 1}, 
                                         identifiers,

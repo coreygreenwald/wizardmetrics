@@ -10,7 +10,7 @@ export default class AdminPanel extends Component {
         }
     }
     render(){
-        const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep, allIdentifiers, metaData } = this.props.currItem || {}
+        const {actionData, percent, occurrences, time, totalCount, referrers, identifiers, conversionsAtStep, allIdentifiers, metaData, breakCounter, totalBreaks } = this.props.currItem || {}
         const { activeItemNum, showReferrersFunc, showUsersFunc } = this.props
         const conversionIndicator = metaData ? (metaData.futureConversionCounter.hard / occurrences * 100).toFixed(2) : 0;
         const nextItem = this.props.nextItem || null;
@@ -49,8 +49,8 @@ export default class AdminPanel extends Component {
                                     <p>Conversion Likelihood</p>
                                 </div>
                                 <div className="admin-panel-funnel-stats-metrics-metric">
-                                    <h2>{Object.keys(referrers).length}</h2>
-                                    <p>Referral Sources to Action</p>
+                                    <h2>{breakCounter}</h2>
+                                    <p>Breaks Taken</p>
                                 </div>
                             </div>
                         ) : (
@@ -77,11 +77,8 @@ export default class AdminPanel extends Component {
                                     <p>Conversions at Step {activeItemNum + 1}</p>
                                 </div>
                                 <div className="admin-panel-funnel-stats-metrics-metric">
-                                    <div className="admin-panel-funnel-stats-metrics-metric">
-                                        <h3>/placeholder - 13%</h3>
-                                        <h3>/other - 9%</h3>
-                                    </div>
-                                    <p>Other Actions at Step {activeItemNum + 1}</p>
+                                    <h2>{totalBreaks}</h2>
+                                    <p>Breaks Taken at Step {activeItemNum + 1}</p>
                                 </div>
                             </div>
                         )
@@ -100,7 +97,7 @@ export default class AdminPanel extends Component {
                 <h2>Actionable Insights</h2>
                 <div className="admin-panel-funnel-stats-actions-body">
                 {
-                        identifiers && identifiers.length && identifiers.length > 15 && nextItem && nextItem.actionData ?
+                        identifiers && identifiers.length && identifiers.length > 10 && nextItem && nextItem.actionData ?
                         (
                             <div className="admin-panel-funnel-stats-actions-recommendation">
                                 <li>{identifiers.length} users are stuck on this action and {allIdentifiers.length} users have stopped at this step! Export these users and try to get them to {nextItem.actionData.path} <button className="btn" onClick={showUsersFunc}>See Customers</button></li>
