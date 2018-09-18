@@ -12,6 +12,9 @@ async function destroyInfo(username){
             let actionTimer = new Date();
             let sessions = await customer.getSessions();
             sessions = sessions.map(session => session.id)
+            let intervalNum = setInterval(() => {
+                console.log('Process Ticker', (new Date() - startTime));
+            }, 300000)
             await Action.destroy({
                 where: {
                     sessionId: {
@@ -33,6 +36,7 @@ async function destroyInfo(username){
                     customerPublicId: customer.publicId
                 }
             })
+            clearInterval(intervalNum);
             console.log(chalk.yellow('Time for Journey Deletion: ', new Date() - journeyDestroyTimer));
         
             console.log(sessions.length)
@@ -47,7 +51,7 @@ async function destroyInfo(username){
         await destroyInfo(process.env.USERNAME);
         console.log(chalk.green('Mission Success!'))
     } catch(err){
-        console.log(chalk.red(new Date(), 'calculateJourneyInfo Job Failed'))
+        console.log(chalk.red(new Date(), 'destroyCustomerInfo Job Failed', err))
     } finally {
         db.close(); 
     }
