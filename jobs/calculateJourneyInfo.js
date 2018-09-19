@@ -49,7 +49,7 @@ const calculateJourneyInfoRunner = async () => {
                 let redisCacheStartTime = new Date(); 
                 journeyObj.info = {};
                 delete journeyObj.info;
-                journeyObj = await Journey.create(journey);
+                journeyObj = await Journey.create(journeyObj);
                 await client.actions.setObj(`${customer.username}:JOURNEY:RECENT`, journeyObj || {})
                 console.log(chalk.yellow(customer.username + ' journey has been cached through ' + (new Date() - redisCacheStartTime) + ' MS'));
                 console.log(chalk.green('Journey Data Created for ', customer.username, 'TOTAL TIME: ', (new Date() - startTime) + ' MS'));
@@ -59,7 +59,7 @@ const calculateJourneyInfoRunner = async () => {
         }
         // await db.close();
     } catch(err){
-        console.log('There was an error running the job!');
+        console.log('There was an error running the job!', err);
     }
 }
 
