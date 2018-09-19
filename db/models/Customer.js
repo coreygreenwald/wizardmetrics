@@ -81,6 +81,7 @@ Customer.prototype.toJSON = function () {
 
 Customer.prototype.matchActionsToConversions = async function() {
     try {
+        let startTime = new Date();
         let sessions = await Session.findAll({
             where: {
                 customerPublicId: this.publicId
@@ -88,6 +89,11 @@ Customer.prototype.matchActionsToConversions = async function() {
                 model: Action
             }]
         })
+        console.log('Time to find sessions', new Date() - startTime);
+        let actionStartTime = new Date();
+        setInterval(() => {
+            console.log('Time Elapsed on Matching Actions', new Date() - actionStartTime); 
+        }, 300000)
         let conversions = await this.getConversions();
         for(let i = 0; i < sessions.length; i++){
             let actions = sessions[i].actions;
@@ -96,6 +102,7 @@ Customer.prototype.matchActionsToConversions = async function() {
                 return action.save();
             }))
         }
+        console.log('Time to update actions', new Date() - actionStartTime);
     } catch(err){
         console.log('There was an error rematching conversions!', err); 
     }

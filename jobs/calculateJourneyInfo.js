@@ -49,6 +49,7 @@ const calculateJourneyInfoRunner = async () => {
                 let redisCacheStartTime = new Date(); 
                 journeyObj.info = {};
                 delete journeyObj.info;
+                delete journeyObj.id;
                 journeyObj = await Journey.create(journeyObj);
                 await client.actions.setObj(`${customer.username}:JOURNEY:RECENT`, journeyObj || {})
                 console.log(chalk.yellow(customer.username + ' journey has been cached through ' + (new Date() - redisCacheStartTime) + ' MS'));
