@@ -9,12 +9,12 @@ async function destroyInfo(username){
     for(let i = 0; i < customers.length; i++){
         let customer = customers[i]; 
         if(customer.username === username){
-            // let actionTimer = new Date();
+            let actionTimer = new Date();
             // let sessions = await customer.getSessions();
             // sessions = sessions.map(session => session.id)
-            // let intervalNum = setInterval(() => {
-            //     console.log('Process Ticker', (new Date() - startTime));
-            // }, 300000)
+            let intervalNum = setInterval(() => {
+                console.log('Process Ticker', (new Date() - startTime));
+            }, 300000)
             // await Action.destroy({
             //     where: {
             //         sessionId: {
@@ -22,7 +22,7 @@ async function destroyInfo(username){
             //         }
             //     }
             // })
-            // console.log(chalk.yellow('Time for Action Deletion: ', new Date() - actionTimer));
+            console.log(chalk.yellow('Time for Action Deletion: ', new Date() - actionTimer));
             let sessionDestroyTimer = new Date();
             await Session.destroy({
                 where: {
