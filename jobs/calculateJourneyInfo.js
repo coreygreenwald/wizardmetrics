@@ -24,7 +24,6 @@ const calculateJourneyInfoRunner = async () => {
                 if(customer.name !== "DemoAccount"){
                     journeyObj = journey; 
                     journeyObj.id = 'RECENT'
-                    // journeyObj = await Journey.create(journey);
                     let modelCompressionStartTime = new Date(); 
                     await compressor(customer.username, journeyObj.id, journeyObj.info, {model: 'IMPACT', weight: 'MOST'}, {conversionType: 'BOTH'})
                     console.log(chalk.yellow(customer.username + ' journey has been compressed through MOST IMPACT model ' + (new Date() - matchingStartTime) + ' MS'));
@@ -49,6 +48,8 @@ const calculateJourneyInfoRunner = async () => {
                 }
                 let redisCacheStartTime = new Date(); 
                 journeyObj.info = {};
+                delete journeyObj.info;
+                journeyObj = await Journey.create(journey);
                 await client.actions.setObj(`${customer.username}:JOURNEY:RECENT`, journeyObj || {})
                 console.log(chalk.yellow(customer.username + ' journey has been cached through ' + (new Date() - redisCacheStartTime) + ' MS'));
                 console.log(chalk.green('Journey Data Created for ', customer.username, 'TOTAL TIME: ', (new Date() - startTime) + ' MS'));
