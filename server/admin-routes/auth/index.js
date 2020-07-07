@@ -22,6 +22,7 @@ router.post('/login', (req, res, next) => {
   }).catch(next)
 })
 
+// During the production run of Wizard Metrics - Company Signup was managed through customer acquisition.
 // router.post('/signup', (req, res, next) => {
 //   Customer.create(req.body)
 //     .then(customer => {
