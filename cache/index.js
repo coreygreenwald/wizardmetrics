@@ -8,6 +8,9 @@ client.on('error', (err) => {
     console.log('Redis had an error!', err);
 })
 
+//This custom getter/setter allows for generalized access and standardization across the application.
+//All uses of redis will go through these two endpoints. 
+
 client.actions = {
     setObj: (name, obj) => {
         return client.setAsync(name, JSON.stringify(obj));

@@ -12,7 +12,7 @@ function colorChooser(conversionIndicator, conversionRate, occurrences, totalJou
         return '#9fb620';
     } else {
         if(percentage < .3 && occurrenceThres){
-            hex = '#b62120'
+            hex = '#b62130'
         } else if(percentage < .5 && occurrenceThres){
             hex = '#b53921'
         } else if(percentage < .8){
@@ -25,21 +25,6 @@ function colorChooser(conversionIndicator, conversionRate, occurrences, totalJou
             hex = '#22b654';
         }
     }
-// if(percentage < .05){
-//         hex = '#b62120'
-//     } else if(percentage < .2){
-//         hex = '#b53921'
-//     } else if(percentage < .3){
-//         hex = '#b65e21'
-//     } else if(percentage < .5){
-//         hex = '#b69920'
-//     } else if(percentage < .65){
-//         hex = '#9fb620';
-//     } else if(percentage < .75){
-//         hex = '#6eb620';
-//     } else {
-//         hex = '#22b654';
-//     }
     return hex;
 }
 
